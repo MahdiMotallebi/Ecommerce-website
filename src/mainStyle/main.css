@@ -1,0 +1,303 @@
+/***** Importede Font *****/
+@import url("https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,900&family=Roboto:wght@100;300;400;500;900&display=swap");
+/***** End Importede Font *****/
+/***** Global Style *****/
+*,
+*::before,
+*::after {
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  font-family: "Exo 2", sans-serif;
+  font-family: "Roboto", sans-serif;
+  overflow-x: hidden;
+  height: 100%;
+}
+
+/***** End Global Style *****/
+/***** OverwriteBootstrap *****/
+.overwriteBootstrap ul {
+  padding: 0;
+}
+
+.overwriteBootstrap *:focus {
+  outline: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  color: none;
+  background-color: none;
+}
+
+.overwriteBootstrap a {
+  text-decoration: none;
+}
+
+.overwriteBootstrap ul li {
+  list-style: none;
+}
+
+.overwriteBootstrap img {
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+  /* remove extra space below image */
+}
+
+.overwriteBootstrap .navbar-toggler {
+  border: none;
+}
+
+.overwriteBootstrap .card-title {
+  font-weight: 900;
+  letter-spacing: 0.5px;
+  margin-bottom: 1em;
+}
+
+.overwriteBootstrap .card-text {
+  font-size: 0.9em;
+  color: #6c757d;
+}
+
+.overwriteBootstrap p {
+  margin-bottom: 0;
+}
+
+.overwriteBootstrap .nav-link {
+  color: #f5f5f5 !important;
+}
+
+/***** End OverwriteBootstrap *****/
+/***** LeftNavbar *****/
+@media (max-width: 991.98px) {
+  .nav-collapse {
+    position: absolute;
+    width: 100%;
+    top: 75px;
+    left: 0;
+    padding: 1em 1em 1em 2em;
+    background: var(--bs-dark);
+    z-index: 2000;
+  }
+}
+
+.bars {
+  color: #fff;
+  font-size: 1.4em;
+}
+
+.logo {
+  font-size: 1.5em;
+  text-transform: capitalize;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+.leftNavbar .like,
+.leftNavbar .shopBasket {
+  position: relative;
+  font-size: 1.5em;
+  color: red;
+  background-color: transparent;
+  border: none;
+}
+
+.leftNavbar .count-like,
+.leftNavbar .count-shop-item {
+  background: #d4d4d4;
+  left: 0;
+  top: 0px;
+  font-size: 0.5em;
+  color: #000;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: block;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: absolute;
+}
+
+/***** End LeftNavbar *****/
+/***** Shop *****/
+.shop {
+  min-height: 100vh;
+}
+
+.shop-img {
+  -webkit-filter: grayscale(90%);
+          filter: grayscale(90%);
+  width: 200px;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  display: block;
+}
+
+.price {
+  font-weight: 900;
+  font-size: 1.7em;
+}
+
+.text {
+  min-height: 170px;
+}
+
+.custom-card {
+  height: 300px;
+}
+
+.noProduct {
+  font-size: 1.5em;
+}
+
+/***** End Shop *****/
+/***** Cart & Like *****/
+.imgCart {
+  width: 70px;
+  height: 80px;
+  -webkit-filter: grayscale(90%);
+          filter: grayscale(90%);
+}
+
+.noLike_cart {
+  background: rgba(34, 38, 42, 0.1);
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.noLike_cart p {
+  font-weight: 900;
+  font-size: 1.5em;
+}
+
+.noLike_cart p::first-letter {
+  text-transform: capitalize;
+}
+
+.likeItems .cartItems {
+  background: rgba(34, 38, 42, 0.1);
+  height: 100%;
+}
+
+.cart-item,
+.like-item {
+  height: 150px;
+}
+
+.total-price-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 1em;
+  background: #212121;
+  color: #f5f5f5;
+  letter-spacing: 1px;
+  padding: 1em;
+  text-align: left;
+}
+
+.total-price-container .total-text {
+  text-transform: capitalize;
+  font-weight: 800;
+}
+
+.likeRed {
+  color: #000;
+}
+
+.likeBlack {
+  color: #d3d3d3;
+}
+
+.btn-like {
+  border: none;
+  background-color: transparent;
+}
+
+/***** End Cart & Like *****/
+/***** Modal *****/
+.custom-modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  overflow-y: overlay;
+  width: 80vw;
+  height: 80vh;
+  background: #fff;
+  -webkit-box-shadow: 0 3px 6px #00000029;
+          box-shadow: 0 3px 6px #00000029;
+  border-radius: 5px;
+  padding: 2em 2.5em 2em 2em;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.btn-common {
+  width: 30px;
+  height: 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+/***** End Modal *****/
+/***** ToastNotificaiton *****/
+.toast-notification {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+/***** End ToastNotificaiton *****/
+/***** 404 page *****/
+.title-noPage {
+  font-size: 7em;
+}
+
+.subtitle-noPage {
+  font-size: 1em;
+  text-transform: capitalize;
+  margin-bottom: 1em;
+}
+
+.btn-noPage {
+  text-transform: capitalize;
+}
+
+/***** End 404 page *****/
+/***** Page *****/
+.page {
+  font-size: 7em;
+}
+
+/***** End Page *****/
+/*# sourceMappingURL=main.css.map */
