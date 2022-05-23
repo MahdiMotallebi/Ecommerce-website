@@ -13,7 +13,7 @@
       ],
       "price": 29.9,
       "count": 0,
-      "isLike": false
+      "isLike": true
     },
     {
       "id": "dress2",
@@ -26,7 +26,7 @@
         "L"
       ],
       "price": 18.9,
-      "count": 0
+      "count": 5
     },
     {
       "id": "dress3",

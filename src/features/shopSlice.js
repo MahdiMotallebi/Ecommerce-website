@@ -122,19 +122,21 @@ const clothingSlice = createSlice({
           (item) => item.id !== action.payload.id
         );
         state.cartItems = [...tempCartItem];
-        return;
       }
-      const inCart = state.cartItems.some(
-        (item) => item.id === action.payload.id
-      );
 
-      if (inCart) {
-        const index = state.cartItems.findIndex(
+      if (action.payload.count >= 1) {
+        const inCart = state.cartItems.some(
           (item) => item.id === action.payload.id
         );
-        if (state.cartItems[index]) state.cartItems[index] = action.payload;
-      } else {
-        state.cartItems.push(action.payload);
+
+        if (inCart) {
+          const index = state.cartItems.findIndex(
+            (item) => item.id === action.payload.id
+          );
+          if (state.cartItems[index]) state.cartItems[index] = action.payload;
+        } else {
+          state.cartItems.push(action.payload);
+        }
       }
 
       const index = state.filterItems.findIndex(
