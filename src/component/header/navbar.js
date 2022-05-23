@@ -5,6 +5,8 @@ import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
 import NavDropdown from "react-bootstrap/NavDropdown";
 
 import Modal from "react-modal";
@@ -12,7 +14,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBasketShopping,
   faHeart,
+  faUser,
   faBars,
+  faPhone,
 } from "@fortawesome/free-solid-svg-icons";
 import { allState } from "../../features/shopSlice";
 import Cart from "../cart/cart";
@@ -31,19 +35,59 @@ const NavBar = () => {
     setShowLikeModal(false);
   };
   return (
-    <>
+    <header>
+      {/* Top header */}
+      {/* <Row className="top-header">
+        <Col>
+          <div className="top-header-left">
+            <ul>
+              <li>Welcome to Our store Multikart</li>
+              <li>
+                <FontAwesomeIcon icon={faPhone}></FontAwesomeIcon>
+                Call Us: 123 - 456 - 7890
+              </li>
+            </ul>
+          </div>
+        </Col>
+
+        <Col>
+          <div className="top-header-right">
+            <ul>
+              <li className="wishlist">
+                <FontAwesomeIcon icon={faHeart}></FontAwesomeIcon>
+                wishlist
+              </li>
+              <li className="account">
+                <FontAwesomeIcon icon={faUser}></FontAwesomeIcon>
+                myaccount
+                <ul className="hover-account">
+                  <li>login</li>
+                  <li>register</li>
+                  <li>logout</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </Col>
+      </Row> */}
+
+      {/* Navbar */}
       <Navbar bg="dark" expand="lg" className="row algin-items-center p-3">
         <Container fluid>
+          {/* <div className="container-left-sidebar bg-info">
+            <FontAwesomeIcon icon={faBars}></FontAwesomeIcon>
+            <div className="left-sidebar"></div>
+          </div> */}
           {/* Logo */}
           <LinkContainer to="/">
             <Navbar.Brand className="logo m-0 text-white">
-              shop clothing
+              <img src={window.location.origin + "/Img/logo.png"} alt="logo" />
             </Navbar.Brand>
           </LinkContainer>
           <Navbar.Collapse className="px-3 nav-collapse" id="navbarNavDropdown">
             <Nav>
               <LinkContainer to="/">
-                <Nav.Link activeClassName="active">Home</Nav.Link>
+                <Nav.Link>Home</Nav.Link>
               </LinkContainer>
               <LinkContainer to="/about">
                 <Nav.Link>about</Nav.Link>
@@ -117,7 +161,7 @@ const NavBar = () => {
           <Like />
         </Modal>
       )}
-    </>
+    </header>
   );
 };
 
