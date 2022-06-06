@@ -1,9 +1,13 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
+import Table from "react-bootstrap/Table";
 import Col from "react-bootstrap/Col";
+import Image from "react-bootstrap/Image";
+import Container from "react-bootstrap/Container";
+import noCart from "../../img/not-cart.png";
 
 import { allState, changeCount } from "../../features/shopSlice";
 
@@ -38,65 +42,111 @@ const Cart = () => {
     <>
       {state.cartItems.length > 0 ? (
         <Row>
-          {state.cartItems.map((item) => {
-            const { id, image, title, price, count } = item;
-            return (
-              <Card
-                className="cart-item col-lg-6 d-flex flex-row mb-4 p-2 align-items-center justify-content-around shadow"
-                key={id}
+          <Table className="cart-table">
+            <thead>
+              <tr>
+                <th>image</th>
+                <th className="d-md-none">product info</th>
+                <th className="d-none d-md-table-cell">product name</th>
+                <th className="d-none d-md-table-cell">price</th>
+                <th className="d-none d-md-table-cell">quantity</th>
+                <th>action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {state.cartItems.map((item) => {
+                const { id, image, title, price, count } = item;
+                return (
+                  <>
+                    <tr>
+                      <td>
+                        <div className="d-flex">
+                          <Image
+                            src={image}
+                            alt={image}
+                            className="rounded-3 imgCart"
+                          />
+                        </div>
+                      </td>
+                      <td className="d-md-none text-start ">
+                        <div className="d-flex flex-column gap-2">
+                          <h6 className="fw-bold">{title}</h6>
+                          <div className="d-flex justify-content-between">
+                            <span>Price:</span> ${price}
+                          </div>
+                          <div className="d-flex justify-content-between">
+                            <span>Count:</span> {count}
+                          </div>
+                        </div>
+                      </td>
+                      <td className="d-none d-md-table-cell">
+                        <h6>{title}</h6>
+                      </td>
+                      <td className="d-none d-md-table-cell">${price}</td>
+                      <td className="d-none d-md-table-cell">{count}</td>
+                      <td>
+                        <div className="d-flex flex-column gap-2 justify-content-center align-items-center">
+                          <Button
+                            title="remove"
+                            className="btn-common"
+                            variant="dark"
+                            onClick={() => handleDelete(item)}
+                          >
+                            x
+                          </Button>
+                          <Button
+                            className="text-white btn-common"
+                            title="increase"
+                            variant="dark"
+                            onClick={() => handleIncrease(item)}
+                          >
+                            +
+                          </Button>
+                          <Button
+                            className="text-white btn-common"
+                            title="decrease"
+                            variant="dark"
+                            disabled={count === 0 ? true : false}
+                            onClick={() => handleDecrease(item)}
+                          >
+                            -
+                          </Button>
+                        </div>
+                      </td>
+                    </tr>
+                  </>
+                );
+              })}
+            </tbody>
+          </Table>
+          <div>
+            <Row>
+              <Col
+                xs={12}
+                sm={6}
+                className="d-flex justify-content-between justify-content-sm-start gap-sm-3 align-items-center mb-3 mb-sm-0 "
               >
-                <div className="container-img">
-                  <Card.Img
-                    src={image}
-                    alt={image}
-                    className="rounded-3 imgCart"
-                  />
-                </div>
-
-                <div
-                  className="d-flex flex-column justify-content-around
-                p-2 gap-2  "
+                <p className="total-text text-capitalize fw-bold">
+                  total Price:
+                </p>
+                <p className="total-price"> ${totalCart()}</p>
+              </Col>
+              <Col xs={12} sm={6} className="text-sm-end">
+                <Link
+                  className="checkout-btn d-block d-sm-inline-block py-2 px-2 px-sm-4 text-white text-uppercase text-center"
+                  to="/checkout"
                 >
-                  <p className="fw-bold">{title}</p>
-                  <p className="small ">Quantity: {count}</p>
-                  <p className="small">Price: ${price}</p>
-                </div>
-                <div className=" d-flex flex-column justify-content-center justify-content-sm-end gap-2">
-                  <Button
-                    className="btn-common "
-                    variant="dark"
-                    onClick={() => handleDelete(item)}
-                  >
-                    x
-                  </Button>
-                  <Button
-                    className="text-white btn-common"
-                    variant="dark"
-                    onClick={() => handleIncrease(item)}
-                  >
-                    +
-                  </Button>
-                  <Button
-                    className="text-white btn-common"
-                    variant="dark"
-                    disabled={count === 0 ? true : false}
-                    onClick={() => handleDecrease(item)}
-                  >
-                    -
-                  </Button>
-                </div>
-              </Card>
-            );
-          })}
-
-          <Col xs={12} className="total-price-container">
-            <p className="total-text">total Price:</p>
-            <p className="total-price"> ${totalCart()}</p>
-          </Col>
+                  checkout
+                </Link>
+              </Col>
+            </Row>
+          </div>
         </Row>
       ) : (
         <Col xs={12} className="noLike_cart">
-          <p>please add some item..</p>
+          <Image src={noCart} />
+          <h4>your cart is empty.</h4>
+          <p>explore more shortlist some items.</p>
         </Col>
       )}
     </>

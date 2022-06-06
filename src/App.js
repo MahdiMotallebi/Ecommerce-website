@@ -6,7 +6,14 @@ import Home from "./pages/home";
 import About from "./pages/about";
 import Contact from "./pages/contact";
 import NoPage from "./pages/noPage";
-import NavBar from "./component/header/navbar";
+import Hero from "./component/hero/hero";
+import Login from "./component/account/login";
+import Register from "./component/account/register";
+import Footer from "./component/footer/footer";
+import SingleBlog from "./component/singleBlog/singleBlog";
+import Header from "./component/header/header";
+import Breadcrumb from "./component/breadCrumb/breadCrumb";
+
 const App = () => {
   const dispatch = useDispatch();
 
@@ -15,13 +22,18 @@ const App = () => {
   }, []);
   return (
     <>
-      <NavBar />
+      <Header />
+
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="about" element={<About />} />
         <Route path="contact" element={<Contact />} />
-        <Route path="*" element={<NoPage />} />
+        <Route path="login" element={<Login />} />
+        <Route path="register" element={<Register />} />
+        <Route path="singleBlog" element={<SingleBlog />}>
+          <Route path="about" element={<About />} />
+        </Route>
       </Routes>
+      <Footer />
     </>
   );
 };

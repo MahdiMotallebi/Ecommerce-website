@@ -1,13 +1,12 @@
 import React from "react";
-
-import Category from "../component/category/category";
 import Shop from "../component/shop/shop";
+import Hero from "../component/hero/hero";
 const Home = () => {
   return (
-    <div className="container-fluid">
-      <Category />
+    <>
+      <Hero />
       <Shop />
-    </div>
+    </>
   );
 };
 

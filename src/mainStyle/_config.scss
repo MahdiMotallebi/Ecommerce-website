@@ -1,0 +1,81 @@
+/***** Importe Font *****/
+@import url("https://fonts.googleapis.com/css2?family=Titillium+Web:wght@200;300;400;600;700&display=swap");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css");
+@import "media_Query";
+
+$original-black: #000;
+$main-black: rgba(33, 37, 41, 0.7);
+$sub-text-color: #888;
+$sub-title-fontSize: clamp(1rem, 1vw, 1.5rem);
+$title-fontSize: clamp(24px, 3vw, 35px);
+
+%subTitle {
+  text-transform: capitalize;
+  font-size: $sub-title-fontSize;
+  letter-spacing: 0.5px;
+}
+%title {
+  text-transform: uppercase;
+  font-size: $title-fontSize;
+  letter-spacing: 0.5px;
+  font-weight: bold;
+  position: relative;
+  margin-bottom: 0.7em;
+  margin-top: 0.1em;
+}
+
+%underline_title {
+  content: "";
+  position: absolute;
+  height: 2px;
+  width: 60px;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #000;
+}
+
+%btn-style {
+  font-size: 16px;
+  letter-spacing: 1px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid $original-black;
+  background: none;
+  color: #fff;
+  z-index: 1;
+}
+
+%italicHover {
+  &:hover {
+    color: $original-black;
+  }
+  &::before {
+    content: "";
+    position: absolute;
+    left: -50px;
+    top: 0;
+    width: 280%;
+    height: 500%;
+    transform: rotate(45deg);
+    background: $original-black;
+    transition: 0.35s;
+    z-index: -1;
+  }
+
+  &:hover::before {
+    left: -320px;
+  }
+}
+
+%style-tag-a {
+  color: #fff;
+  line-height: 40px;
+  text-transform: uppercase;
+  display: inline-block;
+  transition: 0.4s;
+  position: relative;
+  overflow: hidden;
+  transition: 0.1s linear;
+  border: 1px solid #000;
+}

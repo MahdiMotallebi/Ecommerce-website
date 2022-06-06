@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Select from "react-select";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { fetchProducts } from "../../features/shopSlice";
 import { useDispatch } from "react-redux";
 import {
   handleFilterBySize,

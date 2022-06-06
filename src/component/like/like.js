@@ -1,14 +1,11 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  allState,
-  handleDeleteLikeItem,
-  handleLike,
-} from "../../features/shopSlice";
+import { allState } from "../../features/shopSlice";
 
 import { changeLike } from "../../features/shopSlice";
 import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
+import Table from "react-bootstrap/Table";
+import Image from "react-bootstrap/Image";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 const Like = () => {
@@ -22,40 +19,53 @@ const Like = () => {
     <>
       {state.likeItems.length > 0 ? (
         <Row>
-          {state.likeItems.map((item) => {
-            const { id, image, title } = item;
-            return (
-              <Card
-                className="col-lg-6 like-item mb-4 d-flex flex-row p-2 align-items-center justify-content-around shadow"
-                key={id}
-              >
-                <div className="container-img">
-                  <Card.Img
-                    src={image}
-                    alt={image}
-                    className="rounded-3 imgCart"
-                  />
-                </div>
+          <Table className="cart-table">
+            <thead>
+              <tr>
+                <th>image</th>
+                <th>product name</th>
+                <th>price</th>
+                <th>action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {state.likeItems.map((item) => {
+                const { id, image, title, price, count } = item;
+                return (
+                  <>
+                    <tr>
+                      <td>
+                        <Image
+                          src={image}
+                          alt={image}
+                          className="rounded-3 imgCart"
+                        />
+                      </td>
 
-                <div className="p-2 text-left w-75">
-                  <p className="fw-bold">{title}</p>
-                </div>
-                <div className=" d-flex flex-column justify-content-center justify-content-sm-end gap-2">
-                  <Button
-                    variant="dark"
-                    className="btn-common "
-                    onClick={() => handleDelete(item)}
-                  >
-                    x
-                  </Button>
-                </div>
-              </Card>
-            );
-          })}
+                      <td>{title}</td>
+                      <td>${price}</td>
+
+                      <td>
+                        <Button
+                          title="remove"
+                          className="btn-common mx-auto"
+                          variant="dark"
+                          onClick={() => handleDelete(item)}
+                        >
+                          x
+                        </Button>
+                      </td>
+                    </tr>
+                  </>
+                );
+              })}
+            </tbody>
+          </Table>
         </Row>
       ) : (
         <Col xs={12} className="noLike_cart">
-          <p>please add some item..</p>
+          <h4>your wishlist is empty.</h4>
+          <p>explore more shortlist some items.</p>
         </Col>
       )}
     </>
