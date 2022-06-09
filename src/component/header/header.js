@@ -1,19 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { LinkContainer } from "react-router-bootstrap";
-import Container from "react-bootstrap/Container";
-import Button from "react-bootstrap/Button";
-import Navbar from "react-bootstrap/Navbar";
-import Nav from "react-bootstrap/Nav";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
-import Form from "react-bootstrap/Form";
-import Image from "react-bootstrap/Image";
-import InputGroup from "react-bootstrap/InputGroup";
-import FormControl from "react-bootstrap/FormControl";
-import NavDropdown from "react-bootstrap/NavDropdown";
+import {
+  Container,
+  Button,
+  Navbar,
+  Nav,
+  Col,
+  Form,
+  Row,
+  Image,
+  InputGroup,
+  FormControl,
+  NavDropdown,
+  Dropdown,
+} from "react-bootstrap";
+
+import { DropdownSubmenu } from "react-bootstrap-submenu";
 import Modal from "react-modal";
-import blackLogo from "../../img/black-logo.png";
+
 import whiteLogo from "../../img/white-logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -28,12 +33,31 @@ import {
 import { allState } from "../../features/shopSlice";
 import Cart from "../cart/cart";
 import Like from "../like/like";
-
+import { menuItems } from "../../menuItems";
+import MenuItems from "../menu/MenuItems";
 const Header = () => {
   const state = useSelector(allState);
   const [showCartModal, setShowCartModal] = useState(false);
   const [showLikeModal, setShowLikeModal] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
+  const [showSubmenu, setShowSubmenu] = useState(false);
+  const heightSubmenu = useRef(null);
+  const parentSubmenu = useRef(null);
+  const containerSubmenu = useRef(null);
+
+  // useEffect(() => {
+  //   const h = heightSubmenu.current.getBoundingClientRect().height;
+  //   const ph = parentSubmenu.current.getBoundingClientRect().height;
+
+  //   if (showSubmenu) {
+  //     containerSubmenu.current.style.height = `${h}px`;
+  //     parentSubmenu.current.style.height = `${ph + h}px`;
+  //   } else {
+  //     const h1 = containerSubmenu.current.getBoundingClientRect().height;
+  //     containerSubmenu.current.style.height = 0;
+  //     parentSubmenu.current.style.height = `${ph - h1}px`;
+  //   }
+  // }, [showSubmenu]);
 
   const handleCloseCartModal = () => {
     setShowCartModal(false);
@@ -109,11 +133,7 @@ const Header = () => {
         </div>
 
         {/* Navbar */}
-        <Navbar
-          expand="lg"
-          bg="dark"
-          className=" algin-items-center custom-navbar"
-        >
+        <Navbar expand="lg" className="algin-items-center custom-navbar">
           <Container fluid>
             <Col className="d-flex align-items-center" lg={8}>
               <div className="btn-sidebar">
@@ -130,28 +150,23 @@ const Header = () => {
               </LinkContainer>
 
               {/* navLinks */}
-              {/* <Navbar.Collapse
-                className="px-3 nav-collapse"
+              <Navbar.Collapse
+                className="nav-collapse ms-lg-4"
                 id="navbarNavDropdown"
               >
-                <Nav className="main-navLink">
-                  <LinkContainer to="/">
-                    <Nav.Link>Home</Nav.Link>
-                  </LinkContainer>
-                  <LinkContainer to="/about">
-                    <Nav.Link>about</Nav.Link>
-                  </LinkContainer>
-                  <LinkContainer to="/contact">
-                    <Nav.Link>contact</Nav.Link>
-                  </LinkContainer>
-
-                  <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                    <NavDropdown.Item>Action</NavDropdown.Item>
-                    <NavDropdown.Item>Another action</NavDropdown.Item>
-                    <NavDropdown.Item>Something else here</NavDropdown.Item>
-                  </NavDropdown>
+                <Nav className="main-navLink ">
+                  {menuItems.map((menu, index) => {
+                    let depthLevel = 0;
+                    return (
+                      <MenuItems
+                        menu={menu}
+                        key={index}
+                        depthLevel={depthLevel}
+                      />
+                    );
+                  })}
                 </Nav>
-              </Navbar.Collapse> */}
+              </Navbar.Collapse>
             </Col>
             {/* Right Elements */}
             <Col className="d-flex align-items-center justify-content-end gap-3 rightNavbar">

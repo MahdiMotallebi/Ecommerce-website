@@ -1,5 +1,5 @@
 @import "config";
-@import "overwriteBootstrap";
+@import "overrideBootstrap";
 
 *,
 *::before,
@@ -13,22 +13,6 @@ body {
   font-family: "Titillium Web", sans-serif;
   overflow-x: hidden;
   height: 100%;
-}
-
-@media (min-width: 992px) {
-  .dropdown-menu {
-    opacity: 0;
-    visibility: hidden;
-    display: block;
-    transition: 0.3s;
-    top: 0;
-    left: 0;
-  }
-  .dropdown:hover .dropdown-menu {
-    opacity: 1;
-    visibility: visible;
-    top: 80px;
-  }
 }
 
 /***** header *****/
@@ -65,24 +49,13 @@ body {
 }
 .custom-navbar {
   padding: 2em 1em;
+  background: #000;
+
   @include desktop {
-    padding: 2em 6em;
+    padding: 0 6em;
   }
 }
 
-.custom-navbar .main-navLink {
-  .nav-link {
-    color: #ccc;
-    text-transform: capitalize;
-  }
-
-  .nav-link.active {
-    color: #fff;
-  }
-  .nav-link:hover {
-    color: #fff;
-  }
-}
 .account {
   cursor: pointer;
   position: relative;
@@ -232,7 +205,7 @@ body {
     left: 0;
     z-index: 100;
     background: $original-black;
-    box-shadow: 0 -1px 5px #808080;
+    box-shadow: 0 -1px 5px #303030;
   }
 
   .account,
@@ -1307,4 +1280,85 @@ textarea {
   span {
     color: $sub-text-color;
   }
+}
+
+/***** SubMenu *****/
+
+.custom-dropdown {
+  display: none;
+}
+
+.show-dropdown {
+  display: block;
+}
+
+.main-navLink > .nav-item > .nav-link {
+  padding: 0.5em 2em;
+  @include desktop {
+    padding: 3em 1.5em 3em 0;
+  }
+
+  .arrow-menu {
+    right: 2em;
+
+    @include desktop {
+      position: relative;
+      right: -0.5em;
+    }
+  }
+}
+.main-navLink {
+  padding: 1em 0;
+  @include desktop {
+    padding: 0;
+  }
+  .custom-dropdown {
+    padding: 0 3em;
+    @include desktop {
+      padding: 0;
+    }
+
+    .nav-link {
+      padding: 0.5em 1em;
+
+      @include desktop {
+        padding-right: 4em;
+      }
+
+      .arrow-menu {
+        right: 1em;
+
+        @include desktop {
+          right: 1em;
+        }
+      }
+    }
+  }
+
+  .subMenuDropdown {
+    padding-left: 1em;
+
+    @include desktop {
+      padding-left: 0;
+    }
+  }
+
+  .nav-link {
+    transition: 0.3s;
+    position: relative;
+
+    &:hover {
+      background: rgb(14, 14, 14);
+      @include desktop {
+        background: none;
+      }
+    }
+  }
+}
+
+.arrow-menu {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.8em;
 }
