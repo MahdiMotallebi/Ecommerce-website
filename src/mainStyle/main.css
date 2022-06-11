@@ -130,7 +130,9 @@
 }
 
 @media all and (min-width: 992px) {
-  .overwriteBootstrap .custom-dropdown {
+  .overwriteBootstrap #dropdown-control-area {
+    height: auto !important;
+    overflow: visible !important;
     position: absolute;
     background: black;
     top: 140px;
@@ -138,6 +140,22 @@
     display: block;
     opacity: 0;
     visibility: hidden;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+    z-index: 1000;
+    -webkit-box-shadow: 0 0 8px 0 #1d1d1d;
+            box-shadow: 0 0 8px 0 #1d1d1d;
+  }
+  .overwriteBootstrap #dropdown-control-area div {
+    display: block !important;
+  }
+  .overwriteBootstrap #dropdown-control-area #dropdown-control-area {
+    top: 0;
+    left: 110%;
+  }
+  .overwriteBootstrap .custom-dropdown {
+    background: black;
+    display: block;
     -webkit-transition: 0.3s;
     transition: 0.3s;
     z-index: 1000;
@@ -152,18 +170,14 @@
     width: -moz-max-content;
     width: max-content;
   }
-  .overwriteBootstrap .main-navLink > .nav-item:hover > .custom-dropdown {
+  .overwriteBootstrap .main-navLink > .nav-item:hover > #dropdown-control-area {
     opacity: 1;
     visibility: visible;
     top: 120px;
   }
   .overwriteBootstrap .subMenuDropdown {
     position: absolute;
-    left: 110%;
-    top: 0;
     background: black;
-    opacity: 0;
-    visibility: hidden;
     -webkit-transition: 0.3s;
     transition: 0.3s;
     width: -webkit-max-content;
@@ -172,10 +186,10 @@
     -webkit-box-shadow: -3px 0 8px 0 #1d1d1d;
             box-shadow: -3px 0 8px 0 #1d1d1d;
   }
-  .overwriteBootstrap .main-navLink .nav-item .nav-item:hover > .subMenuDropdown {
+  .overwriteBootstrap .main-navLink .nav-item .nav-item:hover > #dropdown-control-area {
     opacity: 1;
     visibility: visible;
-    left: 100%;
+    left: 100% !important;
   }
 }
 
@@ -192,15 +206,20 @@
 }
 
 .overwriteBootstrap .navbar-nav .nav-link {
-  color: #bbb;
+  color: #aaa;
   text-transform: capitalize;
+  cursor: pointer;
 }
 
-.overwriteBootstrap .navbar-nav .nav-link:hover {
-  color: #fff;
+.overwriteBootstrap .navbar-nav .nav-link:focus {
+  color: #aaa;
 }
 
 .overwriteBootstrap .navbar-nav .nav-link.active {
+  color: #fff;
+}
+
+.overwriteBootstrap .navbar-nav .nav-link:hover {
   color: #fff;
 }
 
@@ -913,11 +932,17 @@ body {
 
 /***** 404 page *****/
 .title-noPage {
-  font-size: 7em;
+  font-size: 10em;
+}
+
+@media (min-width: 1200px) {
+  .title-noPage {
+    font-size: 13em;
+  }
 }
 
 .subtitle-noPage {
-  font-size: 1em;
+  font-size: 2em;
   text-transform: capitalize;
   margin-bottom: 1em;
 }
@@ -1631,14 +1656,6 @@ textarea:focus {
 }
 
 /***** SubMenu *****/
-.custom-dropdown {
-  display: none;
-}
-
-.show-dropdown {
-  display: block;
-}
-
 .main-navLink > .nav-item > .nav-link {
   padding: 0.5em 2em;
 }

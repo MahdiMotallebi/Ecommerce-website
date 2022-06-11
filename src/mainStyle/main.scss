@@ -610,10 +610,13 @@ body {
 
 /***** 404 page *****/
 .title-noPage {
-  font-size: 7em;
+  font-size: 10em;
+  @include desktop {
+    font-size: 13em;
+  }
 }
 .subtitle-noPage {
-  font-size: 1em;
+  font-size: 2em;
   text-transform: capitalize;
   margin-bottom: 1em;
 }
@@ -1282,18 +1285,11 @@ textarea {
   }
 }
 
-/***** SubMenu *****/
-
-.custom-dropdown {
-  display: none;
-}
-
-.show-dropdown {
-  display: block;
-}
+/***** Navigation menu *****/
 
 .main-navLink > .nav-item > .nav-link {
   padding: 0.5em 2em;
+
   @include desktop {
     padding: 3em 1.5em 3em 0;
   }

@@ -154,13 +154,13 @@ const Header = () => {
                 className="nav-collapse ms-lg-4"
                 id="navbarNavDropdown"
               >
-                <Nav className="main-navLink ">
-                  {menuItems.map((menu, index) => {
+                <Nav className="main-navLink">
+                  {menuItems.map((menu) => {
                     let depthLevel = 0;
                     return (
                       <MenuItems
                         menu={menu}
-                        key={index}
+                        key={menu.id}
                         depthLevel={depthLevel}
                       />
                     );

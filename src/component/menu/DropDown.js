@@ -6,11 +6,7 @@ const DropDown = ({ submenus, dropdown, depthLevel }) => {
   depthLevel = depthLevel + 1;
   const subMenuDropdown = depthLevel > 1 ? "subMenuDropdown" : "";
   return (
-    <Nav
-      className={`custom-dropdown ${subMenuDropdown} ${
-        dropdown ? "show-dropdown" : ""
-      }`}
-    >
+    <Nav className={`custom-dropdown ${subMenuDropdown}`}>
       {submenus.map((submenu, index) => (
         <MenuItems menu={submenu} key={index} depthLevel={depthLevel} />
       ))}
