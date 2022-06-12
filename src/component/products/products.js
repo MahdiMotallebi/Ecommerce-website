@@ -1,6 +1,5 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { changeCount, changeLike } from "../../features/shopSlice";
 import Image from "react-bootstrap/Image";
 import Nav from "react-bootstrap/Nav";
@@ -55,15 +54,12 @@ const Products = ({ item }) => {
   return (
     <div className="custom-card  mx-2 justify-content-between mb-3 position-relative">
       <div className="position-relative">
-        {!image ? (
-          <Skeleton height={"300px"} />
-        ) : (
-          <Image
-            src={window.location.origin + image}
-            alt={title}
-            loading="lazy"
-          ></Image>
-        )}
+        <Image
+          src={window.location.origin + image}
+          alt={title}
+          loading="lazy"
+        ></Image>
+
         <Nav className="product-tools position-absolute d-flex flex-column gap-2">
           <NavItem
             title="add to cart"

@@ -101,6 +101,12 @@ export const menuItems = [
   },
   {
     id: 19,
+    title: "gallery",
+    to: "/gallery",
+  },
+
+  {
+    id: 20,
     title: "contact",
     to: "/contact",
   },

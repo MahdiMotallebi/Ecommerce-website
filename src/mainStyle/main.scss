@@ -51,7 +51,7 @@ body {
   padding: 2em 1em;
   background: #000;
 
-  @include desktop {
+  @include laptop {
     padding: 0 6em;
   }
 }
@@ -328,6 +328,7 @@ body {
   text-transform: capitalize;
   font-weight: 900;
   letter-spacing: 1px;
+  min-width: 132px;
 }
 .rightNavbar-btn {
   position: relative;
@@ -521,7 +522,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
 }
 
 .form-search-modal {
@@ -591,7 +591,7 @@ body {
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.7);
-  z-index: 999;
+  z-index: 5000;
 }
 .btn-common {
   width: 30px;
@@ -1290,14 +1290,14 @@ textarea {
 .main-navLink > .nav-item > .nav-link {
   padding: 0.5em 2em;
 
-  @include desktop {
+  @include laptop {
     padding: 3em 1.5em 3em 0;
   }
 
   .arrow-menu {
     right: 2em;
 
-    @include desktop {
+    @include laptop {
       position: relative;
       right: -0.5em;
     }
@@ -1305,26 +1305,26 @@ textarea {
 }
 .main-navLink {
   padding: 1em 0;
-  @include desktop {
+  @include laptop {
     padding: 0;
   }
   .custom-dropdown {
     padding: 0 3em;
-    @include desktop {
+    @include laptop {
       padding: 0;
     }
 
     .nav-link {
       padding: 0.5em 1em;
 
-      @include desktop {
+      @include laptop {
         padding-right: 4em;
       }
 
       .arrow-menu {
         right: 1em;
 
-        @include desktop {
+        @include laptop {
           right: 1em;
         }
       }
@@ -1334,7 +1334,7 @@ textarea {
   .subMenuDropdown {
     padding-left: 1em;
 
-    @include desktop {
+    @include laptop {
       padding-left: 0;
     }
   }
@@ -1345,7 +1345,7 @@ textarea {
 
     &:hover {
       background: rgb(14, 14, 14);
-      @include desktop {
+      @include laptop {
         background: none;
       }
     }
@@ -1357,4 +1357,9 @@ textarea {
   top: 50%;
   transform: translateY(-50%);
   font-size: 0.8em;
+}
+
+/***** Skeleton *****/
+.img-skeleton {
+  height: 349px;
 }

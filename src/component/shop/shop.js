@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { allState } from "../../features/shopSlice";
 import Instagram from "../../component/instagram/instagram";
 import Blog from "../../component/blog/blog";
+import ProductSkeleton from "../../component/skeleton/productSkeleton";
 import Slider from "react-slick";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
@@ -150,7 +151,7 @@ const Shop = () => {
 
   return (
     <>
-      <section className="shop mt-3">
+      <section className="shop my-3">
         <Container>
           <div className="special-offer text-center">
             <Row>
@@ -176,15 +177,15 @@ const Shop = () => {
               <Row>
                 <Col>
                   <Slider {...mainShop}>
-                    {state.filterItems.length > 0 ? (
-                      state.filterItems.map((item) => {
-                        return <Products item={item} />;
-                      })
-                    ) : (
-                      <div className="text-capitalize d-flex noProduct justify-content-center align-items-center text-white">
-                        no product matches
-                      </div>
-                    )}
+                    {state.filterItems.length === 0
+                      ? Array(mainShop.slidesToShow)
+                          .fill(0)
+                          .map((item) => {
+                            return <ProductSkeleton />;
+                          })
+                      : state.filterItems.map((item) => {
+                          return <Products item={item} />;
+                        })}
                   </Slider>
                 </Col>
               </Row>

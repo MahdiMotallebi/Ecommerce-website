@@ -135,12 +135,12 @@ const Header = () => {
         {/* Navbar */}
         <Navbar expand="lg" className="algin-items-center custom-navbar">
           <Container fluid>
-            <Col className="d-flex align-items-center" lg={8}>
+            <Col className="d-flex align-items-center">
               <div className="btn-sidebar">
                 <FontAwesomeIcon icon={faBars}></FontAwesomeIcon>
               </div>
               <LinkContainer to="/">
-                <Navbar.Brand className="logo m-0 text-white">
+                <Navbar.Brand className="logo">
                   <Image
                     src={whiteLogo}
                     className="logo-header"
@@ -150,10 +150,7 @@ const Header = () => {
               </LinkContainer>
 
               {/* navLinks */}
-              <Navbar.Collapse
-                className="nav-collapse ms-lg-4"
-                id="navbarNavDropdown"
-              >
+              <Navbar.Collapse className="nav-collapse" id="navbarNavDropdown">
                 <Nav className="main-navLink">
                   {menuItems.map((menu) => {
                     let depthLevel = 0;

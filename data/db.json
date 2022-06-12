@@ -12,8 +12,8 @@
         "XXL"
       ],
       "price": 29.9,
-      "count": 4,
-      "isLike": false
+      "count": 5,
+      "isLike": true
     },
     {
       "id": "dress2",
@@ -27,7 +27,7 @@
       ],
       "price": 18.9,
       "count": 0,
-      "isLike": false
+      "isLike": true
     },
     {
       "id": "dress3",
@@ -79,7 +79,7 @@
         "XXL"
       ],
       "price": 49.9,
-      "count": 0,
+      "count": 1,
       "isLike": false
     }
   ]
