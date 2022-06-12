@@ -162,8 +162,6 @@
     width: -webkit-max-content;
     width: -moz-max-content;
     width: max-content;
-    -webkit-box-shadow: 0 0 8px 0 #1d1d1d;
-            box-shadow: 0 0 8px 0 #1d1d1d;
   }
   .overwriteBootstrap .main-navLink > .nav-item {
     width: -webkit-max-content;
@@ -183,13 +181,11 @@
     width: -webkit-max-content;
     width: -moz-max-content;
     width: max-content;
-    -webkit-box-shadow: -3px 0 8px 0 #1d1d1d;
-            box-shadow: -3px 0 8px 0 #1d1d1d;
   }
   .overwriteBootstrap .main-navLink .nav-item .nav-item:hover > #dropdown-control-area {
     opacity: 1;
     visibility: visible;
-    left: 100% !important;
+    left: 101% !important;
   }
 }
 
@@ -1655,7 +1651,7 @@ textarea:focus {
   color: #888;
 }
 
-/***** SubMenu *****/
+/***** Navigation menu *****/
 .main-navLink > .nav-item > .nav-link {
   padding: 0.5em 2em;
 }

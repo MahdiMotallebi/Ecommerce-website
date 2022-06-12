@@ -119,7 +119,6 @@
       transition: 0.3s;
       z-index: 1000;
       width: max-content;
-      box-shadow: 0 0 8px 0 #1d1d1d;
     }
 
     .main-navLink > .nav-item {
@@ -138,14 +137,13 @@
       background: rgba(0, 0, 0, 1);
       transition: 0.3s;
       width: max-content;
-      box-shadow: -3px 0 8px 0 #1d1d1d;
     }
 
     .main-navLink .nav-item .nav-item {
       &:hover > #dropdown-control-area {
         opacity: 1;
         visibility: visible;
-        left: 100% !important;
+        left: 101% !important;
       }
     }
   }
