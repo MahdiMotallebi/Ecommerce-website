@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import DropDown from "./DropDown";
+import MegaMenu from "./megaMenu";
 
 const MenuItems = ({ menu, depthLevel }) => {
   const [dropdown, setDropdown] = useState(false);
@@ -18,9 +19,9 @@ const MenuItems = ({ menu, depthLevel }) => {
     setHeight(height === 0 ? "auto" : 0);
   };
   return (
-    <Nav.Item>
+    <>
       {menu.submenu ? (
-        <>
+        <Nav.Item>
           <Nav.Link
             as={Link}
             to={menu.to}
@@ -51,13 +52,29 @@ const MenuItems = ({ menu, depthLevel }) => {
               depthLevel={depthLevel}
             />
           </AnimateHeight>
-        </>
+        </Nav.Item>
       ) : (
-        <Nav.Link as={Link} to={menu.to}>
-          {menu.title}
-        </Nav.Link>
+        <>
+          {menu.megaMenu ? (
+            <Nav.Item className="mega">
+              <Nav.Link onClick={handleCLick} as={Link} to={menu.to}>
+                {menu.title}
+                <span className="arrow-menu">
+                  <FontAwesomeIcon icon={faChevronDown}></FontAwesomeIcon>
+                </span>
+              </Nav.Link>
+              <MegaMenu menu={menu} height={height} />
+            </Nav.Item>
+          ) : (
+            <Nav.Item>
+              <Nav.Link as={Link} to={menu.to}>
+                {menu.title}
+              </Nav.Link>
+            </Nav.Item>
+          )}
+        </>
       )}
-    </Nav.Item>
+    </>
   );
 };
 

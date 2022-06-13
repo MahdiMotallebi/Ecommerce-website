@@ -153,6 +153,14 @@
     top: 0;
     left: 110%;
   }
+  .overwriteBootstrap .mega-menu {
+    width: 90vw;
+  }
+  .overwriteBootstrap .mega #dropdown-control-area {
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+  }
   .overwriteBootstrap .custom-dropdown {
     background: black;
     display: block;
@@ -197,7 +205,7 @@
   padding: 0;
 }
 
-.overwriteBootstrap .navbar-nav .nav-item {
+.overwriteBootstrap .navbar-nav .nav-item:not(:nth-child(4)) {
   position: relative;
 }
 

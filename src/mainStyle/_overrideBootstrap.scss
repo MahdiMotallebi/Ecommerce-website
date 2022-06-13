@@ -73,6 +73,15 @@
       left: 110%;
     }
 
+    .mega-menu {
+      width: 90vw;
+    }
+    .mega {
+      #dropdown-control-area {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
     .custom-dropdown {
       background: rgba(0, 0, 0, 1);
       display: block;
@@ -93,7 +102,6 @@
 
     .subMenuDropdown {
       position: absolute;
-
       background: rgba(0, 0, 0, 1);
       transition: 0.3s;
       width: max-content;
@@ -116,7 +124,7 @@
   }
 
   .navbar-nav {
-    .nav-item {
+    .nav-item:not(:nth-child(4)) {
       position: relative;
     }
 
