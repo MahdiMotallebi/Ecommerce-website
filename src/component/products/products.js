@@ -55,7 +55,11 @@ const Products = ({ item }) => {
   return (
     <div className="custom-card  mx-2 justify-content-between mb-3 position-relative">
       <div className="position-relative">
-        <Image src={img1} alt={title} loading="lazy"></Image>
+        <Image
+          src={window.location.origion + image}
+          alt={title}
+          loading="lazy"
+        ></Image>
 
         <Nav className="product-tools position-absolute d-flex flex-column gap-2">
           <NavItem
