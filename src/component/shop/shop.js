@@ -177,7 +177,8 @@ const Shop = () => {
               <Row>
                 <Col>
                   <Slider {...mainShop}>
-                    {state.filterItems.length === 0
+                    {state.filterItems.length === 0 &&
+                    state.loading === "loading"
                       ? Array(mainShop.slidesToShow)
                           .fill(0)
                           .map((item) => {
