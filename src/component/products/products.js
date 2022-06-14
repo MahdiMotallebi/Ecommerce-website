@@ -2,7 +2,6 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { changeCount, changeLike } from "../../features/shopSlice";
 import Image from "react-bootstrap/Image";
-import img1 from "../../img/blog/1.jpg";
 import Nav from "react-bootstrap/Nav";
 import NavItem from "react-bootstrap/NavItem";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -56,7 +55,7 @@ const Products = ({ item }) => {
     <div className="custom-card  mx-2 justify-content-between mb-3 position-relative">
       <div className="position-relative">
         <Image
-          src={window.location.origion + image}
+          src={window.location.origin + image}
           alt={title}
           loading="lazy"
         ></Image>
