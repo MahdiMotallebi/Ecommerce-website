@@ -24,7 +24,7 @@ const App = () => {
   }, []);
   return (
     <>
-      {state.loading === "loading" || state.loading === "" ? (
+      {state.loading === "loading" || state.loading === "faild" ? (
         <Loading />
       ) : (
         <>
