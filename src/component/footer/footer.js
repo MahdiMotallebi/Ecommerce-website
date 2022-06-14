@@ -45,7 +45,7 @@ const Footer = () => {
                 </h6>
               </Col>
               <Col xs={12} lg={6} className="right mt-2 mt-lg-0">
-                <Form className="d-flex justify-content-center justify-content-lg-end align-items-center gap-3">
+                <Form className="form-subscribe d-flex justify-content-center justify-content-lg-end align-items-center gap-3">
                   <Form.Group controlId="formBasicEmail">
                     <Form.Control
                       type="email"
@@ -55,7 +55,7 @@ const Footer = () => {
                   </Form.Group>
 
                   <Button
-                    className="button-subscribe rounded-0 text-uppercase"
+                    className="button-subscribe rounded-0 text-uppercase text-center"
                     type="submit"
                   >
                     subscribe

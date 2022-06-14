@@ -1,9 +1,15 @@
+$breakpoint-x-small: 400px;
 $breakpoint-small: 576px;
 $breakpoint-mobile: 577px;
 $breakpoint-tablet: 768px;
 $breakpoint-laptop: 992px;
 $breakpoint-desktop: 1200px;
 
+@mixin x-small {
+  @media (max-width: $breakpoint-x-small) {
+    @content;
+  }
+}
 @mixin small {
   @media (max-width: $breakpoint-mobile) {
     @content;

@@ -706,6 +706,12 @@ body {
   min-width: 132px;
 }
 
+@media (max-width: 400px) {
+  .logo {
+    min-width: 120px;
+  }
+}
+
 .rightNavbar-btn {
   position: relative;
   font-size: 1.5em;
@@ -1055,11 +1061,16 @@ body {
 
 /***** Parralex *****/
 .parallex {
-  background: url("../img/parallex.jpg") no-repeat center center fixed;
-  background-size: cover;
+  background: url("../img/parallex.jpg") no-repeat center/cover fixed;
   height: 100vh;
   -webkit-filter: grayscale(90%);
           filter: grayscale(90%);
+}
+
+@media (max-width: 400px) {
+  .parallex {
+    background-position: 60% center;
+  }
 }
 
 .parallex-content {
@@ -1311,11 +1322,23 @@ body {
   letter-spacing: 0.5px;
 }
 
+@media (max-width: 400px) {
+  .sub-banner-content h6 {
+    font-size: 0.8em;
+  }
+}
+
 .sub-banner-content h4 {
   font-weight: 700;
   text-transform: uppercase;
   font-size: clamp(2.5rem, 4vw, 4rem);
   color: #000;
+}
+
+@media (max-width: 400px) {
+  .sub-banner-content h4 {
+    font-size: 1.4rem;
+  }
 }
 
 /***** News *****/
@@ -1543,6 +1566,22 @@ body {
 
 .right .email-input {
   padding: 0.7em 1.8em;
+}
+
+.right .form-subscribe {
+  display: block;
+}
+
+@media (max-width: 400px) {
+  .right .form-subscribe {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
 }
 
 @media (min-width: 1200px) {

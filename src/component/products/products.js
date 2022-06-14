@@ -54,8 +54,8 @@ const Products = ({ item }) => {
   const { id, image, title, price, isLike } = item;
   return (
     <div className="custom-card  mx-2 justify-content-between mb-3 position-relative">
-      <div className="position-relative">
-        <Image src={img1} alt={title} loading="lazy"></Image>
+      <div className="position-relative overflow-hidden">
+        <Image src={img1} alt={title} loading="lazy" />
 
         <Nav className="product-tools position-absolute d-flex flex-column gap-2">
           <NavItem
