@@ -140,8 +140,8 @@
     display: block;
     opacity: 0;
     visibility: hidden;
-    -webkit-transition: 0.3s;
-    transition: 0.3s;
+    -webkit-transition: 0.3s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+    transition: 0.3s cubic-bezier(0.6, -0.28, 0.735, 0.045);
     z-index: 1000;
     -webkit-box-shadow: 0 0 8px 0 #1d1d1d;
             box-shadow: 0 0 8px 0 #1d1d1d;
@@ -274,6 +274,99 @@ body {
   font-family: "Titillium Web", sans-serif;
   overflow-x: hidden;
   height: 100%;
+}
+
+/***** Loading *****/
+.loading {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 100%;
+  height: 100%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  background: #000;
+}
+
+.loading div {
+  background: #fff;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.c1 {
+  opacity: 0;
+  -webkit-transform: translate(-30px);
+          transform: translate(-30px);
+  -webkit-animation: load-1 0.5s linear infinite;
+          animation: load-1 0.5s linear infinite;
+}
+
+@-webkit-keyframes load-1 {
+  100% {
+    opacity: 1;
+    -webkit-transform: translate(30px);
+            transform: translate(30px);
+  }
+}
+
+@keyframes load-1 {
+  100% {
+    opacity: 1;
+    -webkit-transform: translate(30px);
+            transform: translate(30px);
+  }
+}
+
+.c2,
+.c3 {
+  -webkit-animation: load 0.5s linear infinite;
+          animation: load 0.5s linear infinite;
+}
+
+@-webkit-keyframes load {
+  100% {
+    -webkit-transform: translate(30px);
+            transform: translate(30px);
+  }
+}
+
+@keyframes load {
+  100% {
+    -webkit-transform: translate(30px);
+            transform: translate(30px);
+  }
+}
+
+.c4 {
+  -webkit-animation: load-6 0.5s linear infinite;
+          animation: load-6 0.5s linear infinite;
+}
+
+@-webkit-keyframes load-6 {
+  100% {
+    opacity: 0;
+    -webkit-transform: translate(60px);
+            transform: translate(60px);
+  }
+}
+
+@keyframes load-6 {
+  100% {
+    opacity: 0;
+    -webkit-transform: translate(60px);
+            transform: translate(60px);
+  }
 }
 
 /***** header *****/

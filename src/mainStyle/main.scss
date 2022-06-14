@@ -14,6 +14,61 @@ body {
   overflow-x: hidden;
   height: 100%;
 }
+/***** Loading *****/
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 100%;
+  height: 100%;
+  transform: translate(-50%, -50%);
+  background: $original-black;
+}
+
+.loading div {
+  background: #fff;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.c1 {
+  opacity: 0;
+  transform: translate(-30px);
+  animation: load-1 0.5s linear infinite;
+}
+
+@keyframes load-1 {
+  100% {
+    opacity: 1;
+    transform: translate(30px);
+  }
+}
+
+.c2,
+.c3 {
+  animation: load 0.5s linear infinite;
+}
+
+@keyframes load {
+  100% {
+    transform: translate(30px);
+  }
+}
+
+.c4 {
+  animation: load-6 0.5s linear infinite;
+}
+
+@keyframes load-6 {
+  100% {
+    opacity: 0;
+    transform: translate(60px);
+  }
+}
 
 /***** header *****/
 .top-header {
