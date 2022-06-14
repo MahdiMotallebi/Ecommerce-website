@@ -5,6 +5,7 @@ import Image from "react-bootstrap/Image";
 import img1 from "../../img/shop/1.jpg";
 import Nav from "react-bootstrap/Nav";
 import NavItem from "react-bootstrap/NavItem";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCartShopping,
@@ -55,7 +56,15 @@ const Products = ({ item }) => {
   return (
     <div className="custom-card  mx-2 justify-content-between mb-3 position-relative">
       <div className="position-relative overflow-hidden">
-        <Image src={img1} alt={title} loading="lazy" />
+        {!image ? (
+          <Skeleton width={257} height={349} />
+        ) : (
+          <Image
+            src={window.location.origin + image}
+            alt={title}
+            loading="lazy"
+          />
+        )}
 
         <Nav className="product-tools position-absolute d-flex flex-column gap-2">
           <NavItem
