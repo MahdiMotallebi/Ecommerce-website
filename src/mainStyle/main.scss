@@ -1093,7 +1093,12 @@ body {
     color: $sub-text-color;
     letter-spacing: 0.7px;
   }
-
+  .footer-icon-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+  }
   .footer-icon {
     filter: grayscale(90%) drop-shadow(0 0 2px #bbb);
   }

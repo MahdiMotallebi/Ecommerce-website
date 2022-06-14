@@ -169,7 +169,7 @@ const Footer = () => {
             </p>
           </Col>
           <Col xs={12} lg={6}>
-            <Nav className="d-flex justify-content-center align-items-center gap-3">
+            <Nav className="footer-icon-nav">
               {footerIcon.map((img) => {
                 return (
                   <Nav.Item>
