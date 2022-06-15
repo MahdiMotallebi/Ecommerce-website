@@ -21,9 +21,9 @@ const Login = () => {
       <Breadcrumb />
       <section className="login-form my-5">
         <Container>
-          <Row className="p-2 gx-2 gx-md-2">
+          <Row className="p-1 gx-2 gx-md-2">
             <Col className="mb-4 mb-lg-0 mx-md-auto" xs={12} md={10} lg={6}>
-              <div className="p-4 border">
+              <div className="p-3 border">
                 <h4 className="fw-bold text-uppercase mb-3">login</h4>
                 <Formik
                   validationSchema={schema}
@@ -109,7 +109,7 @@ const Login = () => {
             </Col>
 
             <Col className="register mx-md-auto" xs={12} md={10} lg={6}>
-              <div className="p-4 border h-100">
+              <div className="p-3 border h-100">
                 <h4 className="fw-bold text-uppercase mb-3">new coustomer</h4>
                 <h6>create an account</h6>
                 <p>

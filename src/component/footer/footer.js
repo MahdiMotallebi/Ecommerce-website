@@ -162,7 +162,7 @@ const Footer = () => {
         </Row>
       </Container>
       <Container fluid>
-        <Row className="bg-white p-4">
+        <Row className="bg-white px-1 py-4">
           <Col xs={12} lg={6} className="text-center mb-3 mb-lg-0">
             <p className="text-copyright">
               2020-21 themeforest powered by pixelstrap

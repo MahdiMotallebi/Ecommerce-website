@@ -30,9 +30,14 @@ body {
 
 .loading div {
   background: $original-black;
-  width: 30px;
-  height: 30px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
+
+  @include mobile {
+    width: 30px;
+    height: 30px;
+  }
 }
 
 .c1 {
@@ -519,14 +524,53 @@ body {
     height: 150px;
   }
 }
+
+.row-wishlist {
+  background: rgba(0, 0, 0, 0.03);
+  margin: 2px 0;
+  height: 100%;
+
+  .content-wishlist {
+    padding: 2em 0.5em 1em 0.5em;
+    margin-top: 1em;
+
+    @include mobile {
+      padding: 0.7em;
+      margin-top: 0;
+      width: 50%;
+    }
+
+    @include tablet {
+      width: 100%;
+    }
+  }
+
+  &::before {
+    position: absolute;
+    content: attr(data-colName);
+    font-weight: 900;
+    text-transform: capitalize;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 10px;
+
+    @include mobile {
+      width: 50%;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 20px;
+    }
+
+    @include tablet {
+      all: unset;
+    }
+  }
+}
+
 .imgCart {
-  width: 120px;
+  width: 70px;
   height: 80px;
   filter: grayscale(90%);
-  margin: 0 auto;
-  @include mobile {
-    width: 70px;
-  }
 }
 .noLike_cart {
   height: 100%;
@@ -782,6 +826,9 @@ body {
 .slick-content {
   height: 55vh;
 
+  @include x-small {
+    height: 60vh;
+  }
   @include tablet {
     height: 70vh;
   }
@@ -799,6 +846,10 @@ body {
     top: 50%;
     transform: translateY(-50%);
     text-align: center;
+    @include x-small {
+      text-align: left;
+      left: 5%;
+    }
   }
 
   h4 {

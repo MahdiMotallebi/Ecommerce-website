@@ -6,8 +6,8 @@ import { changeLike } from "../../features/shopSlice";
 import Button from "react-bootstrap/Button";
 import Table from "react-bootstrap/Table";
 import Image from "react-bootstrap/Image";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+import { Row, Col, Container } from "react-bootstrap";
+import roundToNearestMinutesWithOptions from "date-fns/esm/fp/roundToNearestMinutesWithOptions";
 const Like = () => {
   const state = useSelector(allState);
   const dispatch = useDispatch();
@@ -16,59 +16,90 @@ const Like = () => {
     dispatch(changeLike({ item, data }));
   };
   return (
-    <>
-      {state.likeItems.length > 0 ? (
-        <Row>
-          <Table className="cart-table">
-            <thead>
-              <tr>
-                <th>image</th>
-                <th>product name</th>
-                <th>price</th>
-                <th>action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {state.likeItems.map((item) => {
-                const { id, image, title, price, count } = item;
-                return (
-                  <>
-                    <tr>
-                      <td>
+    <Container>
+      {state.likeItems.length > 0 && (
+        <>
+          <Row className="gx-0 d-none d-lg-flex">
+            <Col>
+              <div className="border  text-center text-capitalize fw-bold p-2 bg-dark text-white column-thead">
+                image
+              </div>
+            </Col>
+            <Col>
+              <div className="border text-center text-capitalize fw-bold p-2 bg-dark text-white column-thead">
+                product name
+              </div>
+            </Col>
+            <Col>
+              <div className="border text-center text-capitalize fw-bold p-2 bg-dark text-white column-thead">
+                price
+              </div>
+            </Col>
+            <Col>
+              <div className="border text-center text-capitalize fw-bold p-2 bg-dark text-white column-thead">
+                action
+              </div>
+            </Col>
+          </Row>
+          <Row className="gx-md-0  ">
+            {state.likeItems.map((item) => {
+              const { id, image, title, price, count } = item;
+              return (
+                <Row className="gx-0 border-bottom d-block d-lg-flex mb-3 mb-lg-0">
+                  <Col>
+                    <div
+                      data-colName="image"
+                      className="row-wishlist  position-relative d-flex justify-content-center justify-content-sm-end align-items-end align-items-sm-center  "
+                    >
+                      <div className="d-flex justify-content-center align-items-center content-wishlist">
                         <Image
                           src={image}
                           alt={image}
                           className="rounded-3 imgCart"
                         />
-                      </td>
-
-                      <td>{title}</td>
-                      <td>${price}</td>
-
-                      <td>
+                      </div>
+                    </div>
+                  </Col>
+                  <Col>
+                    <div
+                      data-colName="name"
+                      className="row-wishlist position-relative d-flex justify-content-center justify-content-sm-end align-items-end align-items-sm-center"
+                    >
+                      <p className="content-wishlist text-center ">{title}</p>
+                    </div>
+                  </Col>
+                  <Col>
+                    <div
+                      data-colName="price"
+                      className="row-wishlist position-relative d-flex justify-content-center justify-content-sm-end align-items-end align-items-sm-center"
+                    >
+                      <p className="content-wishlist text-center ">${price}</p>
+                    </div>
+                  </Col>
+                  <Col>
+                    <div
+                      data-colName="action"
+                      className="row-wishlist position-relative d-flex justify-content-center justify-content-sm-end align-items-end align-items-sm-center"
+                    >
+                      <div className="d-flex justify-content-center align-items-center content-wishlist">
                         <Button
                           title="remove"
-                          className="btn-common mx-auto"
+                          className="btn-common"
                           variant="dark"
                           onClick={() => handleDelete(item)}
                         >
                           x
                         </Button>
-                      </td>
-                    </tr>
-                  </>
-                );
-              })}
-            </tbody>
-          </Table>
-        </Row>
-      ) : (
-        <Col xs={12} className="noLike_cart">
-          <h4>your wishlist is empty.</h4>
-          <p>explore more shortlist some items.</p>
-        </Col>
+                      </div>
+                    </div>
+                  </Col>
+                </Row>
+              );
+            })}
+          </Row>
+        </>
       )}
-    </>
+    </Container>
   );
 };
 

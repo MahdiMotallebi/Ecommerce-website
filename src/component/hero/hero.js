@@ -28,7 +28,7 @@ const Hero = () => {
               className="slick-content position-relative d-flex justify-content-center align-items-center"
               style={{
                 backgroundImage: `url(${hero1})`,
-                backgroundPosition: "center",
+                backgroundPosition: "60%",
                 backgroundSize: "cover",
                 backgroundRepeat: "no-repeat",
               }}
@@ -54,7 +54,7 @@ const Hero = () => {
               className="slick-content position-relative d-flex justify-content-center align-items-center"
               style={{
                 backgroundImage: `url(${hero2})`,
-                backgroundPosition: "center",
+                backgroundPosition: "60%",
                 backgroundSize: "cover",
                 backgroundRepeat: "no-repeat",
               }}

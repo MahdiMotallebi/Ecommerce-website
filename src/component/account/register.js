@@ -31,14 +31,14 @@ const Register = () => {
   return (
     <>
       <Breadcrumb />
-      <section className="form-register m-4">
+      <section className="form-register my-4">
         <Container>
           <Row>
             <Col xs={12} lg={5} className="d-none d-lg-block">
               <Image src={formImage} alt="image-form" />
             </Col>
             <Col xs={12} md={9} lg={7} className="mx-md-auto">
-              <Card className="rounded-0 h-100 py-3 px-4 py-lg-4">
+              <Card className="rounded-0  h-100 py-3 px-1 py-lg-4">
                 <Card.Body>
                   <h2 className="fw-bold text-uppercase text-center mb-5">
                     create an account
