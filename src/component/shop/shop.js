@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { allState } from "../../features/shopSlice";
 import Instagram from "../../component/instagram/instagram";
@@ -14,9 +14,16 @@ import Products from "../products/products";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock, faCar, faBullhorn } from "@fortawesome/free-solid-svg-icons";
 import { faInstagram } from "@fortawesome/free-brands-svg-icons";
+import AOS from "aos";
 const Shop = () => {
   const state = useSelector(allState);
-
+  useEffect(() => {
+    AOS.init({
+      mirror: true,
+      once: false,
+    });
+    AOS.refresh();
+  }, []);
   const importAll = (r) => {
     return r.keys().map(r);
   };
@@ -216,7 +223,7 @@ const Shop = () => {
       <section className="news text-center mt-5">
         <Container>
           <Row className="border-top border-bottom mx-2 mx-sm-0 p-3">
-            <Col xs={12} md={4}>
+            <Col xs={12} md={4} data-aos="flip-left">
               <div className="news-one  hover-news px-2">
                 <div className="img-news">
                   <FontAwesomeIcon icon={faCar}></FontAwesomeIcon>
@@ -227,7 +234,7 @@ const Shop = () => {
                 </div>
               </div>
             </Col>
-            <Col xs={12} md={4}>
+            <Col xs={12} md={4} data-aos="flip-left">
               <div className="news-two styleBorder hover-news px-2">
                 <div className="img-news">
                   <FontAwesomeIcon icon={faClock}></FontAwesomeIcon>
@@ -238,7 +245,7 @@ const Shop = () => {
                 </div>
               </div>
             </Col>
-            <Col xs={12} md={4}>
+            <Col xs={12} md={4} data-aos="flip-left">
               <div className="news-three hover-news px-2">
                 <div className="img-news">
                   <FontAwesomeIcon icon={faBullhorn}></FontAwesomeIcon>
@@ -287,7 +294,10 @@ const Shop = () => {
               <Slider {...logos}>
                 {logoImage.map((img) => {
                   return (
-                    <div className="container-logo-img d-flex justify-content-center align-items-center  ">
+                    <div
+                      className="container-logo-img d-flex justify-content-center align-items-center  "
+                      data-aos="zoom-out"
+                    >
                       <img src={img} className="logo-img" />
                     </div>
                   );

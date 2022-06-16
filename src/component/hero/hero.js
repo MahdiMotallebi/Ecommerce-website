@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Slider from "react-slick";
 import { Link } from "react-router-dom";
 import Row from "react-bootstrap/Row";
@@ -9,7 +9,14 @@ import hero1 from "../../img/hero1.jpg";
 import hero2 from "../../img/hero2.jpg";
 import subBanner1 from "../../img/sub-banner1.jpg";
 import subBanner2 from "../../img/sub-banner2.jpg";
+import AOS from "aos";
 const Hero = () => {
+  useEffect(() => {
+    AOS.init({
+      duration: 1500,
+    });
+    AOS.refresh();
+  }, []);
   const settings = {
     dots: false,
     infinite: true,
@@ -80,7 +87,7 @@ const Hero = () => {
       <section className="sub-banner-container mt-4 p-4">
         <Container>
           <Row>
-            <Col md={6}>
+            <Col md={6} data-aos="fade-right">
               <Link to="#">
                 <div className="sub-banner men position-relative">
                   <Image src={subBanner1} alt="men" fluid></Image>
@@ -92,7 +99,7 @@ const Hero = () => {
               </Link>
             </Col>
 
-            <Col md={6}>
+            <Col md={6} data-aos="fade-left">
               <Link to="#">
                 <div className="sub-banner women  position-relative">
                   <Image src={subBanner2} alt="women"></Image>

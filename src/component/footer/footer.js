@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Image from "react-bootstrap/Image";
 import LogoFooter from "../../img/black-logo.png";
+import AOS from "aos";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faTwitter,
@@ -23,6 +24,10 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 const Footer = () => {
+  useEffect(() => {
+    AOS.init();
+    AOS.refresh();
+  }, []);
   const importAll = (r) => {
     return r.keys().map(r);
   };
@@ -30,7 +35,7 @@ const Footer = () => {
     require.context("../../img/icon-footer", false, /\.(png|jpe?g|svg)$/)
   );
   return (
-    <footer className="footer">
+    <footer className="footer" data-aos="fade-up">
       <Container>
         <Row>
           <Col xs={12} className="top-footer mb-3 mb-lg-5 pt-4 pb-lg-4">
