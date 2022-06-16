@@ -38,7 +38,7 @@ const ProductsTab = () => {
             {state.filterItems.length > 0 &&
               state.filterItems.map((item) => {
                 return (
-                  <Col xs={12} sm={4} lg={3}>
+                  <Col xs={12} sm={6} lg={3}>
                     <Products item={item} />
                   </Col>
                 );

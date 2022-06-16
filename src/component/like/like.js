@@ -45,11 +45,11 @@ const Like = () => {
             {state.likeItems.map((item) => {
               const { id, image, title, price, count } = item;
               return (
-                <Row className="gx-0 border-bottom d-block d-lg-flex mb-3 mb-lg-0">
+                <Row className="gx-0 row-wishlist d-block d-lg-flex mb-5 mb-lg-0">
                   <Col>
                     <div
                       data-colName="image"
-                      className="row-wishlist  position-relative d-flex justify-content-center justify-content-sm-end align-items-end align-items-sm-center  "
+                      className="col-wishlist  position-relative d-flex justify-content-center justify-content-sm-end align-items-end align-items-sm-center  "
                     >
                       <div className="d-flex justify-content-center align-items-center content-wishlist">
                         <Image
@@ -63,7 +63,7 @@ const Like = () => {
                   <Col>
                     <div
                       data-colName="name"
-                      className="row-wishlist position-relative d-flex justify-content-center justify-content-sm-end align-items-end align-items-sm-center"
+                      className="col-wishlist position-relative d-flex justify-content-center justify-content-sm-end align-items-end align-items-sm-center"
                     >
                       <p className="content-wishlist text-center ">{title}</p>
                     </div>
@@ -71,7 +71,7 @@ const Like = () => {
                   <Col>
                     <div
                       data-colName="price"
-                      className="row-wishlist position-relative d-flex justify-content-center justify-content-sm-end align-items-end align-items-sm-center"
+                      className="col-wishlist position-relative d-flex justify-content-center justify-content-sm-end align-items-end align-items-sm-center"
                     >
                       <p className="content-wishlist text-center ">${price}</p>
                     </div>
@@ -79,7 +79,7 @@ const Like = () => {
                   <Col>
                     <div
                       data-colName="action"
-                      className="row-wishlist position-relative d-flex justify-content-center justify-content-sm-end align-items-end align-items-sm-center"
+                      className="col-wishlist position-relative d-flex justify-content-center justify-content-sm-end align-items-end align-items-sm-center"
                     >
                       <div className="d-flex justify-content-center align-items-center content-wishlist">
                         <Button
