@@ -18,10 +18,7 @@ import AOS from "aos";
 const Shop = () => {
   const state = useSelector(allState);
   useEffect(() => {
-    AOS.init({
-      mirror: true,
-      once: false,
-    });
+    AOS.init({ duration: 1500 });
     AOS.refresh();
   }, []);
   const importAll = (r) => {
@@ -296,7 +293,7 @@ const Shop = () => {
                   return (
                     <div
                       className="container-logo-img d-flex justify-content-center align-items-center  "
-                      data-aos="zoom-out"
+                      data-aos="zoom-in"
                     >
                       <img src={img} className="logo-img" />
                     </div>

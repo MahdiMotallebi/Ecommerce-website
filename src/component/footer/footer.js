@@ -25,7 +25,7 @@ import {
 
 const Footer = () => {
   useEffect(() => {
-    AOS.init();
+    AOS.init({ duration: 1500 });
     AOS.refresh();
   }, []);
   const importAll = (r) => {
