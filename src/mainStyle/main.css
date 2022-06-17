@@ -270,6 +270,42 @@
   margin: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+.go-to-top {
+  position: fixed;
+  bottom: 3em;
+  right: 2em;
+  z-index: 100;
+  background: #000;
+  font-size: 1em;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  cursor: pointer;
+  color: #fff;
+}
+
+.showScroll {
+  opacity: 1;
+  visibility: visible;
+}
+
 body {
   font-family: "Titillium Web", sans-serif;
   overflow-x: hidden;

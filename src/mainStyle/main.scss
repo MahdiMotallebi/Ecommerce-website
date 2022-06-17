@@ -9,6 +9,35 @@
   margin: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+.go-to-top {
+  $size: 50px;
+  position: fixed;
+  bottom: 3em;
+  right: 2em;
+  z-index: 100;
+  background: $original-black;
+  font-size: 1em;
+  width: $size;
+  height: $size;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.4s;
+  cursor: pointer;
+  color: #fff;
+}
+
+.showScroll {
+  opacity: 1;
+  visibility: visible;
+}
 body {
   font-family: "Titillium Web", sans-serif;
   overflow-x: hidden;

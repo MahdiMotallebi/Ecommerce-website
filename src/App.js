@@ -15,6 +15,8 @@ import Header from "./component/header/header";
 import Loading from "./component/loading/loading";
 import Breadcrumb from "./component/breadCrumb/breadCrumb";
 
+import ScrollTop from "./component/scrollTop/scrollTop";
+
 const App = () => {
   const dispatch = useDispatch();
   const state = useSelector(allState);
@@ -29,6 +31,7 @@ const App = () => {
       ) : (
         <>
           <Header />
+          <ScrollTop />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="contact" element={<Contact />} />

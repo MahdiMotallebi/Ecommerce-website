@@ -72,7 +72,7 @@ const Header = () => {
   };
   return (
     <>
-      <header>
+      <header id="header">
         {/* Top header */}
         <div className="mobile-section"></div>
 

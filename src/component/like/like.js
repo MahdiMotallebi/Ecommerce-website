@@ -16,8 +16,8 @@ const Like = () => {
     dispatch(changeLike({ item, data }));
   };
   return (
-    <Container>
-      {state.likeItems.length > 0 && (
+    <Container className="h-100">
+      {state.likeItems.length > 0 ? (
         <>
           <Row className="gx-0 d-none d-lg-flex">
             <Col>
@@ -98,6 +98,11 @@ const Like = () => {
             })}
           </Row>
         </>
+      ) : (
+        <Col xs={12} className="noLike_cart">
+          <h4>your wishlist is empty.</h4>
+          <p>explore more shortlist some items.</p>
+        </Col>
       )}
     </Container>
   );

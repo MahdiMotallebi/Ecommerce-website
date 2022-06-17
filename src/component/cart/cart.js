@@ -39,9 +39,9 @@ const Cart = () => {
   };
 
   return (
-    <>
-      <Container>
-        {state.cartItems.length > 0 && (
+    <div className="cart-section h-100">
+      <Container className="h-100">
+        {state.cartItems.length > 0 ? (
           <>
             <Row className="gx-0 d-none d-lg-flex">
               <Col>
@@ -153,96 +153,39 @@ const Cart = () => {
                 );
               })}
             </Row>
+
+            <div className="total-price mt-4">
+              <Row>
+                <Col
+                  xs={12}
+                  sm={6}
+                  className="d-flex justify-content-between justify-content-sm-start gap-sm-3 align-items-center mb-3 mb-sm-0 "
+                >
+                  <p className="total-text text-capitalize fw-bold">
+                    total Price:
+                  </p>
+                  <p className="total-price"> ${totalCart()}</p>
+                </Col>
+                <Col xs={12} sm={6} className="text-sm-end">
+                  <Link
+                    className="checkout-btn d-block d-sm-inline-block py-2 px-2 px-sm-4 text-white text-uppercase text-center"
+                    to="/checkout"
+                  >
+                    checkout
+                  </Link>
+                </Col>
+              </Row>
+            </div>
           </>
+        ) : (
+          <Col xs={12} className="noLike_cart">
+            <Image src={noCart} />
+            <h4>your cart is empty.</h4>
+            <p>explore more shortlist some items.</p>
+          </Col>
         )}
       </Container>
-
-      {/* {state.cartItems.length > 0 ? (
-        <Row>
-          <Table className="cart-table">
-            <thead>
-              <tr>
-                <th>image</th>
-                <th className="d-md-none">product info</th>
-                <th className="d-none d-md-table-cell">product name</th>
-                <th className="d-none d-md-table-cell">price</th>
-                <th className="d-none d-md-table-cell">quantity</th>
-                <th>action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {state.cartItems.map((item) => {
-                const { id, image, title, price, count } = item;
-                return (
-                  <>
-                    <tr>
-                      <td>
-                        <div className="d-flex">
-                          <Image
-                            src={image}
-                            alt={image}
-                            className="rounded-3 imgCart"
-                          />
-                        </div>
-                      </td>
-                      <td className="d-md-none text-start ">
-                        <div className="d-flex flex-column gap-2">
-                          <h6 className="fw-bold">{title}</h6>
-                          <div className="d-flex justify-content-between">
-                            <span>Price:</span> ${price}
-                          </div>
-                          <div className="d-flex justify-content-between">
-                            <span>Count:</span> {count}
-                          </div>
-                        </div>
-                      </td>
-                      <td className="d-none d-md-table-cell">
-                        <h6>{title}</h6>
-                      </td>
-                      <td className="d-none d-md-table-cell">${price}</td>
-                      <td className="d-none d-md-table-cell">{count}</td>
-                      <td>
-                        <div className="d-flex flex-column gap-2 justify-content-center align-items-center">
-                        
-                        </div>
-                      </td>
-                    </tr>
-                  </>
-                );
-              })}
-            </tbody>
-          </Table>
-          <div>
-            <Row>
-              <Col
-                xs={12}
-                sm={6}
-                className="d-flex justify-content-between justify-content-sm-start gap-sm-3 align-items-center mb-3 mb-sm-0 "
-              >
-                <p className="total-text text-capitalize fw-bold">
-                  total Price:
-                </p>
-                <p className="total-price"> ${totalCart()}</p>
-              </Col>
-              <Col xs={12} sm={6} className="text-sm-end">
-                <Link
-                  className="checkout-btn d-block d-sm-inline-block py-2 px-2 px-sm-4 text-white text-uppercase text-center"
-                  to="/checkout"
-                >
-                  checkout
-                </Link>
-              </Col>
-            </Row>
-          </div>
-        </Row>
-      ) : (
-        <Col xs={12} className="noLike_cart">
-          <Image src={noCart} />
-          <h4>your cart is empty.</h4>
-          <p>explore more shortlist some items.</p>
-        </Col>
-      )} */}
-    </>
+    </div>
   );
 };
 
