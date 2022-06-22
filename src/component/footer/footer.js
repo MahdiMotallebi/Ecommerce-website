@@ -5,6 +5,7 @@ import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Image from "react-bootstrap/Image";
 import LogoFooter from "../../img/black-logo.png";
+import { v4 as uuidv4 } from "uuid";
 import AOS from "aos";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -177,7 +178,7 @@ const Footer = () => {
             <Nav className="footer-icon-nav">
               {footerIcon.map((img) => {
                 return (
-                  <Nav.Item>
+                  <Nav.Item key={uuidv4()}>
                     <Nav.Link>
                       <Image src={img} className="footer-icon" />
                     </Nav.Link>

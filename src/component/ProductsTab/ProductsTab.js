@@ -7,7 +7,7 @@ import Container from "react-bootstrap/Container";
 import Tab from "react-bootstrap/Tab";
 import Products from "../products/products";
 import { allState } from "../../features/shopSlice";
-
+import { v4 as uuidv4 } from "uuid";
 const ProductsTab = () => {
   const state = useSelector(allState);
   const [key, setKey] = useState("featured");
@@ -26,7 +26,7 @@ const ProductsTab = () => {
             {state.filterItems.length > 0 &&
               state.filterItems.map((item) => {
                 return (
-                  <Col xs={12} sm={4} lg={3}>
+                  <Col xs={12} sm={4} lg={3} key={uuidv4()}>
                     <Products item={item} />
                   </Col>
                 );

@@ -82,5 +82,90 @@
       "count": 1,
       "isLike": false
     }
+  ],
+  "comments": [
+    {
+      "id": "1",
+      "body": "This is for all the latest trends, no matter who you are, where you’re from and what you’re up to. Exclusive to ASOS, our universal brand is here for you, and comes in all our fit ranges: ASOS Curve, Tall, Petite and Maternity. Created by us, styled by you.",
+      "username": "liza",
+      "userId": "1",
+      "parentId": null,
+      "avatar": "/Img/comment/4.jpg",
+      "createdAt": "2021-08-16T23:00:33.010+02:00"
+    },
+    {
+      "id": "2",
+      "body": "This is for all the latest trends, no matter who you are, where you’re from and what you’re up to. Exclusive to ASOS.",
+      "username": "hadi",
+      "userId": "2",
+      "parentId": null,
+      "avatar": "/Img/comment/2.jpg",
+      "createdAt": "2021-08-16T23:00:33.010+02:00"
+    },
+    {
+      "id": "3",
+      "body": "First comment first child",
+      "username": "elen",
+      "userId": "2",
+      "parentId": "1",
+      "avatar": "/Img/comment/1.jpg",
+      "createdAt": "2021-08-16T23:00:33.010+02:00"
+    },
+    {
+      "id": "4",
+      "body": "ipsum dolor sit amet, consectetur adipisicing elit. Nobis aut",
+      "username": "merlin",
+      "userId": "2",
+      "parentId": "2",
+      "avatar": "/Img/comment/5.jpg",
+      "createdAt": "2021-08-16T23:00:33.010+02:00"
+    },
+    {
+      "id": "5",
+      "body": "This is for all the latest trends, no matter who you are, where you’re from and what you’re up to. Exclusive to ASOS, our universal brand is here for you, and comes in all our fit ranges: ASOS Curve, Tall, Petite and Maternity. Created by us, styled by you.",
+      "username": "ali",
+      "userId": "2",
+      "parentId": "4",
+      "avatar": "/Img/comment/6.jpg",
+      "createdAt": "2021-08-16T23:00:33.010+02:00"
+    },
+    {
+      "id": "6",
+      "body": "Fourth comment second child",
+      "username": "jolia",
+      "userId": "2",
+      "parentId": "1",
+      "avatar": "/Img/comment/7.jpg",
+      "createdAt": "2021-08-16T23:00:33.010+02:00"
+    },
+    {
+      "id": "7",
+      "body": "Fourth comment second child",
+      "username": "jo",
+      "userId": "2",
+      "parentId": "1",
+      "avatar": "/Img/comment/2.jpg",
+      "createdAt": "2021-08-16T23:00:33.010+02:00"
+    },
+    {
+      "id": "1b883da6-fd9b-4e0c-8035-57367f2b082f",
+      "body": "great",
+      "username": "mendy",
+      "userId": "2",
+      "parentId": "2",
+      "children": [],
+      "avatar": "/static/media/comment2.7265f534e120763a918f.jpg",
+      "createdAt": "2022-06-22T14:28:14.444Z"
+    },
+    {
+      "id": "df29c776-6e0f-4d70-95fd-cf766a55ece1",
+      "body": "hello",
+      "username": "mendy",
+      "userId": "2",
+      "parentId": "5",
+      "children": [],
+      "avatar": "/static/media/comment2.7265f534e120763a918f.jpg",
+      "createdAt": "2022-06-22T14:36:54.142Z"
+    }
   ]
 }

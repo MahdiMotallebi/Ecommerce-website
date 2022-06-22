@@ -1,4 +1,5 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, Outlet } from "react-router-dom";
 import Breadcrumb from "../breadCrumb/breadCrumb";
 import Container from "react-bootstrap/Container";
@@ -11,15 +12,17 @@ import Image from "react-bootstrap/Image";
 import headerSingleBlog from "../../img/singleBlog/header.jpg";
 import img1 from "../../img/singleBlog/1.jpg";
 import img2 from "../../img/singleBlog/2.jpg";
-import comment1 from "../../img/singleBlog/comment1.jpg";
-import comment2 from "../../img/singleBlog/comment2.jpg";
-import comment3 from "../../img/singleBlog/comment3.jpg";
+import avatar from "../../img/singleBlog/comment2.jpg";
+import { v4 as uuidv4 } from "uuid";
+import Comments from "../../component/comments/comments";
 import { faComment, faHeart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Formik } from "formik";
 import * as yup from "yup";
+import { addComment, postComment } from "../../features/shopSlice";
 
 const SingleBlog = () => {
+  const dispatch = useDispatch();
   const schema = yup.object().shape({
     name: yup.string().required(),
     email: yup.string().email().required(),
@@ -153,81 +156,7 @@ const SingleBlog = () => {
           </div>
           <div className="comments my-5">
             <Row>
-              <Col xs={12} className="user-comment">
-                <div className="p-4 d-flex justify-content-center aling-items-start gap-3">
-                  <Image
-                    src={comment1}
-                    alt="img-comment "
-                    className="img-comment rounded-circle"
-                  ></Image>
-                  <div className="detail-user-comment">
-                    <div className="d-flex aling-items-center  justify-content-start gap-3 ">
-                      <h4 className="text-uppercase fw-bold">alia brown</h4>
-                      <span className="date-post">
-                        ( 12 Jannuary 2021 At 1:30AM )
-                      </span>
-                    </div>
-                    <div className="text-comment">
-                      lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                      Earum, voluptatibus mollitia nisi iusto id sit perferendis
-                      quae consectetur exercitationem odio. Lorem ipsum dolor
-                      sit, amet consectetur adipisicing elit. Earum,
-                      voluptatibus mollitia nisi iusto id sit perferendis quae
-                      consectetur exercitationem odio.
-                    </div>
-                  </div>
-                </div>
-              </Col>
-              <Col xs={12} className="user-comment">
-                <div className="p-4 d-flex justify-content-center aling-items-start gap-3">
-                  <Image
-                    src={comment2}
-                    alt="img-comment "
-                    className="img-comment rounded-circle"
-                  ></Image>
-                  <div className="detail-user-comment">
-                    <div className="d-flex aling-items-center  justify-content-start gap-3 ">
-                      <h4 className="text-uppercase fw-bold">alon fold</h4>
-                      <span className="date-post">
-                        ( 12 Jannuary 2021 At 1:30AM )
-                      </span>
-                    </div>
-                    <div className="text-comment">
-                      lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                      Earum, voluptatibus mollitia nisi iusto id sit perferendis
-                      quae consectetur exercitationem odio. Lorem ipsum dolor
-                      sit, amet consectetur adipisicing elit. Earum,
-                      voluptatibus mollitia nisi iusto id sit perferendis quae
-                      consectetur exercitationem odio.
-                    </div>
-                  </div>
-                </div>
-              </Col>
-              <Col xs={12} className="user-comment">
-                <div className="p-4 d-flex justify-content-center aling-items-start gap-3">
-                  <Image
-                    src={comment3}
-                    alt="img-comment "
-                    className="img-comment rounded-circle"
-                  ></Image>
-                  <div className="detail-user-comment">
-                    <div className="d-flex aling-items-center  justify-content-start gap-3 ">
-                      <h4 className="text-uppercase fw-bold">maria derosi</h4>
-                      <span className="date-post">
-                        ( 12 Jannuary 2021 At 1:30AM )
-                      </span>
-                    </div>
-                    <div className="text-comment">
-                      lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                      Earum, voluptatibus mollitia nisi iusto id sit perferendis
-                      quae consectetur exercitationem odio. Lorem ipsum dolor
-                      sit, amet consectetur adipisicing elit. Earum,
-                      voluptatibus mollitia nisi iusto id sit perferendis quae
-                      consectetur exercitationem odio.
-                    </div>
-                  </div>
-                </div>
-              </Col>
+              <Comments />
             </Row>
           </div>
 
@@ -241,7 +170,21 @@ const SingleBlog = () => {
                     email: "",
                     textComment: "",
                   }}
-                  onSubmit={console.log()}
+                  onSubmit={(values, props) => {
+                    const newComment = {
+                      id: uuidv4(),
+                      body: values.textComment,
+                      username: values.name,
+                      userId: "2",
+                      parentId: null,
+                      children: [],
+                      avatar: `${avatar}`,
+                      createdAt: new Date().toISOString(),
+                    };
+                    dispatch(addComment(newComment));
+                    dispatch(postComment(newComment));
+                    props.resetForm();
+                  }}
                   validationSchema={schema}
                 >
                   {({
@@ -251,6 +194,7 @@ const SingleBlog = () => {
                     values,
                     touched,
                     errors,
+                    resetForm,
                   }) => (
                     <Form onSubmit={handleSubmit}>
                       <Form.Group className="mb-3" controlId="form.Name">

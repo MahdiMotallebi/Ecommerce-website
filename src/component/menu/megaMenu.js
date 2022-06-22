@@ -2,6 +2,7 @@ import React from "react";
 import AnimateHeight from "react-animate-height";
 import { Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
 const MegaMenu = ({ menu, height }) => {
   return (
     <AnimateHeight id="dropdown-control-area" duration={800} height={height}>
@@ -11,7 +12,10 @@ const MegaMenu = ({ menu, height }) => {
       >
         {menu.megaMenu.map((subMegaMenu, index) => {
           return (
-            <Nav.Item className={`mt-2 mb-3 mt-lg-0 mb-lg-0 col${index}`}>
+            <Nav.Item
+              className={`mt-2 mb-3 mt-lg-0 mb-lg-0 col${index}`}
+              key={uuidv4()}
+            >
               <h6 className="text-white text-capitalize bg-dark p-2 ">
                 {subMegaMenu.title}
               </h6>

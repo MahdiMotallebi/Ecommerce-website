@@ -16,7 +16,7 @@ html {
 .go-to-top {
   $size: 50px;
   position: fixed;
-  bottom: 3em;
+  bottom: 5em;
   right: 2em;
   z-index: 100;
   background: $original-black;
@@ -1411,6 +1411,13 @@ textarea {
     color: $sub-text-color;
   }
 
+  .reply {
+    font-size: 0.9em;
+    cursor: pointer;
+    color: $main-black;
+    text-transform: capitalize;
+  }
+
   .text-comment {
     font-size: 14px;
     color: $sub-text-color;
@@ -1425,6 +1432,7 @@ textarea {
 .img-comment {
   width: 70px;
   height: 70px;
+  object-fit: cover;
 }
 
 .detail-blog-post {
@@ -1439,9 +1447,12 @@ textarea {
 }
 
 .user-comment {
-  border-bottom: 1px solid #dee2e6;
-  &:nth-child(1) {
-    border-top: 1px solid #dee2e6;
+  border: 1px solid #dee2e6;
+  border-radius: 10px;
+
+  .user-comment {
+    border: none;
+    background: #f3f3f3;
   }
 }
 

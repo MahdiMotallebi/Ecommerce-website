@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { allState, fetchProducts } from "./features/shopSlice";
+import { allState, fetchComments, fetchProducts } from "./features/shopSlice";
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/home";
 import About from "./pages/about";
@@ -20,10 +20,12 @@ import ScrollTop from "./component/scrollTop/scrollTop";
 const App = () => {
   const dispatch = useDispatch();
   const state = useSelector(allState);
-  console.log(state.loading);
+
   React.useEffect(() => {
     dispatch(fetchProducts());
+    dispatch(fetchComments());
   }, []);
+
   return (
     <>
       {state.loading === "loading" || state.loading === "faild" ? (

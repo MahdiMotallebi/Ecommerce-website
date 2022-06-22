@@ -227,6 +227,10 @@
   color: #fff;
 }
 
+textarea {
+  resize: none;
+}
+
 .dropdown-menu-animated {
   position: absolute;
   margin: 0;
@@ -276,7 +280,7 @@ html {
 
 .go-to-top {
   position: fixed;
-  bottom: 3em;
+  bottom: 5em;
   right: 2em;
   z-index: 100;
   background: #000;
@@ -1872,6 +1876,13 @@ textarea:focus {
   color: #888;
 }
 
+.user-comment .reply {
+  font-size: 0.9em;
+  cursor: pointer;
+  color: rgba(33, 37, 41, 0.7);
+  text-transform: capitalize;
+}
+
 .user-comment .text-comment {
   font-size: 14px;
   color: #888;
@@ -1886,6 +1897,8 @@ textarea:focus {
 .img-comment {
   width: 70px;
   height: 70px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .detail-blog-post {
@@ -1903,11 +1916,13 @@ textarea:focus {
 }
 
 .user-comment {
-  border-bottom: 1px solid #dee2e6;
+  border: 1px solid #dee2e6;
+  border-radius: 10px;
 }
 
-.user-comment:nth-child(1) {
-  border-top: 1px solid #dee2e6;
+.user-comment .user-comment {
+  border: none;
+  background: #f3f3f3;
 }
 
 /***** BreadCrumb *****/

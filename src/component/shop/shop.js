@@ -13,6 +13,7 @@ import ProductsTab from "../ProductsTab/ProductsTab";
 import Products from "../products/products";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock, faCar, faBullhorn } from "@fortawesome/free-solid-svg-icons";
+import { v4 as uuidv4 } from "uuid";
 import { faInstagram } from "@fortawesome/free-brands-svg-icons";
 import AOS from "aos";
 const Shop = () => {
@@ -189,7 +190,7 @@ const Shop = () => {
                             return <ProductSkeleton />;
                           })
                       : state.filterItems.map((item) => {
-                          return <Products item={item} />;
+                          return <Products item={item} key={uuidv4()} />;
                         })}
                   </Slider>
                 </Col>

@@ -3,9 +3,17 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const URL = "http://localhost:5000/products/";
+const URL_COMMENT = "http://localhost:5000/comments/";
 
+export const fetchComments = createAsyncThunk(
+  "multiCart/fetchComments",
+  async () => {
+    const res = await axios.get(URL_COMMENT);
+    return res.data;
+  }
+);
 export const fetchProducts = createAsyncThunk(
-  "shopClothing/fetchProducts",
+  "multiCart/fetchProducts",
   async () => {
     const res = await axios.get(URL);
     return res.data;
@@ -13,7 +21,7 @@ export const fetchProducts = createAsyncThunk(
 );
 
 export const changeLike = createAsyncThunk(
-  "shopClothing/changeLike",
+  "multiCart/changeLike",
   async (updateItem) => {
     const { item, data } = updateItem;
     const res = await axios.put(URL + item.id, { ...item, ...data });
@@ -22,7 +30,7 @@ export const changeLike = createAsyncThunk(
 );
 
 export const changeCount = createAsyncThunk(
-  "shopClothing/changeCount",
+  "multiCart/changeCount",
   async (updateItem) => {
     const { item, data } = updateItem;
 
@@ -30,20 +38,40 @@ export const changeCount = createAsyncThunk(
     return res.data;
   }
 );
+export const postComment = createAsyncThunk(
+  "multiCart/replyComment",
+  async (rComment) => {
+    const res = axios.post(URL_COMMENT, rComment);
+  }
+);
 
+const nestedReplyComment = (temp, p) => {
+  temp.forEach((comment) => {
+    if (comment.id === p.parentId) {
+      comment.children.push(p);
+      return;
+    } else if (comment.children.length > 0) {
+      nestedReplyComment(comment.children, p);
+    }
+  });
+};
 const initialState = {
   items: [],
   filterItems: [],
   cartItems: [],
   likeItems: [],
+  comments: [],
   loading: "",
   error: "",
 };
 
 const clothingSlice = createSlice({
-  name: "shopClothing",
+  name: "multiCart",
   initialState,
   reducers: {
+    addComment: (state, action) => {
+      state.comments.push(action.payload);
+    },
     handleFilterBySize: (state, action) => {
       state.filterItems = [...state.items];
       if (action.payload.toLowerCase() !== "all") {
@@ -55,6 +83,12 @@ const clothingSlice = createSlice({
       }
     },
 
+    handleReplyComment: (state, action) => {
+      let temp = [...state.comments];
+      let p = action.payload;
+      nestedReplyComment(temp, p);
+      state.comments = [...temp];
+    },
     handleFilterBySort: (state, action) => {
       state.filterItems.sort((a, b) => {
         if (action.payload.toLowerCase() === "ascending") {
@@ -72,7 +106,7 @@ const clothingSlice = createSlice({
   },
   extraReducers: {
     // Section fetch data
-    [fetchProducts.pending]: (state, action) => {
+    [fetchProducts.pending]: (state) => {
       state.loading = "loading";
     },
     [fetchProducts.fulfilled]: (state, action) => {
@@ -87,6 +121,53 @@ const clothingSlice = createSlice({
       state.cartItems = [...tempCart];
     },
     [fetchProducts.rejected]: (state, action) => {
+      state.loading = "faild";
+      state.error = action.error.message;
+    },
+
+    [fetchComments.pending]: (state) => {
+      state.loading = "loading";
+    },
+    [fetchComments.fulfilled]: (state, action) => {
+      state.loading = "succeeded";
+      var mapArr = {};
+      action.payload.forEach((item) => {
+        var id = item.id;
+
+        if (!mapArr.hasOwnProperty(id)) {
+          mapArr[id] = item;
+          const copy = { ...mapArr[id], children: [] };
+          mapArr[id] = copy;
+        }
+      });
+
+      // backendComments.forEach((item) => {
+      //   if (!mapArr.hasOwnProperty(item.parentId)) {
+      //     var newObj = {
+      //       id: item.parentId,
+      //       body: "hello",
+      //       username: "marin",
+      //       userId: "1",
+      //       parentId: null,
+      //       createdAt: "2021-08-16T23:00:33.010+02:00",
+      //     };
+      //     mapArr[item.parentId] = newObj;
+      //     mapArr[item.parentId].children = [];
+      //   }
+      // });
+      for (var id in mapArr) {
+        if (mapArr.hasOwnProperty(id)) {
+          var mapElem = mapArr[id]; //  key of object
+          if (mapElem.parentId) {
+            mapArr[mapElem.parentId].children.push(mapElem); // children
+          } else {
+            state.comments.push(mapElem);
+          }
+        }
+      }
+      // state.comments = [...Object.values(mapArr)];
+    },
+    [fetchComments.rejected]: (state, action) => {
       state.loading = "faild";
       state.error = action.error.message;
     },
@@ -160,5 +241,7 @@ export const {
   handleFilterBySize,
   handleFilterBySort,
   handleDeleteLikeItem,
+  handleReplyComment,
+  addComment,
 } = clothingSlice.actions;
 export default clothingSlice.reducer;
