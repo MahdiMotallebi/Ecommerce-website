@@ -155,9 +155,9 @@ const SingleBlog = () => {
             </Row>
           </div>
           <div className="comments my-5">
-            <Row>
+            <Container>
               <Comments />
-            </Row>
+            </Container>
           </div>
 
           <div className="form-comment">

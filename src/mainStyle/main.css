@@ -1880,6 +1880,7 @@ textarea:focus {
   font-size: 0.9em;
   cursor: pointer;
   color: rgba(33, 37, 41, 0.7);
+  font-weight: bold;
   text-transform: capitalize;
 }
 
@@ -1888,6 +1889,7 @@ textarea:focus {
   color: #888;
   letter-spacing: 1px;
   margin-top: 0.3em;
+  word-wrap: break-word;
 }
 
 .user-comment .text-comment::first-letter {
@@ -1899,6 +1901,13 @@ textarea:focus {
   height: 70px;
   -o-object-fit: cover;
      object-fit: cover;
+}
+
+@media (max-width: 400px) {
+  .img-comment {
+    width: 50px;
+    height: 50px;
+  }
 }
 
 .detail-blog-post {
@@ -1915,9 +1924,21 @@ textarea:focus {
   }
 }
 
+@media (max-width: 400px) {
+  .comment {
+    padding: 0.5em;
+  }
+}
+
 .user-comment {
   border: 1px solid #dee2e6;
   border-radius: 10px;
+}
+
+@media (max-width: 400px) {
+  .user-comment {
+    border-radius: 5px;
+  }
 }
 
 .user-comment .user-comment {

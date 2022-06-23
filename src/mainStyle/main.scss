@@ -1415,6 +1415,7 @@ textarea {
     font-size: 0.9em;
     cursor: pointer;
     color: $main-black;
+    font-weight: bold;
     text-transform: capitalize;
   }
 
@@ -1423,6 +1424,7 @@ textarea {
     color: $sub-text-color;
     letter-spacing: 1px;
     margin-top: 0.3em;
+    word-wrap: break-word;
 
     &::first-letter {
       text-transform: uppercase;
@@ -1432,6 +1434,10 @@ textarea {
 .img-comment {
   width: 70px;
   height: 70px;
+  @include x-small {
+    width: 50px;
+    height: 50px;
+  }
   object-fit: cover;
 }
 
@@ -1445,10 +1451,18 @@ textarea {
     border-right: 1px solid #dee2e6;
   }
 }
+.comment {
+  @include x-small {
+    padding: 0.5em;
+  }
+}
 
 .user-comment {
   border: 1px solid #dee2e6;
   border-radius: 10px;
+  @include x-small {
+    border-radius: 5px;
+  }
 
   .user-comment {
     border: none;
