@@ -48,7 +48,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "run-script": "npx json-server -p 5000 -w data/db.json"
+    "jsonserver": "npx json-server -p 5000 -w data/db.json"
   },
   "eslintConfig": {
     "extends": [

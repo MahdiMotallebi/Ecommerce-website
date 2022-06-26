@@ -4,6 +4,7 @@ export const menuItems = [
     title: "home",
     to: "",
   },
+
   {
     id: 2,
     title: "services",
@@ -232,6 +233,11 @@ export const menuItems = [
   },
   {
     id: 18,
+    title: "shop",
+    to: "shop",
+  },
+  {
+    id: 19,
     title: "about",
     to: "about",
   },

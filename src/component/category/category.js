@@ -1,16 +1,21 @@
 import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import Select from "react-select";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { useDispatch } from "react-redux";
+import { allState } from "../../features/shopSlice";
 import {
   handleFilterBySize,
   handleFilterBySort,
+  handleFilterByPrice,
+  handleSetFilteritems,
 } from "../../features/shopSlice";
 const Category = () => {
+  const state = useSelector(allState);
   const dispatch = useDispatch();
   const [sizeValue, setSize] = useState("");
   const [sortValue, setSort] = useState("");
+  const [price, setPrice] = useState(0);
   const size = [
     { value: "ALL", label: "ALL" },
     { value: "S", label: "S" },
@@ -25,12 +30,12 @@ const Category = () => {
     { value: "Ascending", label: "Ascending" },
   ];
   useEffect(() => {
-    if (sizeValue) {
-      const i = dispatch(handleFilterBySize(sizeValue));
-      console.log(i);
-    }
+    dispatch(handleFilterBySize(sizeValue));
     sortValue && dispatch(handleFilterBySort(sortValue));
-  }, [sizeValue, sortValue]);
+    price && dispatch(handleFilterByPrice(price));
+
+    // dispatch(handleSetFilteritems());
+  }, [sizeValue, sortValue, price]);
 
   const defaultValueSize = (optionSize, sizeVal) => {
     if (sizeVal === "all") {
@@ -56,8 +61,8 @@ const Category = () => {
   const customStyles = {
     control: (provided, state) => ({
       ...provided,
-      background: "#f5f5f5",
-      border: "none",
+      background: "none",
+      border: "1px solid #bbb",
       cursor: "pointer",
       outline: "none",
     }),
@@ -75,30 +80,54 @@ const Category = () => {
   };
 
   return (
-    <Row className="category bg-secondary d-flex justify-content-center p-3">
-      <Col xs={6} sm={4} className="sort">
-        <Select
-          styles={customStyles}
-          name="size"
-          options={size}
-          placeholder="Select size"
-          value={defaultValueSize(size, sizeValue)}
-          onChange={(e) => handleSize(e.value)}
-          placeholder="Filter By Size"
-        />
-      </Col>
-      <Col xs={6} sm={4} className="sort">
-        <Select
-          styles={customStyles}
-          name="sort"
-          options={sort}
-          placeholder="Select sort"
-          value={defaultValueSort(sort, sortValue)}
-          onChange={(e) => handleSort(e.value)}
-          placeholder="Filter By Price"
-        />
-      </Col>
-    </Row>
+    <div className="filterProduct border p-3 p-lg-4 my-3 rounded">
+      <h3 className="text-capitalize fw-bold mb-3">filters</h3>
+      <Row className="category d-flex flex-column justify-content-center gap-3">
+        <Col xs={12}>
+          <div className="sort">
+            <h5 className="text-capitalize">size</h5>
+
+            <Select
+              styles={customStyles}
+              name="size"
+              options={size}
+              placeholder="Select size"
+              value={defaultValueSize(size, sizeValue)}
+              onChange={(e) => handleSize(e.value)}
+              placeholder="Filter By Size"
+            />
+          </div>
+        </Col>
+        <Col xs={12}>
+          <div className="sort">
+            <h5 className="text-capitalize">sort</h5>
+            <Select
+              styles={customStyles}
+              name="sort"
+              options={sort}
+              placeholder="Select sort"
+              value={defaultValueSort(sort, sortValue)}
+              onChange={(e) => handleSort(e.value)}
+              placeholder="Filter By Price"
+            />
+          </div>
+        </Col>
+        <Col xs={12}>
+          <div className="sort">
+            <h5 className="text-capitalize">price: ${price}</h5>
+            <div className="wrapper d-flex flex-column flex-sm-row gap-2">
+              <span>$0</span>
+              <input
+                type="range"
+                className="range-input"
+                onInput={(e) => setPrice(e.target.value)}
+              />
+              <span>$100</span>
+            </div>
+          </div>
+        </Col>
+      </Row>
+    </div>
   );
 };
 

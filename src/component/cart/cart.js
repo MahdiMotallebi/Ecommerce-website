@@ -110,9 +110,7 @@ const Cart = () => {
                         data-colName="quantity"
                         className="col-wishlist position-relative d-flex justify-content-center align-items-center justify-content-sm-end"
                       >
-                        <p className="content-wishlist text-center ">
-                          ${count}
-                        </p>
+                        <p className="content-wishlist text-center ">{count}</p>
                       </div>
                     </Col>
                     <Col>

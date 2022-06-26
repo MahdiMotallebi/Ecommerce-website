@@ -11,7 +11,7 @@
         "XL",
         "XXL"
       ],
-      "price": 29.9,
+      "price": 3,
       "count": 5,
       "isLike": true
     },
@@ -25,7 +25,7 @@
         "M",
         "L"
       ],
-      "price": 18.9,
+      "price": 25.5,
       "count": 0,
       "isLike": true
     },
@@ -39,9 +39,9 @@
         "M",
         "L"
       ],
-      "price": 14.9,
+      "price": 12.2,
       "isLike": false,
-      "count": 2
+      "count": 3
     },
     {
       "id": "dress4",
@@ -51,7 +51,7 @@
       "availableSizes": [
         "XL"
       ],
-      "price": 25.9,
+      "price": 6.3,
       "isLike": false,
       "count": 0
     },
@@ -65,7 +65,7 @@
         "L",
         "XL"
       ],
-      "price": 10.9,
+      "price": 45,
       "count": 0,
       "isLike": false
     },
@@ -78,7 +78,7 @@
         "XL",
         "XXL"
       ],
-      "price": 49.9,
+      "price": 67.8,
       "count": 1,
       "isLike": false
     }
@@ -166,6 +166,36 @@
       "children": [],
       "avatar": "/static/media/comment2.7265f534e120763a918f.jpg",
       "createdAt": "2022-06-23T10:20:01.634Z"
+    },
+    {
+      "id": "973b8571-9248-42e2-b65a-ae7aa361fa0c",
+      "body": "test content",
+      "username": "ali akbar",
+      "userId": "2",
+      "parentId": null,
+      "children": [],
+      "avatar": "/static/media/comment2.7265f534e120763a918f.jpg",
+      "createdAt": "2022-06-26T14:20:52.594Z"
+    },
+    {
+      "id": "512a1c1e-8d7d-4688-9189-6f29b1155a65",
+      "body": "hello world",
+      "username": "mendy",
+      "userId": "2",
+      "parentId": "973b8571-9248-42e2-b65a-ae7aa361fa0c",
+      "children": [],
+      "avatar": "/static/media/comment2.7265f534e120763a918f.jpg",
+      "createdAt": "2022-06-26T14:21:07.504Z"
+    },
+    {
+      "id": "e7a20caa-075d-4197-9b3b-d705c39d877f",
+      "body": "hello",
+      "username": "mendy",
+      "userId": "2",
+      "parentId": "5",
+      "children": [],
+      "avatar": "/static/media/comment2.7265f534e120763a918f.jpg",
+      "createdAt": "2022-06-26T14:22:08.997Z"
     }
   ]
 }

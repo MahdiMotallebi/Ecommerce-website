@@ -25,10 +25,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 const Footer = () => {
-  useEffect(() => {
-    AOS.init({ duration: 1500 });
-    AOS.refresh();
-  }, []);
+
   const importAll = (r) => {
     return r.keys().map(r);
   };
@@ -36,7 +33,7 @@ const Footer = () => {
     require.context("../../img/icon-footer", false, /\.(png|jpe?g|svg)$/)
   );
   return (
-    <footer className="footer" data-aos="fade-up">
+    <footer className="footer">
       <Container>
         <Row>
           <Col xs={12} className="top-footer mb-3 mb-lg-5 pt-4 pb-lg-4">

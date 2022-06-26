@@ -489,13 +489,30 @@ body {
   color: #bbb;
 
   .product-tool {
-    width: 20px;
-    height: 20px;
+    $size: 15px;
+    width: $size;
+    height: $size;
     transition: 0.5s;
     cursor: pointer;
     &:hover {
       color: #000;
     }
+  }
+}
+
+.container-size {
+  .size-item {
+    $size: 20px;
+    width: $size;
+    height: $size;
+    padding: 1em;
+    background: $original-black;
+    border-radius: 50%;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.8em;
   }
 }
 
@@ -1556,4 +1573,19 @@ textarea {
 /***** Skeleton *****/
 .img-skeleton {
   height: 349px;
+}
+
+/***** Category *****/
+.range-input {
+  accent-color: $original-black;
+}
+
+.filterProduct {
+  h3 {
+    font-size: 1.5em;
+    letter-spacing: 1px;
+  }
+  h5 {
+    font-size: 1em;
+  }
 }

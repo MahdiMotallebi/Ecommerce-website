@@ -61,6 +61,7 @@ const initialState = {
   cartItems: [],
   likeItems: [],
   comments: [],
+  temp: [],
   loading: "",
   error: "",
 };
@@ -72,15 +73,22 @@ const clothingSlice = createSlice({
     addComment: (state, action) => {
       state.comments.push(action.payload);
     },
+
+    handleSetFilteritems: (state) => {
+      state.filterItems = [...state.temp];
+    },
     handleFilterBySize: (state, action) => {
-      state.filterItems = [...state.items];
-      if (action.payload.toLowerCase() !== "all") {
-        let filterArray = state.items.filter((item) =>
+      state.temp = [...state.items];
+      if (action.payload.toLowerCase() !== "all" && action.payload !== "") {
+        state.temp = state.temp.filter((item) =>
           item.availableSizes.includes(action.payload)
         );
-
-        state.filterItems = [...filterArray];
       }
+    },
+    handleFilterByPrice: (state, action) => {
+      state.temp = state.temp.filter(
+        (p) => p.price >= parseFloat(action.payload)
+      );
     },
 
     handleReplyComment: (state, action) => {
@@ -90,7 +98,7 @@ const clothingSlice = createSlice({
       state.comments = [...temp];
     },
     handleFilterBySort: (state, action) => {
-      state.filterItems.sort((a, b) => {
+      state.temp.sort((a, b) => {
         if (action.payload.toLowerCase() === "ascending") {
           if (a.price > b.price) return 1;
           return -1;
@@ -240,8 +248,10 @@ export const {
   handle_Increase_Decrease,
   handleFilterBySize,
   handleFilterBySort,
+  handleFilterByPrice,
   handleDeleteLikeItem,
   handleReplyComment,
   addComment,
+  handleSetFilteritems,
 } = clothingSlice.actions;
 export default clothingSlice.reducer;

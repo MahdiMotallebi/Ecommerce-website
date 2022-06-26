@@ -13,6 +13,7 @@ import Footer from "./component/footer/footer";
 import SingleBlog from "./component/singleBlog/singleBlog";
 import Header from "./component/header/header";
 import Loading from "./component/loading/loading";
+import AllShop from "./component/shop/allShop";
 import Breadcrumb from "./component/breadCrumb/breadCrumb";
 
 import ScrollTop from "./component/scrollTop/scrollTop";
@@ -40,6 +41,7 @@ const App = () => {
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
             <Route path="singleBlog" element={<SingleBlog />} />
+            <Route path="shop" element={<AllShop />} />
             <Route path="*" element={<NoPage />} />
           </Routes>
           <Footer />

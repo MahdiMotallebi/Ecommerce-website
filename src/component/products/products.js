@@ -52,7 +52,7 @@ const Products = ({ item }) => {
     dispatch(changeLike({ item, data }));
   };
 
-  const { id, image, title, price, isLike } = item;
+  const { id, image, title, price, isLike, availableSizes } = item;
   return (
     <div className="custom-card  mx-2 justify-content-between mb-3 position-relative">
       <div className="position-relative overflow-hidden">
@@ -66,7 +66,7 @@ const Products = ({ item }) => {
           />
         )}
 
-        <Nav className="product-tools position-absolute d-flex flex-column gap-2">
+        <Nav className="product-tools position-absolute d-flex flex-column gap-1">
           <NavItem
             title="add to cart"
             id={id}
@@ -125,6 +125,11 @@ const Products = ({ item }) => {
             <FontAwesomeIcon className="star" icon={faStar}></FontAwesomeIcon>
           </div>
           <h6 className="title-product">{title}</h6>
+          <div className="container-size d-flex gap-2 my-2">
+            {availableSizes.map((size) => {
+              return <div className="size-item">{size} </div>;
+            })}
+          </div>
         </div>
         <div className="container-price d-flex gap-2  align-items-center">
           <span className="new-price text-dark">${price.toFixed(1)}</span>

@@ -830,8 +830,8 @@ body {
 }
 
 .product-tools .product-tool {
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
   -webkit-transition: 0.5s;
   transition: 0.5s;
   cursor: pointer;
@@ -839,6 +839,25 @@ body {
 
 .product-tools .product-tool:hover {
   color: #000;
+}
+
+.container-size .size-item {
+  width: 20px;
+  height: 20px;
+  padding: 1em;
+  background: #000;
+  border-radius: 50%;
+  color: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 0.8em;
 }
 
 .star {
@@ -2055,5 +2074,19 @@ textarea:focus {
 /***** Skeleton *****/
 .img-skeleton {
   height: 349px;
+}
+
+/***** Category *****/
+.range-input {
+  accent-color: #000;
+}
+
+.filterProduct h3 {
+  font-size: 1.5em;
+  letter-spacing: 1px;
+}
+
+.filterProduct h5 {
+  font-size: 1em;
 }
 /*# sourceMappingURL=main.css.map */
