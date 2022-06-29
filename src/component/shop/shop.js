@@ -14,14 +14,11 @@ import Products from "../products/products";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock, faCar, faBullhorn } from "@fortawesome/free-solid-svg-icons";
 import { v4 as uuidv4 } from "uuid";
-import { faInstagram } from "@fortawesome/free-brands-svg-icons";
-import AOS from "aos";
+import { ToastContainer } from "react-toastify";
+
 const Shop = () => {
   const state = useSelector(allState);
-  useEffect(() => {
-    AOS.init({ duration: 1500 });
-    AOS.refresh();
-  }, []);
+
   const importAll = (r) => {
     return r.keys().map(r);
   };
@@ -182,14 +179,13 @@ const Shop = () => {
               <Row>
                 <Col>
                   <Slider {...mainShop}>
-                    {state.filterItems.length === 0 &&
-                    state.loading === "loading"
+                    {state.items.length === 0 && state.loading === "loading"
                       ? Array(mainShop.slidesToShow)
                           .fill(0)
                           .map((item) => {
                             return <ProductSkeleton />;
                           })
-                      : state.filterItems.map((item) => {
+                      : state.items.map((item) => {
                           return <Products item={item} key={uuidv4()} />;
                         })}
                   </Slider>
@@ -221,7 +217,7 @@ const Shop = () => {
       <section className="news text-center mt-5">
         <Container>
           <Row className="border-top border-bottom mx-2 mx-sm-0 p-3">
-            <Col xs={12} md={4} data-aos="flip-left">
+            <Col xs={12} md={4}>
               <div className="news-one  hover-news px-2">
                 <div className="img-news">
                   <FontAwesomeIcon icon={faCar}></FontAwesomeIcon>
@@ -232,7 +228,7 @@ const Shop = () => {
                 </div>
               </div>
             </Col>
-            <Col xs={12} md={4} data-aos="flip-left">
+            <Col xs={12} md={4}>
               <div className="news-two styleBorder hover-news px-2">
                 <div className="img-news">
                   <FontAwesomeIcon icon={faClock}></FontAwesomeIcon>
@@ -243,7 +239,7 @@ const Shop = () => {
                 </div>
               </div>
             </Col>
-            <Col xs={12} md={4} data-aos="flip-left">
+            <Col xs={12} md={4}>
               <div className="news-three hover-news px-2">
                 <div className="img-news">
                   <FontAwesomeIcon icon={faBullhorn}></FontAwesomeIcon>
@@ -304,6 +300,7 @@ const Shop = () => {
             </Col>
           </Row>
         </Container>
+        <ToastContainer />
       </section>
     </>
   );

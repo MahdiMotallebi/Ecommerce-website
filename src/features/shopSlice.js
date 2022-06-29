@@ -64,12 +64,26 @@ const initialState = {
   temp: [],
   loading: "",
   error: "",
+  filterValues: {
+    size: "ALL",
+    sort: "",
+    price: null,
+  },
 };
 
 const clothingSlice = createSlice({
   name: "multiCart",
   initialState,
   reducers: {
+    setFilterSize: (state, action) => {
+      state.filterValues.size = action.payload;
+    },
+    setFilterSort: (state, action) => {
+      state.filterValues.sort = action.payload;
+    },
+    setFilterPrice: (state, action) => {
+      state.filterValues.price = action.payload;
+    },
     addComment: (state, action) => {
       state.comments.push(action.payload);
     },
@@ -79,15 +93,18 @@ const clothingSlice = createSlice({
     },
     handleFilterBySize: (state, action) => {
       state.temp = [...state.items];
-      if (action.payload.toLowerCase() !== "all" && action.payload !== "") {
+      if (
+        state.filterValues.size.toLowerCase() !== "all" &&
+        state.filterValues.size !== ""
+      ) {
         state.temp = state.temp.filter((item) =>
-          item.availableSizes.includes(action.payload)
+          item.availableSizes.includes(state.filterValues.size)
         );
       }
     },
     handleFilterByPrice: (state, action) => {
       state.temp = state.temp.filter(
-        (p) => p.price >= parseFloat(action.payload)
+        (p) => p.price <= parseFloat(state.filterValues.price)
       );
     },
 
@@ -99,10 +116,10 @@ const clothingSlice = createSlice({
     },
     handleFilterBySort: (state, action) => {
       state.temp.sort((a, b) => {
-        if (action.payload.toLowerCase() === "ascending") {
+        if (state.filterValues.sort.toLowerCase() === "ascending") {
           if (a.price > b.price) return 1;
           return -1;
-        } else if (action.payload.toLowerCase() === "descending") {
+        } else if (state.filterValues.sort.toLowerCase() === "descending") {
           if (a.price < b.price) return 1;
           return -1;
         } else {
@@ -253,5 +270,8 @@ export const {
   handleReplyComment,
   addComment,
   handleSetFilteritems,
+  setFilterSize,
+  setFilterPrice,
+  setFilterSort,
 } = clothingSlice.actions;
 export default clothingSlice.reducer;

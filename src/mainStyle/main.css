@@ -11,7 +11,7 @@
   text-transform: uppercase;
   font-size: clamp(24px, 3vw, 35px);
   letter-spacing: 0.5px;
-  font-weight: bold;
+  font-weight: 700;
   position: relative;
   margin-bottom: 0.7em;
   margin-top: 0.1em;
@@ -565,7 +565,7 @@ body {
 .hover-gear h6 {
   text-transform: capitalize;
   color: #000;
-  font-weight: 900;
+  font-weight: 500;
 }
 
 .hover-gear .nav-item {
@@ -748,7 +748,7 @@ body {
 .logo {
   font-size: 1.5em;
   text-transform: capitalize;
-  font-weight: 900;
+  font-weight: 500;
   letter-spacing: 1px;
   min-width: 132px;
 }
@@ -874,7 +874,7 @@ body {
 }
 
 .new-price {
-  font-weight: 900;
+  font-weight: 500;
   font-size: 1.2em;
 }
 
@@ -958,7 +958,7 @@ body {
 .col-wishlist::before {
   position: absolute;
   content: attr(data-colName);
-  font-weight: 900;
+  font-weight: 500;
   text-transform: capitalize;
   left: 50%;
   -webkit-transform: translateX(-50%);
@@ -1010,7 +1010,7 @@ body {
 .noLike_cart h4 {
   text-transform: capitalize;
   font-size: 1.5em;
-  font-weight: 900;
+  font-weight: 500;
 }
 
 .noLike_cart p {
@@ -1155,8 +1155,8 @@ body {
 
 /***** ToastNotificaiton *****/
 .toast-success {
-  color: #fff;
-  background: #000;
+  color: #fff !important;
+  background: #000 !important;
 }
 
 /***** 404 page *****/
@@ -1224,7 +1224,7 @@ body {
 
 .parallex-content h2 {
   font-size: clamp(5rem, 10vw, 8rem);
-  font-weight: 900;
+  font-weight: 700;
   color: #fff;
 }
 
@@ -1260,7 +1260,7 @@ body {
 
 /***** React tab *****/
 .title-tab {
-  font-weight: 900;
+  font-weight: 700;
   position: relative;
   letter-spacing: 1px;
 }
@@ -1381,7 +1381,7 @@ body {
 .slick-next::before,
 .slick-prev::before {
   font-family: "Font Awesome 5 Free";
-  font-weight: 900;
+  font-weight: 500;
   color: #fff;
   font-size: 12px;
   border-radius: 50%;
@@ -1491,7 +1491,7 @@ body {
 .news h3 {
   font-size: 16px;
   text-transform: uppercase;
-  font-weight: 900;
+  font-weight: 500;
   color: rgba(33, 37, 41, 0.7);
   -webkit-transition: 0.5s;
   transition: 0.5s;
@@ -1594,7 +1594,7 @@ body {
 .instagram h3 {
   text-transform: uppercase;
   margin: 0.5em 0;
-  font-weight: 900;
+  font-weight: 700;
   font-size: clamp(24px, 3vw, 35px);
   letter-spacing: 1px;
 }
@@ -1879,7 +1879,7 @@ textarea:focus {
   display: -ms-flexbox;
   display: flex;
   gap: 0.2em;
-  font-weight: 900;
+  font-weight: 500;
   letter-spacing: 0.5px;
   padding: 0.5em 0;
 }

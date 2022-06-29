@@ -5,6 +5,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import { allState } from "../../features/shopSlice";
 import Products from "../products/products";
 import Category from "../category/category";
+import { ToastContainer } from "react-toastify";
 const AllShop = () => {
   const state = useSelector(allState);
   return (
@@ -17,8 +18,8 @@ const AllShop = () => {
           <Col>
             <div className="main-shop">
               <Row className="g-0">
-                {state.temp.length > 0 &&
-                  state.temp.map((item) => {
+                {state.filterItems.length > 0 &&
+                  state.filterItems.map((item) => {
                     return (
                       <Col lg={4}>
                         <Products item={item} key={uuidv4()} />
@@ -26,6 +27,7 @@ const AllShop = () => {
                     );
                   })}
               </Row>
+              <ToastContainer />
             </div>
           </Col>
         </Row>

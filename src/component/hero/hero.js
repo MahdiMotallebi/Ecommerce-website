@@ -87,7 +87,7 @@ const Hero = () => {
       <section className="sub-banner-container mt-4 p-4">
         <Container>
           <Row>
-            <Col md={6} data-aos="fade-right">
+            <Col md={6}>
               <Link to="#">
                 <div className="sub-banner men position-relative">
                   <Image src={subBanner1} alt="men" fluid></Image>
@@ -99,7 +99,7 @@ const Hero = () => {
               </Link>
             </Col>
 
-            <Col md={6} data-aos="fade-left">
+            <Col md={6}>
               <Link to="#">
                 <div className="sub-banner women  position-relative">
                   <Image src={subBanner2} alt="women"></Image>

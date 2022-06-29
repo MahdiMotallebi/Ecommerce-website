@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Select from "react-select";
 import Row from "react-bootstrap/Row";
@@ -9,13 +9,14 @@ import {
   handleFilterBySort,
   handleFilterByPrice,
   handleSetFilteritems,
+  setFilterPrice,
+  setFilterSize,
+  setFilterSort,
 } from "../../features/shopSlice";
 const Category = () => {
   const state = useSelector(allState);
   const dispatch = useDispatch();
-  const [sizeValue, setSize] = useState("");
-  const [sortValue, setSort] = useState("");
-  const [price, setPrice] = useState(0);
+
   const size = [
     { value: "ALL", label: "ALL" },
     { value: "S", label: "S" },
@@ -29,18 +30,21 @@ const Category = () => {
     { value: "Descending", label: "Descending" },
     { value: "Ascending", label: "Ascending" },
   ];
-  useEffect(() => {
-    dispatch(handleFilterBySize(sizeValue));
-    sortValue && dispatch(handleFilterBySort(sortValue));
-    price && dispatch(handleFilterByPrice(price));
 
-    // dispatch(handleSetFilteritems());
-  }, [sizeValue, sortValue, price]);
+  useEffect(() => {
+    state.filterValues.size && dispatch(handleFilterBySize());
+    state.filterValues.sort && dispatch(handleFilterBySort());
+    state.filterValues.price && dispatch(handleFilterByPrice());
+    dispatch(handleSetFilteritems());
+  }, [
+    state.filterValues.size,
+    state.filterValues.sort,
+    state.filterValues.price,
+  ]);
 
   const defaultValueSize = (optionSize, sizeVal) => {
-    if (sizeVal === "all") {
-      setSort(sort[0].value);
-      defaultValueSort(sort, sortValue);
+    if (sizeVal === "ALL") {
+      defaultValueSort(sort, state.filterValues.sort);
     }
     const result = optionSize.find((option) => option.value === sizeVal);
     return result;
@@ -50,12 +54,16 @@ const Category = () => {
     const result = optionSort.find((option) => option.value === sortVal);
     return result;
   };
-  const handleSize = (size) => {
-    setSize(size);
+  const handleSize = (e) => {
+    dispatch(setFilterSize(e.value));
   };
 
-  const handleSort = (sort) => {
-    setSort(sort);
+  const handleSort = (e) => {
+    dispatch(setFilterSort(e.value));
+  };
+
+  const handlePrice = (e) => {
+    dispatch(setFilterPrice(e.target.value));
   };
 
   const customStyles = {
@@ -78,7 +86,6 @@ const Category = () => {
       letterSpacing: ".5px",
     }),
   };
-
   return (
     <div className="filterProduct border p-3 p-lg-4 my-3 rounded">
       <h3 className="text-capitalize fw-bold mb-3">filters</h3>
@@ -92,8 +99,8 @@ const Category = () => {
               name="size"
               options={size}
               placeholder="Select size"
-              value={defaultValueSize(size, sizeValue)}
-              onChange={(e) => handleSize(e.value)}
+              value={defaultValueSize(size, state.filterValues.size)}
+              onChange={(e) => handleSize(e)}
               placeholder="Filter By Size"
             />
           </div>
@@ -106,21 +113,23 @@ const Category = () => {
               name="sort"
               options={sort}
               placeholder="Select sort"
-              value={defaultValueSort(sort, sortValue)}
-              onChange={(e) => handleSort(e.value)}
+              value={defaultValueSort(sort, state.filterValues.sort)}
+              onChange={(e) => handleSort(e)}
               placeholder="Filter By Price"
             />
           </div>
         </Col>
         <Col xs={12}>
           <div className="sort">
-            <h5 className="text-capitalize">price: ${price}</h5>
+            <h5 className="text-capitalize">
+              price: ${state.filterValues.price}
+            </h5>
             <div className="wrapper d-flex flex-column flex-sm-row gap-2">
               <span>$0</span>
               <input
                 type="range"
                 className="range-input"
-                onInput={(e) => setPrice(e.target.value)}
+                onInput={(e) => handlePrice(e)}
               />
               <span>$100</span>
             </div>

@@ -232,7 +232,7 @@ body {
   h6 {
     text-transform: capitalize;
     color: #000;
-    font-weight: 900;
+    font-weight: 500;
   }
 
   .nav-item {
@@ -415,7 +415,7 @@ body {
 .logo {
   font-size: 1.5em;
   text-transform: capitalize;
-  font-weight: 900;
+  font-weight: 500;
   letter-spacing: 1px;
   min-width: 132px;
   @include x-small {
@@ -529,7 +529,7 @@ body {
   min-height: 130px;
 }
 .new-price {
-  font-weight: 900;
+  font-weight: 500;
   font-size: 1.2em;
 }
 
@@ -604,7 +604,7 @@ body {
   &::before {
     position: absolute;
     content: attr(data-colName);
-    font-weight: 900;
+    font-weight: 500;
     text-transform: capitalize;
     left: 50%;
     transform: translateX(-50%);
@@ -638,7 +638,7 @@ body {
   h4 {
     text-transform: capitalize;
     font-size: 1.5em;
-    font-weight: 900;
+    font-weight: 500;
   }
   p {
     font-size: 1em;
@@ -762,8 +762,8 @@ body {
 
 /***** ToastNotificaiton *****/
 .toast-success {
-  color: #fff;
-  background: $original-black;
+  color: #fff !important;
+  background: $original-black !important;
 }
 
 /***** 404 page *****/
@@ -817,7 +817,7 @@ body {
 
   h2 {
     font-size: clamp(5rem, 10vw, 8rem);
-    font-weight: 900;
+    font-weight: 700;
     color: #fff;
     @include tablet {
       color: $original-black;
@@ -845,7 +845,7 @@ body {
 /***** React tab *****/
 
 .title-tab {
-  font-weight: 900;
+  font-weight: 700;
   position: relative;
   letter-spacing: 1px;
 
@@ -949,7 +949,7 @@ body {
 .slick-next::before,
 .slick-prev::before {
   font-family: "Font Awesome 5 Free";
-  font-weight: 900;
+  font-weight: 500;
   color: #fff;
   font-size: 12px;
   border-radius: 50%;
@@ -1038,7 +1038,7 @@ body {
   h3 {
     font-size: 16px;
     text-transform: uppercase;
-    font-weight: 900;
+    font-weight: 500;
     color: $main-black;
     transition: 0.5s;
   }
@@ -1148,7 +1148,7 @@ body {
   h3 {
     text-transform: uppercase;
     margin: 0.5em 0;
-    font-weight: 900;
+    font-weight: 700;
     font-size: $title-fontSize;
     letter-spacing: 1px;
   }
@@ -1412,7 +1412,7 @@ textarea {
   border: none;
   display: flex;
   gap: 0.2em;
-  font-weight: 900;
+  font-weight: 500;
   letter-spacing: 0.5px;
   padding: 0.5em 0;
 }

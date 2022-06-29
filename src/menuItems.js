@@ -97,7 +97,7 @@ export const menuItems = [
   },
 
   {
-    id: 19,
+    id: 18,
     title: "features",
     to: "features",
     megaMenu: [
@@ -232,18 +232,18 @@ export const menuItems = [
     ],
   },
   {
-    id: 18,
+    id: 19,
     title: "shop",
     to: "shop",
   },
   {
-    id: 19,
+    id: 20,
     title: "about",
     to: "about",
   },
 
   {
-    id: 20,
+    id: 21,
     title: "contact",
     to: "contact",
   },

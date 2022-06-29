@@ -23,8 +23,8 @@ const ProductsTab = () => {
       >
         <Tab eventKey="new arriaval" title="new arriaval">
           <Row>
-            {state.filterItems.length > 0 &&
-              state.filterItems.map((item) => {
+            {state.items.length > 0 &&
+              state.items.map((item) => {
                 return (
                   <Col xs={12} sm={4} lg={3} key={uuidv4()}>
                     <Products item={item} />
@@ -35,8 +35,8 @@ const ProductsTab = () => {
         </Tab>
         <Tab eventKey="featured" title="featured">
           <Row>
-            {state.filterItems.length > 0 &&
-              state.filterItems.map((item) => {
+            {state.items.length > 0 &&
+              state.items.map((item) => {
                 return (
                   <Col xs={12} sm={6} lg={3}>
                     <Products item={item} />
@@ -47,8 +47,8 @@ const ProductsTab = () => {
         </Tab>
         <Tab eventKey="special" title="special">
           <Row>
-            {state.filterItems.length > 0 &&
-              state.filterItems.map((item) => {
+            {state.items.length > 0 &&
+              state.items.map((item) => {
                 return (
                   <Col xs={12} sm={4} lg={3}>
                     <Products item={item} />

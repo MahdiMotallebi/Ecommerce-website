@@ -19,37 +19,50 @@ import "react-toastify/dist/ReactToastify.css";
 const Products = ({ item }) => {
   const dispatch = useDispatch();
   const handleplusCartCount = (item) => {
-    toast("Item added to cart", {
-      position: "top-left",
-      autoClose: 1500,
-      hideProgressBar: true,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      transition: Flip,
-      className: "toast-success",
-    });
+    toast(
+      `${
+        item.count === 0 || item.count === undefined
+          ? "✔ Product Added Successfully."
+          : "❌ This Product Already Added."
+      }`,
+      {
+        position: "bottom-left",
+        autoClose: 1500,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        transition: Flip,
+        className: "toast-success",
+      }
+    );
 
-    if (item.count === undefined) {
+    if (item.count === undefined || item.count === 0) {
       item = { ...item, count: 0 };
+      const data = { count: item.count + 1 };
+      dispatch(changeCount({ item, data }));
     }
-    const data = { count: item.count + 1 };
-
-    dispatch(changeCount({ item, data }));
   };
   const handlePlusLikeCount = (item) => {
-    toast("Item added to wishlist.", {
-      position: "top-left",
-      autoClose: 1500,
-      hideProgressBar: true,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      transition: Flip,
-      className: "toast-success",
-    });
     const data = { isLike: !item.isLike };
     dispatch(changeLike({ item, data }));
+    toast(
+      `${
+        !item.isLike
+          ? "✔ Product Added Successfully."
+          : "❌ Product removed from wishlist."
+      }`,
+      {
+        position: "bottom-left",
+        autoClose: 1500,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        transition: Flip,
+        className: "toast-success",
+      }
+    );
   };
 
   const { id, image, title, price, isLike, availableSizes } = item;
@@ -77,7 +90,6 @@ const Products = ({ item }) => {
               icon={faCartShopping}
             ></FontAwesomeIcon>
           </NavItem>
-          <ToastContainer />
           <NavItem
             title="add to wishlist"
             id={id}
