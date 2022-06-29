@@ -288,10 +288,7 @@ const Shop = () => {
               <Slider {...logos}>
                 {logoImage.map((img) => {
                   return (
-                    <div
-                      className="container-logo-img d-flex justify-content-center align-items-center  "
-                      data-aos="zoom-in"
-                    >
+                    <div className="container-logo-img d-flex justify-content-center align-items-center">
                       <img src={img} className="logo-img" />
                     </div>
                   );
