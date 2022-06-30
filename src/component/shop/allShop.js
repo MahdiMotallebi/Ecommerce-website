@@ -9,23 +9,22 @@ import { ToastContainer } from "react-toastify";
 const AllShop = () => {
   const state = useSelector(allState);
   return (
-    <div className="allShop">
+    <div className="allShop ">
       <Container>
         <Row>
           <Col lg={3}>
             <Category />
           </Col>
           <Col>
-            <div className="main-shop">
+            <div className="h-100 pt-3 position-relative">
               <Row className="g-0">
-                {state.filterItems.length > 0 &&
-                  state.filterItems.map((item) => {
-                    return (
-                      <Col lg={4}>
-                        <Products item={item} key={uuidv4()} />
-                      </Col>
-                    );
-                  })}
+                {state.filterItems.map((item) => {
+                  return (
+                    <Col lg={4}>
+                      <Products item={item} key={uuidv4()} />
+                    </Col>
+                  );
+                })}
               </Row>
               <ToastContainer />
             </div>

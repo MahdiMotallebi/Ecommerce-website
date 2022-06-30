@@ -15,7 +15,7 @@ import Header from "./component/header/header";
 import Loading from "./component/loading/loading";
 import AllShop from "./component/shop/allShop";
 import Breadcrumb from "./component/breadCrumb/breadCrumb";
-
+import "react-loading-skeleton/dist/skeleton.css";
 import ScrollTop from "./component/scrollTop/scrollTop";
 
 const App = () => {
@@ -29,24 +29,24 @@ const App = () => {
 
   return (
     <>
-      {state.loading === "loading" || state.loading === "faild" ? (
+      {/* {state.loading === "loading" || state.loading === "faild" ? (
         <Loading />
       ) : (
-        <>
-          <Header />
-          <ScrollTop />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="contact" element={<Contact />} />
-            <Route path="login" element={<Login />} />
-            <Route path="register" element={<Register />} />
-            <Route path="singleBlog" element={<SingleBlog />} />
-            <Route path="shop" element={<AllShop />} />
-            <Route path="*" element={<NoPage />} />
-          </Routes>
-          <Footer />
-        </>
-      )}
+        <> */}
+      <Header />
+      <ScrollTop />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="contact" element={<Contact />} />
+        <Route path="login" element={<Login />} />
+        <Route path="register" element={<Register />} />
+        <Route path="singleBlog" element={<SingleBlog />} />
+        <Route path="shop" element={<AllShop />} />
+        <Route path="*" element={<NoPage />} />
+      </Routes>
+      <Footer />
+      {/* </>
+      )} */}
     </>
   );
 };

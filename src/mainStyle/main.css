@@ -550,6 +550,8 @@ body {
 .hover-gear {
   position: absolute;
   background: #fff;
+  -webkit-box-shadow: 0 0 3px #ccc;
+          box-shadow: 0 0 3px #ccc;
   width: 180px;
   padding: 1em;
   opacity: 0;
@@ -2088,5 +2090,14 @@ textarea:focus {
 
 .filterProduct h5 {
   font-size: 1em;
+}
+
+/***** allShop *****/
+.noProductMatch {
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  font-size: 1.7em;
 }
 /*# sourceMappingURL=main.css.map */

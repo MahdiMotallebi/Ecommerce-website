@@ -1,11 +1,10 @@
-import React from "react";
-import { useDispatch } from "react-redux";
-import { changeCount, changeLike } from "../../features/shopSlice";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { allState, changeCount, changeLike } from "../../features/shopSlice";
 import Image from "react-bootstrap/Image";
-import img1 from "../../img/shop/1.jpg";
 import Nav from "react-bootstrap/Nav";
 import NavItem from "react-bootstrap/NavItem";
-import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import Skeleton from "react-loading-skeleton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCartShopping,
@@ -14,10 +13,17 @@ import {
   faSearch,
   faStar,
 } from "@fortawesome/free-solid-svg-icons";
-import { ToastContainer, toast, Flip } from "react-toastify";
+import { toast, Flip } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const Products = ({ item }) => {
   const dispatch = useDispatch();
+  const state = useSelector(allState);
+
+  const [loading, setLoading] = useState(1);
+  if (state.loading === "succeeded")
+    setTimeout(() => {
+      setLoading(0);
+    }, 1000);
   const handleplusCartCount = (item) => {
     toast(
       `${
@@ -66,10 +72,11 @@ const Products = ({ item }) => {
   };
 
   const { id, image, title, price, isLike, availableSizes } = item;
+
   return (
     <div className="custom-card  mx-2 justify-content-between mb-3 position-relative">
       <div className="position-relative overflow-hidden">
-        {!image ? (
+        {loading ? (
           <Skeleton width={257} height={349} />
         ) : (
           <Image
@@ -117,35 +124,55 @@ const Products = ({ item }) => {
       </div>
       <div className="d-flex flex-column  align-items-between product-content justify-content-between py-3">
         <div className="top-product-content">
-          <div className="rating d-flex gap-1 mb-2">
-            <FontAwesomeIcon
-              className="star fill"
-              icon={faStar}
-            ></FontAwesomeIcon>
-            <FontAwesomeIcon
-              className="star fill"
-              icon={faStar}
-            ></FontAwesomeIcon>
-            <FontAwesomeIcon
-              className="star fill"
-              icon={faStar}
-            ></FontAwesomeIcon>
-            <FontAwesomeIcon
-              className="star fill"
-              icon={faStar}
-            ></FontAwesomeIcon>
-            <FontAwesomeIcon className="star" icon={faStar}></FontAwesomeIcon>
-          </div>
-          <h6 className="title-product">{title}</h6>
+          {loading ? (
+            <Skeleton width={100} />
+          ) : (
+            <>
+              <div className="rating d-flex gap-1 mb-2">
+                <FontAwesomeIcon
+                  className="star fill"
+                  icon={faStar}
+                ></FontAwesomeIcon>
+                <FontAwesomeIcon
+                  className="star fill"
+                  icon={faStar}
+                ></FontAwesomeIcon>
+                <FontAwesomeIcon
+                  className="star fill"
+                  icon={faStar}
+                ></FontAwesomeIcon>
+                <FontAwesomeIcon
+                  className="star fill"
+                  icon={faStar}
+                ></FontAwesomeIcon>
+                <FontAwesomeIcon
+                  className="star"
+                  icon={faStar}
+                ></FontAwesomeIcon>
+              </div>
+            </>
+          )}
+
+          <h6 className="title-product">{loading ? <Skeleton /> : title}</h6>
           <div className="container-size d-flex gap-2 my-2">
-            {availableSizes.map((size) => {
-              return <div className="size-item">{size} </div>;
-            })}
+            {loading ? (
+              <Skeleton width={100} />
+            ) : (
+              availableSizes.map((size) => {
+                return <div className="size-item">{size} </div>;
+              })
+            )}
           </div>
         </div>
         <div className="container-price d-flex gap-2  align-items-center">
-          <span className="new-price text-dark">${price.toFixed(1)}</span>
-          <del className="old-price text-dark">$21</del>
+          {loading ? (
+            <Skeleton width={100} />
+          ) : (
+            <>
+              <span className="new-price text-dark">${price.toFixed(1)}</span>
+              <del className="old-price text-dark">$21</del>
+            </>
+          )}
         </div>
       </div>
     </div>

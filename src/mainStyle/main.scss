@@ -219,6 +219,7 @@ body {
 .hover-gear {
   position: absolute;
   background: #fff;
+  box-shadow: 0 0 3px #ccc;
   width: 180px;
   padding: 1em;
   opacity: 0;
@@ -1588,4 +1589,12 @@ textarea {
   h5 {
     font-size: 1em;
   }
+}
+
+/***** allShop *****/
+.noProductMatch {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.7em;
 }

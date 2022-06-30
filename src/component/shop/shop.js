@@ -1,9 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import { allState } from "../../features/shopSlice";
 import Instagram from "../../component/instagram/instagram";
 import Blog from "../../component/blog/blog";
-import ProductSkeleton from "../../component/skeleton/productSkeleton";
 import Slider from "react-slick";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
@@ -179,15 +178,9 @@ const Shop = () => {
               <Row>
                 <Col>
                   <Slider {...mainShop}>
-                    {state.items.length === 0 && state.loading === "loading"
-                      ? Array(mainShop.slidesToShow)
-                          .fill(0)
-                          .map((item) => {
-                            return <ProductSkeleton />;
-                          })
-                      : state.items.map((item) => {
-                          return <Products item={item} key={uuidv4()} />;
-                        })}
+                    {state.items.map((item) => {
+                      return <Products item={item} key={uuidv4()} />;
+                    })}
                   </Slider>
                 </Col>
               </Row>
