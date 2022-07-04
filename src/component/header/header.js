@@ -133,12 +133,9 @@ const Header = () => {
         </div>
 
         {/* Navbar */}
-        <Navbar expand="lg" className="algin-items-center custom-navbar">
+        <Navbar expand="lg" className="align-items-center custom-navbar">
           <Container fluid>
             <Col className="d-flex align-items-center">
-              <div className="btn-sidebar">
-                <FontAwesomeIcon icon={faBars}></FontAwesomeIcon>
-              </div>
               <LinkContainer to="/">
                 <Navbar.Brand className="logo">
                   <Image

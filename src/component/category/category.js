@@ -3,7 +3,12 @@ import { useSelector, useDispatch } from "react-redux";
 import Select from "react-select";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { allState } from "../../features/shopSlice";
+import {
+  allState,
+  handleCurrentPage,
+  handlePagination,
+  handleRemoveFilters,
+} from "../../features/shopSlice";
 import {
   handleFilterBySize,
   handleFilterBySort,
@@ -13,10 +18,9 @@ import {
   setFilterSize,
   setFilterSort,
 } from "../../features/shopSlice";
-const Category = () => {
+const Category = ({ setShowFilter }) => {
   const state = useSelector(allState);
   const dispatch = useDispatch();
-
   const size = [
     { value: "ALL", label: "ALL" },
     { value: "S", label: "S" },
@@ -32,10 +36,11 @@ const Category = () => {
   ];
 
   useEffect(() => {
+    dispatch(handleCurrentPage(0));
     state.filterValues.size && dispatch(handleFilterBySize());
     state.filterValues.sort && dispatch(handleFilterBySort());
     state.filterValues.price && dispatch(handleFilterByPrice());
-    dispatch(handleSetFilteritems());
+    dispatch(handlePagination());
   }, [
     state.filterValues.size,
     state.filterValues.sort,
@@ -66,6 +71,10 @@ const Category = () => {
     dispatch(setFilterPrice(e.target.value));
   };
 
+  const removeFilters = () => {
+    dispatch(handleRemoveFilters());
+  };
+
   const customStyles = {
     control: (provided, state) => ({
       ...provided,
@@ -87,8 +96,16 @@ const Category = () => {
     }),
   };
   return (
-    <div className="filterProduct border p-3 p-lg-4 my-3 rounded">
-      <h3 className="text-capitalize fw-bold mb-3">filters</h3>
+    <div className="filterProduct border p-3 p-lg-4 my-3  bg-white">
+      <div className="d-flex justify-content-between align-items-center">
+        <h3 className="text-capitalize fw-bold mb-3">filters</h3>
+        <button
+          onClick={() => setShowFilter(false)}
+          className="btn bg-dark d-xl-none text-white rounded-circle"
+        >
+          x
+        </button>
+      </div>
       <Row className="category d-flex flex-column justify-content-center gap-3">
         <Col xs={12}>
           <div className="sort">
@@ -125,17 +142,26 @@ const Category = () => {
               price: ${state.filterValues.price}
             </h5>
             <div className="wrapper d-flex flex-column flex-sm-row gap-2">
-              <span>$0</span>
+              <span>${state.filterValues.minVal}</span>
               <input
+                min={state.filterValues.minVal}
+                max={state.filterValues.maxVal}
+                value={state.filterValues.price}
                 type="range"
                 className="range-input"
                 onInput={(e) => handlePrice(e)}
               />
-              <span>$100</span>
+              <span>${state.filterValues.maxVal}</span>
             </div>
           </div>
         </Col>
       </Row>
+      <div
+        className="text-capitalize mt-4 fw-bold  text-white p-2 text-center btn-remove-filter"
+        onClick={removeFilters}
+      >
+        remove all filters
+      </div>
     </div>
   );
 };

@@ -7,7 +7,7 @@ $original-black: #000;
 $main-black: rgba(33, 37, 41, 0.7);
 $sub-text-color: #888;
 $sub-title-fontSize: clamp(1rem, 1vw, 1.5rem);
-$title-fontSize: clamp(24px, 3vw, 35px);
+$title-fontSize: clamp(24px, 4vw, 35px);
 
 %subTitle {
   text-transform: capitalize;

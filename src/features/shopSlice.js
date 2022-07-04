@@ -64,10 +64,15 @@ const initialState = {
   temp: [],
   loading: "",
   error: "",
+  activePagination: 0,
+  paginationValues: {
+    currentPage: 0,
+    perPage: 6,
+  },
   filterValues: {
     size: "ALL",
     sort: "",
-    price: null,
+    price: undefined,
   },
 };
 
@@ -75,6 +80,17 @@ const clothingSlice = createSlice({
   name: "multiCart",
   initialState,
   reducers: {
+    handleActivePagination: (state, action) => {
+      state.activePagination = action.payload;
+    },
+    handleRemoveFilters: (state) => {
+      state.filterValues = {
+        ...state.filterValues,
+        size: "ALL",
+        sort: "",
+        price: undefined,
+      };
+    },
     setFilterSize: (state, action) => {
       state.filterValues.size = action.payload;
     },
@@ -93,6 +109,7 @@ const clothingSlice = createSlice({
     },
     handleFilterBySize: (state, action) => {
       state.temp = [...state.items];
+
       if (
         state.filterValues.size.toLowerCase() !== "all" &&
         state.filterValues.size !== ""
@@ -128,6 +145,23 @@ const clothingSlice = createSlice({
         }
       });
     },
+    handleCurrentPage: (state, action) => {
+      if (action.payload === 0) {
+        state.paginationValues.currentPage = action.payload;
+        state.activePagination = action.payload;
+      } else {
+        state.paginationValues.currentPage = action.payload - 1;
+        state.activePagination = action.payload - 1;
+      }
+    },
+    handlePagination: (state) => {
+      const offset =
+        state.paginationValues.currentPage * state.paginationValues.perPage;
+      state.filterItems = state.temp.slice(
+        offset,
+        offset + state.paginationValues.perPage
+      );
+    },
   },
   extraReducers: {
     // Section fetch data
@@ -136,8 +170,15 @@ const clothingSlice = createSlice({
     },
     [fetchProducts.fulfilled]: (state, action) => {
       state.loading = "succeeded";
-      state.items = [...action.payload];
-      state.filterItems = [...action.payload];
+      state.items = action.payload;
+      state.temp = action.payload;
+
+      const tempSort = state.items;
+      tempSort.sort((a, b) => {
+        return +a.price - +b.price;
+      });
+      state.filterValues.minVal = tempSort.at(0).price;
+      state.filterValues.maxVal = tempSort.at(-1).price;
 
       const tempLike = state.items.filter((item) => item.isLike === true);
       state.likeItems = [...tempLike];
@@ -273,5 +314,9 @@ export const {
   setFilterSize,
   setFilterPrice,
   setFilterSort,
+  handleRemoveFilters,
+  handlePagination,
+  handleCurrentPage,
+  handleActivePagination,
 } = clothingSlice.actions;
 export default clothingSlice.reducer;

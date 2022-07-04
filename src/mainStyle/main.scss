@@ -139,6 +139,9 @@ body {
 .custom-navbar {
   padding: 2em 1em;
   background: #000;
+  @include x-small {
+    padding: 2em 0.1em;
+  }
 
   @include laptop {
     padding: 0 6em;
@@ -310,6 +313,10 @@ body {
     transform: translateY(20px);
     font-size: 22px;
     cursor: pointer;
+    @include x-small {
+      font-size: 18px;
+      bottom: 5%;
+    }
   }
 
   .text-wishlist,
@@ -323,6 +330,7 @@ body {
     left: unset;
     top: unset;
     transform: unset;
+    box-shadow: 0 0 3px #bbb;
   }
 
   .top-header-right {
@@ -387,6 +395,9 @@ body {
   .wishlist {
     right: 66.4%;
     bottom: 3%;
+    @include x-small {
+      bottom: 6%;
+    }
     transform: translateX(66.4%);
   }
 
@@ -466,16 +477,18 @@ body {
     }
   }
   p {
-    font-size: clapm(14px, 2vw, 18px);
+    font-size: clapm(14px, 2.5vw, 18px);
     color: $sub-text-color;
   }
 }
 .main-shop {
   margin-top: 1em;
+
+  .slick-list {
+    padding: 0.5em 0 !important;
+  }
 }
-.shop {
-  min-height: 100vh;
-}
+
 .shop-img {
   filter: grayscale(90%);
   width: 200px;
@@ -531,7 +544,7 @@ body {
 }
 .new-price {
   font-weight: 500;
-  font-size: 1.2em;
+  font-size: 1em;
 }
 
 .old-price {
@@ -543,7 +556,7 @@ body {
 
 .title-product {
   color: #777;
-  font-size: 1rem;
+  font-size: 0.9rem;
 }
 
 .noProduct {
@@ -770,6 +783,10 @@ body {
 /***** 404 page *****/
 .title-noPage {
   font-size: 10em;
+
+  @include x-small {
+    font-size: 4em;
+  }
   @include desktop {
     font-size: 13em;
   }
@@ -778,6 +795,10 @@ body {
   font-size: 2em;
   text-transform: capitalize;
   margin-bottom: 1em;
+
+  @include x-small {
+    font-size: 1.2em;
+  }
 }
 
 .btn-noPage {
@@ -931,40 +952,36 @@ body {
   }
 }
 
-.slick-prev,
-.slick-next {
+.next-arrow,
+.prev-arrow {
   background: rgba(0, 0, 0, 0.4);
   transition: 0.5s;
   opacity: 0;
   visibility: hidden;
+  position: absolute;
+  top: 50%;
   width: 30px;
   height: 30px;
   border-radius: 50%;
   z-index: 100;
+  cursor: pointer;
+  color: #dddddd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   &:hover,
   &:focus {
     background: #000;
   }
 }
-
-.slick-next::before,
-.slick-prev::before {
-  font-family: "Font Awesome 5 Free";
-  font-weight: 500;
-  color: #fff;
-  font-size: 12px;
-  border-radius: 50%;
+.next-arrow {
+  right: -100px;
+}
+.prev-arrow {
+  left: -100px;
 }
 
-.slick-next::before {
-  content: "\f054";
-}
-
-.slick-prev::before {
-  content: "\f053";
-}
-
-.hero-slider:hover .slick-next {
+.hero-slider:hover .next-arrow {
   opacity: 1;
   visibility: visible;
   right: 25px;
@@ -972,7 +989,7 @@ body {
     right: 50px;
   }
 }
-.hero-slider:hover .slick-prev {
+.hero-slider:hover .prev-arrow {
   opacity: 1;
   visibility: visible;
   left: 25px;
@@ -1591,10 +1608,68 @@ textarea {
   }
 }
 
+.filterPanel {
+  top: 0px;
+  z-index: 100000;
+  display: block;
+  position: absolute;
+  width: 300px;
+
+  @include x-small {
+    width: 200px;
+  }
+  transition: 0.5s;
+
+  @include desktop {
+    position: relative;
+    top: unset;
+    right: unset;
+    left: 0;
+    display: flex;
+    z-index: 0;
+    width: auto;
+  }
+}
+.hideFilter {
+  right: -100%;
+}
+.showFilter {
+  right: 0;
+}
+
+.btn-remove-filter {
+  cursor: pointer;
+  background: $original-black;
+}
 /***** allShop *****/
+
+.custom-card {
+  transition: 0.3s;
+  cursor: pointer;
+  &:hover {
+    box-shadow: 0 0 4px #cccccc;
+  }
+
+  .container-img-custom-card {
+    background: #f8f8f8;
+  }
+  .img-custom-card {
+    height: 260px;
+    width: 260px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
 .noProductMatch {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   font-size: 1.7em;
+}
+
+.control-shop-product {
+  @include x-small {
+    width: 100%;
+  }
 }

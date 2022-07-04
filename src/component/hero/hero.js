@@ -9,14 +9,10 @@ import hero1 from "../../img/hero1.jpg";
 import hero2 from "../../img/hero2.jpg";
 import subBanner1 from "../../img/sub-banner1.jpg";
 import subBanner2 from "../../img/sub-banner2.jpg";
-import AOS from "aos";
-const Hero = () => {
-  useEffect(() => {
-    AOS.init({
-      duration: 1500,
-    });
-    AOS.refresh();
-  }, []);
+import NextArrow from "../arrowSlick/nextArrow";
+import PrevArrow from "../arrowSlick/prevArrow";
+const Hero = (props) => {
+  const { onClick } = props;
   const settings = {
     dots: false,
     infinite: true,
@@ -25,7 +21,28 @@ const Hero = () => {
     autoplaySpeed: 5000,
     slidesToShow: 1,
     slidesToScroll: 1,
+    nextArrow: <NextArrow onClick={onClick} />,
+    prevArrow: <PrevArrow onClick={onClick} />,
   };
+
+  // function PrevArrow(props) {
+  //   const { className, onClick } = props;
+  //   return (
+  //     <div className="prev-arrow" onClick={onClick}>
+  //       <FaChevronLeft />
+  //     </div>
+  //   );
+  // }
+
+  // function NextArrow(props) {
+  //   const { className, onClick } = props;
+  //   return (
+  //     <div className="next-arrow" onClick={onClick}>
+  //       <FaChevronRight />
+  //     </div>
+  //   );
+  // }
+
   return (
     <>
       <section className="hero-slider">
@@ -84,7 +101,7 @@ const Hero = () => {
         </Slider>
       </section>
 
-      <section className="sub-banner-container mt-4 p-4">
+      <section className="sub-banner-container mt-sm-3 p-4">
         <Container>
           <Row>
             <Col md={6}>

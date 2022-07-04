@@ -7,13 +7,14 @@ import Slider from "react-slick";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
-import Card from "react-bootstrap/Card";
 import ProductsTab from "../ProductsTab/ProductsTab";
 import Products from "../products/products";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock, faCar, faBullhorn } from "@fortawesome/free-solid-svg-icons";
 import { v4 as uuidv4 } from "uuid";
 import { ToastContainer } from "react-toastify";
+import NextArrow from "../arrowSlick/nextArrow";
+import PrevArrow from "../arrowSlick/prevArrow";
 
 const Shop = () => {
   const state = useSelector(allState);
@@ -56,7 +57,7 @@ const Shop = () => {
       {
         breakpoint: 768,
         settings: {
-          slidesToShow: 1,
+          slidesToShow: 2,
         },
       },
       {
@@ -173,13 +174,17 @@ const Shop = () => {
             </Container>
           </div>
 
-          <div className="main-shop">
+          <div className="main-shop py-3">
             <Container>
               <Row>
                 <Col>
                   <Slider {...mainShop}>
                     {state.items.map((item) => {
-                      return <Products item={item} key={uuidv4()} />;
+                      return (
+                        <div className="px-2">
+                          <Products item={item} key={uuidv4()} />
+                        </div>
+                      );
                     })}
                   </Slider>
                 </Col>
@@ -203,7 +208,7 @@ const Shop = () => {
         </div>
       </section>
       <section className="products-tab mt-5">
-        <Container>
+        <Container fluid="md">
           <ProductsTab />
         </Container>
       </section>

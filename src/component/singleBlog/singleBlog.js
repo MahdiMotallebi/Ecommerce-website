@@ -28,6 +28,12 @@ const SingleBlog = () => {
     email: yup.string().email().required(),
     textComment: yup.string().required(),
   });
+
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [] );
+  
+  
   return (
     <>
       <Breadcrumb />

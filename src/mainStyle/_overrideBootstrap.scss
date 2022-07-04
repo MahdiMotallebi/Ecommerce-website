@@ -48,6 +48,11 @@
     margin-bottom: 0;
   }
 
+  .react-loading-skeleton {
+    border-radius: 0;
+    line-height: initial;
+  }
+
   @media all and (min-width: 992px) {
     #dropdown-control-area {
       height: auto !important;
