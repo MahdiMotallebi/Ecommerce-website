@@ -25,7 +25,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 const Footer = () => {
-
   const importAll = (r) => {
     return r.keys().map(r);
   };
@@ -72,7 +71,11 @@ const Footer = () => {
               <Col xs={12} sm={6} lg={3} className="col-one mb-sm-4">
                 <h3 className="pb-2 d-lg-none">about</h3>
                 <div className="logo my-4 mt-lg-0 mb-lg-3">
-                  <Image src={LogoFooter} alt="logo-footer"></Image>
+                  <Image
+                    src={LogoFooter}
+                    alt="logo-footer"
+                    loading="lazy"
+                  ></Image>
                 </div>
                 <p>
                   Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -177,7 +180,7 @@ const Footer = () => {
                 return (
                   <Nav.Item key={uuidv4()}>
                     <Nav.Link>
-                      <Image src={img} className="footer-icon" />
+                      <Image src={img} className="footer-icon" loading="lazy" />
                     </Nav.Link>
                   </Nav.Item>
                 );

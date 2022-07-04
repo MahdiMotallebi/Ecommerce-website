@@ -10,7 +10,7 @@ const Blog = ({ img }) => {
       <Col>
         <Link to="/singleBlog">
           <div className="blog-img position-relative">
-            <Image src={img}></Image>
+            <Image src={img} loading="lazy" />
             <span className="one"></span>
             <span className="two"></span>
             <span className="three"></span>

@@ -39,7 +39,7 @@ const Category = ({ setShowFilter }) => {
     dispatch(handleCurrentPage(0));
     state.filterValues.size && dispatch(handleFilterBySize());
     state.filterValues.sort && dispatch(handleFilterBySort());
-    state.filterValues.price && dispatch(handleFilterByPrice());
+    state.filterValues.price !== 0 && dispatch(handleFilterByPrice());
     dispatch(handlePagination());
   }, [
     state.filterValues.size,

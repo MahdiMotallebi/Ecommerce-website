@@ -4,17 +4,13 @@ import { allState } from "../../features/shopSlice";
 import Instagram from "../../component/instagram/instagram";
 import Blog from "../../component/blog/blog";
 import Slider from "react-slick";
-import Row from "react-bootstrap/Row";
-import Container from "react-bootstrap/Container";
-import Col from "react-bootstrap/Col";
+import { Row, Container, Col, Image } from "react-bootstrap";
 import ProductsTab from "../ProductsTab/ProductsTab";
 import Products from "../products/products";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock, faCar, faBullhorn } from "@fortawesome/free-solid-svg-icons";
 import { v4 as uuidv4 } from "uuid";
 import { ToastContainer } from "react-toastify";
-import NextArrow from "../arrowSlick/nextArrow";
-import PrevArrow from "../arrowSlick/prevArrow";
 
 const Shop = () => {
   const state = useSelector(allState);
@@ -287,7 +283,7 @@ const Shop = () => {
                 {logoImage.map((img) => {
                   return (
                     <div className="container-logo-img d-flex justify-content-center align-items-center">
-                      <img src={img} className="logo-img" />
+                      <Image src={img} className="logo-img" loading="lazy" />
                     </div>
                   );
                 })}

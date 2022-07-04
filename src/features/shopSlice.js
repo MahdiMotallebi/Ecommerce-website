@@ -72,7 +72,7 @@ const initialState = {
   filterValues: {
     size: "ALL",
     sort: "",
-    price: undefined,
+    price: 0,
   },
 };
 
@@ -88,7 +88,7 @@ const clothingSlice = createSlice({
         ...state.filterValues,
         size: "ALL",
         sort: "",
-        price: undefined,
+        price: 0,
       };
     },
     setFilterSize: (state, action) => {
@@ -301,7 +301,6 @@ const clothingSlice = createSlice({
 export const allState = (state) => state.clothingSlice;
 export const {
   handleCart,
-  handleLike,
   handleDeleteItem,
   handle_Increase_Decrease,
   handleFilterBySize,

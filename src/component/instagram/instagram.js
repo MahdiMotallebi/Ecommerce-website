@@ -8,7 +8,7 @@ const Instagram = ({ img }) => {
   return (
     <div className="instagram-content position-relative">
       <Link to="#">
-        <Image variant="top" src={img}></Image>
+        <Image variant="top" src={img} loading="lazy" />
         <FontAwesomeIcon
           className="instagram-icon position-absolute top-50"
           icon={faInstagram}
