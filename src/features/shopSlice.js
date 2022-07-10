@@ -4,7 +4,10 @@ import axios from "axios";
 
 const URL = "http://localhost:5000/products/";
 const URL_COMMENT = "http://localhost:5000/comments/";
+const URL_CARTITEMS = "http://localhost:5000/cartItems/";
+const URL_WISHLIST = "http://localhost:5000/wishList/";
 
+//get all data from database
 export const fetchComments = createAsyncThunk(
   "multiCart/fetchComments",
   async () => {
@@ -20,24 +23,22 @@ export const fetchProducts = createAsyncThunk(
   }
 );
 
-export const changeLike = createAsyncThunk(
-  "multiCart/changeLike",
-  async (updateItem) => {
-    const { item, data } = updateItem;
-    const res = await axios.put(URL + item.id, { ...item, ...data });
+export const fetchCartItems = createAsyncThunk(
+  "multiCart/fetchCartItems",
+  async () => {
+    const res = await axios.get(URL_CARTITEMS);
     return res.data;
   }
 );
 
-export const changeCount = createAsyncThunk(
-  "multiCart/changeCount",
-  async (updateItem) => {
-    const { item, data } = updateItem;
-
-    const res = await axios.put(URL + item.id, { ...item, ...data });
+export const fetchWishList = createAsyncThunk(
+  "multiCart/fetchWishList",
+  async () => {
+    const res = await axios.get(URL_WISHLIST);
     return res.data;
   }
 );
+
 export const postComment = createAsyncThunk(
   "multiCart/replyComment",
   async (rComment) => {
@@ -62,6 +63,7 @@ const initialState = {
   likeItems: [],
   comments: [],
   temp: [],
+  product: {},
   loading: "",
   error: "",
   activePagination: 0,
@@ -70,9 +72,15 @@ const initialState = {
     perPage: 6,
   },
   filterValues: {
-    size: "ALL",
+    size: "All",
+    color: "All",
     sort: "",
     price: 0,
+  },
+  categories: {
+    colors: [],
+    size: [],
+    sort: [],
   },
 };
 
@@ -80,26 +88,40 @@ const clothingSlice = createSlice({
   name: "multiCart",
   initialState,
   reducers: {
+    handleFindProduct: (state, action) => {
+      const t = state.items.filter((p) => p.id === action.payload)[0];
+
+      state.product = t;
+    },
     handleActivePagination: (state, action) => {
       state.activePagination = action.payload;
     },
     handleRemoveFilters: (state) => {
       state.filterValues = {
         ...state.filterValues,
-        size: "ALL",
+        size: "All",
+        color: "All",
         sort: "",
         price: 0,
       };
     },
-    setFilterSize: (state, action) => {
-      state.filterValues.size = action.payload;
+    setFilterValues: (state, action) => {
+      switch (action.payload.type) {
+        case "color":
+          state.filterValues.color = action.payload.val;
+          break;
+        case "size":
+          state.filterValues.size = action.payload.val;
+          break;
+        case "sort":
+          state.filterValues.sort = action.payload.val;
+          break;
+        case "price":
+          state.filterValues.price = action.payload.val;
+          break;
+      }
     },
-    setFilterSort: (state, action) => {
-      state.filterValues.sort = action.payload;
-    },
-    setFilterPrice: (state, action) => {
-      state.filterValues.price = action.payload;
-    },
+
     addComment: (state, action) => {
       state.comments.push(action.payload);
     },
@@ -107,7 +129,7 @@ const clothingSlice = createSlice({
     handleSetFilteritems: (state) => {
       state.filterItems = [...state.temp];
     },
-    handleFilterBySize: (state, action) => {
+    handleFilterBySize: (state) => {
       state.temp = [...state.items];
 
       if (
@@ -119,7 +141,14 @@ const clothingSlice = createSlice({
         );
       }
     },
-    handleFilterByPrice: (state, action) => {
+
+    handleFilterByColor: (state) => {
+      if (state.filterValues.color.toLowerCase() !== "all")
+        state.temp = state.temp.filter((item) =>
+          item.colors.includes(state.filterValues.color)
+        );
+    },
+    handleFilterByPrice: (state) => {
       state.temp = state.temp.filter(
         (p) => p.price <= parseFloat(state.filterValues.price)
       );
@@ -162,9 +191,108 @@ const clothingSlice = createSlice({
         offset + state.paginationValues.perPage
       );
     },
+    handleLikeItems: (state, action) => {
+      const t = state.likeItems.some((p) => p.id === action.payload.id);
+      if (t) {
+        const newLikeItems = state.likeItems.filter(
+          (p) => p.id !== action.payload.id
+        );
+        state.likeItems = newLikeItems;
+        axios.delete(URL_WISHLIST + action.payload.id);
+      } else {
+        state.likeItems.push(action.payload);
+        axios.post(URL_WISHLIST, action.payload);
+      }
+    },
+    handleRemoveFromWishlist: (state, action) => {
+      const tempLikeItems = state.likeItems.filter(
+        (p) => p.id !== action.payload
+      );
+      state.likeItems = tempLikeItems;
+      axios.delete(URL_WISHLIST + action.payload);
+    },
+    handleCartItems: (state, action) => {
+      const { id, size, count, color } = action.payload;
+      const newColor = color.slice(1);
+
+      const t = state.cartItems.some((p) => p.id === id + size + newColor);
+      let newProduct = {};
+      if (t) {
+        const tempCart = state.cartItems.map((p) => {
+          if (p.id === id + size + newColor) {
+            newProduct = { ...p, count: count, size: size, color: newColor };
+
+            return newProduct;
+          }
+          return p;
+        });
+        state.cartItems = tempCart;
+        axios.put(URL_CARTITEMS + state.product.id, newProduct);
+      } else {
+        const newItem = {
+          id: id + size + newColor,
+          title: state.product.title,
+          image: state.product.image,
+          price: state.product.price,
+          count,
+          size,
+          color,
+        };
+        state.cartItems.push(newItem);
+        axios.post(URL_CARTITEMS, newItem);
+      }
+    },
+    handleRemoverFromCart: (state, action) => {
+      const tempCart = state.cartItems.filter((p) => p.id !== action.payload);
+      state.cartItems = tempCart;
+
+      axios.delete(URL_CARTITEMS + action.payload);
+    },
+    handleIncCount: (state, action) => {
+      let newItem = {};
+      const tempCart = state.cartItems.map((p) => {
+        if (p.id === action.payload) {
+          let newCount = p.count + 1;
+          newItem = { ...p, count: newCount };
+          return newItem;
+        }
+        return p;
+      });
+
+      state.cartItems = tempCart;
+      axios.put(URL_CARTITEMS + action.payload, newItem);
+    },
+    handleDecCount: (state, action) => {
+      let newItem = {};
+      const tempCart = state.cartItems.map((p) => {
+        if (p.id === action.payload) {
+          let newCount = p.count - 1;
+          newItem = { ...p, count: newCount };
+          return newItem;
+        }
+        return p;
+      });
+
+      state.cartItems = tempCart;
+      axios.put(URL_CARTITEMS + action.payload, newItem);
+    },
+
+    handleGetUniqueValue: (state, action) => {
+      const temp = state.items.map((p) => p[action.payload]).flat();
+
+      if (action.payload === "colors")
+        state.categories.colors = ["all", ...new Set(temp)];
+
+      if (action.payload === "availableSizes") {
+        const t = ["All", ...new Set(temp)];
+        state.categories.size = t.map((s) => {
+          return { value: s, label: s };
+        });
+      }
+    },
   },
   extraReducers: {
-    // Section fetch data
+    // fetch products
     [fetchProducts.pending]: (state) => {
       state.loading = "loading";
     },
@@ -179,18 +307,13 @@ const clothingSlice = createSlice({
       });
       state.filterValues.minVal = tempSort.at(0).price;
       state.filterValues.maxVal = tempSort.at(-1).price;
-
-      const tempLike = state.items.filter((item) => item.isLike === true);
-      state.likeItems = [...tempLike];
-
-      const tempCart = state.items.filter((item) => item.count > 0);
-      state.cartItems = [...tempCart];
     },
     [fetchProducts.rejected]: (state, action) => {
       state.loading = "faild";
       state.error = action.error.message;
     },
 
+    //fetch comments
     [fetchComments.pending]: (state) => {
       state.loading = "loading";
     },
@@ -231,69 +354,36 @@ const clothingSlice = createSlice({
           }
         }
       }
-      // state.comments = [...Object.values(mapArr)];
     },
     [fetchComments.rejected]: (state, action) => {
       state.loading = "faild";
       state.error = action.error.message;
     },
 
-    // Section like items
-    [changeLike.fulfilled]: (state, action) => {
+    //fetch cartItems
+    [fetchCartItems.pending]: (state) => {
+      state.loading = "loading";
+    },
+    [fetchCartItems.fulfilled]: (state, action) => {
       state.loading = "succeeded";
-      if (action.payload.isLike) {
-        state.likeItems.push(action.payload);
-      } else {
-        const newCartItems = state.likeItems.filter(
-          (item) => item.id !== action.payload.id
-        );
-
-        state.likeItems = [...newCartItems];
-      }
-
-      const index = state.filterItems.findIndex(
-        (item) => item.id === action.payload.id
-      );
-      if (state.filterItems[index]) state.filterItems[index] = action.payload;
-
-      const index1 = state.items.findIndex(
-        (item) => item.id === action.payload.id
-      );
-      if (state.items[index1]) state.items[index1] = action.payload;
+      state.cartItems = action.payload;
+    },
+    [fetchCartItems.rejected]: (state, action) => {
+      state.loading = "faild";
+      state.error = action.error.message;
     },
 
-    // Section cart items
-    [changeCount.fulfilled]: (state, action) => {
-      if (action.payload.count === 0) {
-        const tempCartItem = state.cartItems.filter(
-          (item) => item.id !== action.payload.id
-        );
-        state.cartItems = [...tempCartItem];
-      }
-
-      if (action.payload.count >= 1) {
-        const inCart = state.cartItems.some(
-          (item) => item.id === action.payload.id
-        );
-
-        if (inCart) {
-          const index = state.cartItems.findIndex(
-            (item) => item.id === action.payload.id
-          );
-          if (state.cartItems[index]) state.cartItems[index] = action.payload;
-        } else {
-          state.cartItems.push(action.payload);
-        }
-      }
-
-      const index = state.filterItems.findIndex(
-        (item) => item.id === action.payload.id
-      );
-      if (state.filterItems[index]) state.filterItems[index] = action.payload;
-      const index1 = state.items.findIndex(
-        (item) => item.id === action.payload.id
-      );
-      if (state.items[index1]) state.items[index1] = action.payload;
+    //fetch wishList
+    [fetchWishList.pending]: (state) => {
+      state.loading = "loading";
+    },
+    [fetchWishList.fulfilled]: (state, action) => {
+      state.loading = "succeeded";
+      state.likeItems = action.payload;
+    },
+    [fetchWishList.rejected]: (state, action) => {
+      state.loading = "faild";
+      state.error = action.error.message;
     },
   },
 });
@@ -317,5 +407,15 @@ export const {
   handlePagination,
   handleCurrentPage,
   handleActivePagination,
+  handleFindProduct,
+  handleLikeItems,
+  handleCartItems,
+  handleRemoverFromCart,
+  handleIncCount,
+  handleDecCount,
+  handleRemoveFromWishlist,
+  handleGetUniqueValue,
+  setFilterValues,
+  handleFilterByColor,
 } = clothingSlice.actions;
 export default clothingSlice.reducer;

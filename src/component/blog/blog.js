@@ -8,7 +8,7 @@ const Blog = ({ img }) => {
   return (
     <Row className="m-0">
       <Col>
-        <Link to="/singleBlog">
+        <Link to="/singleBlog/blogDetail">
           <div className="blog-img position-relative">
             <Image src={img} loading="lazy" />
             <span className="one"></span>

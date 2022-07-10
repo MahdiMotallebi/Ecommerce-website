@@ -57,7 +57,7 @@ const Shop = () => {
         },
       },
       {
-        breakpoint: 480,
+        breakpoint: 400,
         settings: {
           slidesToShow: 1,
         },
@@ -255,7 +255,7 @@ const Shop = () => {
           <Row>
             <Slider {...blog}>
               {blogImage.map((img) => {
-                return <Blog img={img} />;
+                return <Blog img={img} id={uuidv4()} />;
               })}
             </Slider>
           </Row>

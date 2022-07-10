@@ -22,7 +22,7 @@ const MegaMenu = ({ menu, height }) => {
 
               {subMegaMenu.submenu.map((item) => {
                 return (
-                  <Nav.Link as={Link} to={item.to}>
+                  <Nav.Link as={Link} to={item.to} key={uuidv4()}>
                     {item.title}
                   </Nav.Link>
                 );

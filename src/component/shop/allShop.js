@@ -10,7 +10,7 @@ import Pagination from "../pagination/pagination";
 import { FaAlignLeft } from "react-icons/fa";
 const AllShop = () => {
   const state = useSelector(allState);
-  const [loading, setLoading] = React.useState(1);
+  const [loading, setLoading] = React.useState(0);
   const [showFilter, setShowFilter] = React.useState(false);
   React.useEffect(() => {
     window.scrollTo(0, 0);
@@ -40,7 +40,12 @@ const AllShop = () => {
               <Row className="g-0">
                 {state.filterItems.map((item, i) => {
                   return (
-                    <Col xs={6} md={4} className="control-shop-product">
+                    <Col
+                      xs={6}
+                      md={4}
+                      className="control-shop-product"
+                      key={uuidv4()}
+                    >
                       <div className="px-2">
                         <Products
                           item={item}
@@ -54,7 +59,6 @@ const AllShop = () => {
                 })}
               </Row>
               <Pagination setLoading={setLoading} />
-              <ToastContainer />
             </div>
           </Col>
         </Row>

@@ -1,22 +1,30 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { allState } from "../../features/shopSlice";
-
-import { changeLike } from "../../features/shopSlice";
-import Button from "react-bootstrap/Button";
-import Table from "react-bootstrap/Table";
-import Image from "react-bootstrap/Image";
-import { Row, Col, Container } from "react-bootstrap";
-import roundToNearestMinutesWithOptions from "date-fns/esm/fp/roundToNearestMinutesWithOptions";
+import { allState, handleRemoveFromWishlist } from "../../features/shopSlice";
+import { Button, Image, Row, Col, Container } from "react-bootstrap";
+import { v4 as uuidv4 } from "uuid";
+import { toast, Flip } from "react-toastify";
+import { BsXCircle } from "react-icons/bs";
+import "react-toastify/dist/ReactToastify.css";
 const Like = () => {
   const state = useSelector(allState);
   const dispatch = useDispatch();
   const handleDelete = (item) => {
-    const data = { isLike: false };
-    dispatch(changeLike({ item, data }));
+    toast("Product Removed From Wishlist.", {
+      icon: <BsXCircle />,
+      position: "bottom-left",
+      autoClose: 1500,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      transition: Flip,
+      className: "toast-success",
+    });
+    dispatch(handleRemoveFromWishlist(item.id));
   };
   return (
-    <Container className="h-100">
+    <Container className={`${state.likeItems.length > 0 ? "" : "h-100"}`}>
       {state.likeItems.length > 0 ? (
         <>
           <Row className="gx-0 d-none d-lg-flex">
@@ -45,7 +53,10 @@ const Like = () => {
             {state.likeItems.map((item) => {
               const { id, image, title, price, count } = item;
               return (
-                <Row className="gx-0 row-wishlist d-block d-lg-flex mb-5 mb-lg-0">
+                <Row
+                  className="gx-0 row-wishlist d-block d-lg-flex mb-5 mb-lg-0"
+                  key={uuidv4()}
+                >
                   <Col>
                     <div
                       data-colName="image"
@@ -100,7 +111,7 @@ const Like = () => {
         </>
       ) : (
         <Col xs={12} className="noLike_cart">
-          <h4>your wishlist is empty.</h4>
+          <h4 className="fw-bold">your wishlist is empty.</h4>
           <p>explore more shortlist some items.</p>
         </Col>
       )}

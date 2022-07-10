@@ -1,10 +1,10 @@
 import React from "react";
-import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
+import { BsChevronRight } from "react-icons/bs";
 
 const NextArrow = ({ onClick }) => {
   return (
     <div className="next-arrow" onClick={onClick}>
-      <FaChevronRight />
+      <BsChevronRight />
     </div>
   );
 };

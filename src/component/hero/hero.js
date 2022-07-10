@@ -63,7 +63,7 @@ const Hero = (props) => {
                     <div className="content position-absolute">
                       <h4>welcome to fashion</h4>
                       <h2>men fashion</h2>
-                      <Link className="shop-now" to="/">
+                      <Link className="shop-now" to="/shop">
                         shop now
                       </Link>
                     </div>

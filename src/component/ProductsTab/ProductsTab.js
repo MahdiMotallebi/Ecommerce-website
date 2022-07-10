@@ -17,6 +17,7 @@ const ProductsTab = () => {
       <Tabs
         defaultActiveKey={key}
         activeKey={key}
+        transition={false}
         onSelect={(k) => setKey(k)}
         id="controlled-tab-example"
         className="mb-3 react-tab"
@@ -24,9 +25,15 @@ const ProductsTab = () => {
         <Tab eventKey="new arriaval" title="new arriaval">
           <Row>
             {state.items.length > 0 &&
-              state.items.map((item) => {
+              state.items.slice(0, 2).map((item) => {
                 return (
-                  <Col xs={12} sm={4} lg={3} key={uuidv4()}>
+                  <Col
+                    className="col-react-tab"
+                    xs={6}
+                    sm={4}
+                    lg={3}
+                    key={uuidv4()}
+                  >
                     <Products item={item} />
                   </Col>
                 );
@@ -36,9 +43,15 @@ const ProductsTab = () => {
         <Tab eventKey="featured" title="featured">
           <Row>
             {state.items.length > 0 &&
-              state.items.map((item) => {
+              state.items.slice(0, 6).map((item) => {
                 return (
-                  <Col xs={12} sm={6} lg={3}>
+                  <Col
+                    className="col-react-tab"
+                    xs={6}
+                    sm={4}
+                    lg={3}
+                    key={uuidv4()}
+                  >
                     <Products item={item} />
                   </Col>
                 );
@@ -50,7 +63,13 @@ const ProductsTab = () => {
             {state.items.length > 0 &&
               state.items.map((item) => {
                 return (
-                  <Col xs={12} sm={4} lg={3}>
+                  <Col
+                    className="col-react-tab"
+                    xs={6}
+                    sm={4}
+                    lg={3}
+                    key={uuidv4()}
+                  >
                     <Products item={item} />
                   </Col>
                 );

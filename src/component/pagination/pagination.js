@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Nav } from "react-bootstrap";
+import { v4 as uuidv4 } from "uuid";
 import {
   allState,
   handleActivePagination,
@@ -34,6 +35,7 @@ const Pagination = ({ setLoading }) => {
           {pageNumbers.map((number, i) => {
             return (
               <Nav.Item
+                key={uuidv4()}
                 className="btn border border-1 border-dark"
                 style={
                   i === state.activePagination

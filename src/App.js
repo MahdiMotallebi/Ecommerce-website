@@ -1,6 +1,12 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { allState, fetchComments, fetchProducts } from "./features/shopSlice";
+import {
+  allState,
+  fetchCartItems,
+  fetchComments,
+  fetchProducts,
+  fetchWishList,
+} from "./features/shopSlice";
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/home";
 import About from "./pages/about";
@@ -13,11 +19,11 @@ import Footer from "./component/footer/footer";
 import SingleBlog from "./component/singleBlog/singleBlog";
 import Header from "./component/header/header";
 import Loading from "./component/loading/loading";
-import AllShop from "./component/shop/allShop";
-import Breadcrumb from "./component/breadCrumb/breadCrumb";
+import ShopPage from "./pages/shopPage";
 import "react-loading-skeleton/dist/skeleton.css";
 import ScrollTop from "./component/scrollTop/scrollTop";
-
+import ProductDetail from "./pages/productDetail";
+import { ToastContainer } from "react-toastify";
 const App = () => {
   const dispatch = useDispatch();
   const state = useSelector(allState);
@@ -25,6 +31,8 @@ const App = () => {
   React.useEffect(() => {
     dispatch(fetchProducts());
     dispatch(fetchComments());
+    dispatch(fetchCartItems());
+    dispatch(fetchWishList());
   }, []);
 
   return (
@@ -37,13 +45,14 @@ const App = () => {
       <ScrollTop />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="contact" element={<Contact />} />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
-        <Route path="singleBlog" element={<SingleBlog />} />
-        <Route path="shop" element={<AllShop />} />
+        <Route path="singleBlog/:id" element={<SingleBlog />} />
+        <Route path="productDetail/:id" element={<ProductDetail />} />
+        <Route path="shop" element={<ShopPage />} />
         <Route path="*" element={<NoPage />} />
       </Routes>
+      <ToastContainer />
       <Footer />
       {/* </>
       )} */}

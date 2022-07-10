@@ -1,34 +1,31 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Select from "react-select";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+import { Row, Col } from "react-bootstrap";
+import { BsCheck2 } from "react-icons/bs";
 import {
   allState,
   handleCurrentPage,
   handlePagination,
   handleRemoveFilters,
+  handleGetUniqueValue,
+  setFilterValues,
+  handleFilterByColor,
 } from "../../features/shopSlice";
 import {
   handleFilterBySize,
   handleFilterBySort,
   handleFilterByPrice,
-  handleSetFilteritems,
-  setFilterPrice,
-  setFilterSize,
-  setFilterSort,
 } from "../../features/shopSlice";
 const Category = ({ setShowFilter }) => {
   const state = useSelector(allState);
   const dispatch = useDispatch();
-  const size = [
-    { value: "ALL", label: "ALL" },
-    { value: "S", label: "S" },
-    { value: "L", label: "L" },
-    { value: "M", label: "M" },
-    { value: "XL", label: "XL" },
-    { value: "XXL", label: "XXL" },
-  ];
+
+  useEffect(() => {
+    dispatch(handleGetUniqueValue("colors"));
+    dispatch(handleGetUniqueValue("availableSizes"));
+  }, [state.items]);
+
   const sort = [
     { value: "Newest", label: "Newest" },
     { value: "Descending", label: "Descending" },
@@ -38,6 +35,7 @@ const Category = ({ setShowFilter }) => {
   useEffect(() => {
     dispatch(handleCurrentPage(0));
     state.filterValues.size && dispatch(handleFilterBySize());
+    state.filterValues.color && dispatch(handleFilterByColor());
     state.filterValues.sort && dispatch(handleFilterBySort());
     state.filterValues.price !== 0 && dispatch(handleFilterByPrice());
     dispatch(handlePagination());
@@ -45,30 +43,23 @@ const Category = ({ setShowFilter }) => {
     state.filterValues.size,
     state.filterValues.sort,
     state.filterValues.price,
+    state.filterValues.color,
   ]);
 
-  const defaultValueSize = (optionSize, sizeVal) => {
-    if (sizeVal === "ALL") {
-      defaultValueSort(sort, state.filterValues.sort);
-    }
-    const result = optionSize.find((option) => option.value === sizeVal);
+  const defaultValueSize = (sizeVal) => {
+    // if (sizeVal === "ALL") {
+    //   defaultValueSort(sort, state.filterValues.sort);
+    // }
+    const result = state.categories.size.find(
+      (option) => option.value === sizeVal
+    );
+    console.log(result);
     return result;
   };
 
   const defaultValueSort = (optionSort, sortVal) => {
     const result = optionSort.find((option) => option.value === sortVal);
     return result;
-  };
-  const handleSize = (e) => {
-    dispatch(setFilterSize(e.value));
-  };
-
-  const handleSort = (e) => {
-    dispatch(setFilterSort(e.value));
-  };
-
-  const handlePrice = (e) => {
-    dispatch(setFilterPrice(e.target.value));
   };
 
   const removeFilters = () => {
@@ -96,7 +87,7 @@ const Category = ({ setShowFilter }) => {
     }),
   };
   return (
-    <div className="filterProduct border p-3 p-lg-4 my-3  bg-white">
+    <div className="filterProduct border p-3 p-lg-4 my-3 bg-white">
       <div className="d-flex justify-content-between align-items-center">
         <h3 className="text-capitalize fw-bold mb-3">filters</h3>
         <button
@@ -106,7 +97,7 @@ const Category = ({ setShowFilter }) => {
           x
         </button>
       </div>
-      <Row className="category d-flex flex-column justify-content-center gap-3">
+      <Row className="category d-flex flex-column justify-content-center gap-5">
         <Col xs={12}>
           <div className="sort">
             <h5 className="text-capitalize">size</h5>
@@ -114,10 +105,12 @@ const Category = ({ setShowFilter }) => {
             <Select
               styles={customStyles}
               name="size"
-              options={size}
+              options={state.categories.size}
               placeholder="Select size"
-              value={defaultValueSize(size, state.filterValues.size)}
-              onChange={(e) => handleSize(e)}
+              value={defaultValueSize(state.filterValues.size)}
+              onChange={(e) =>
+                dispatch(setFilterValues({ type: "size", val: e.value }))
+              }
               placeholder="Filter By Size"
             />
           </div>
@@ -131,9 +124,39 @@ const Category = ({ setShowFilter }) => {
               options={sort}
               placeholder="Select sort"
               value={defaultValueSort(sort, state.filterValues.sort)}
-              onChange={(e) => handleSort(e)}
+              onChange={(e) =>
+                dispatch(setFilterValues({ type: "sort", val: e.value }))
+              }
               placeholder="Filter By Price"
             />
+          </div>
+        </Col>
+
+        <Col xs={12}>
+          <h5 className="text-capitalize">colors</h5>
+          <div className="d-flex gap-2">
+            {state.categories.colors.map((c, index) => {
+              return (
+                <div
+                  key={index}
+                  style={
+                    state.filterValues.color.toLowerCase() === c
+                      ? {
+                          background: c,
+                          outline: "1px solid black",
+                          outlineOffset: "1px",
+                        }
+                      : { background: c, outline: "none" }
+                  }
+                  className="color-product position-relative border d-flex justify-content-center align-items-center"
+                  onClick={() =>
+                    dispatch(setFilterValues({ type: "color", val: c }))
+                  }
+                >
+                  {c === "all" && "All"}
+                </div>
+              );
+            })}
           </div>
         </Col>
         <Col xs={12}>
@@ -149,7 +172,11 @@ const Category = ({ setShowFilter }) => {
                 value={state.filterValues.price}
                 type="range"
                 className="range-input"
-                onInput={(e) => handlePrice(e)}
+                onInput={(e) =>
+                  dispatch(
+                    setFilterValues({ type: "price", val: e.target.value })
+                  )
+                }
               />
               <span>${state.filterValues.maxVal}</span>
             </div>

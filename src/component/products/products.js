@@ -1,79 +1,44 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { allState, changeCount, changeLike } from "../../features/shopSlice";
-import Image from "react-bootstrap/Image";
-import Nav from "react-bootstrap/Nav";
-import NavItem from "react-bootstrap/NavItem";
+import { useSelector, useDispatch } from "react-redux";
+import { allState, handleLikeItems } from "../../features/shopSlice";
+import { Nav, Image, NavItem } from "react-bootstrap";
 import Skeleton from "react-loading-skeleton";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 import {
-  faCartShopping,
-  faCodeCompare,
-  faHeart,
-  faSearch,
-  faStar,
-} from "@fortawesome/free-solid-svg-icons";
+  BsHeart,
+  BsCheckCircle,
+  BsSearch,
+  BsStarFill,
+  BsShuffle,
+} from "react-icons/bs";
+
+import { Link } from "react-router-dom";
 import { toast, Flip } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-const Products = ({ item, loading, setLoading }) => {
-  const dispatch = useDispatch();
+import { v4 as uuidv4 } from "uuid";
+const Products = ({ item, loading = 0, setLoading }) => {
   const state = useSelector(allState);
+  const dispatch = useDispatch();
+  // if (state.loading === "succeeded") {
+  //   setTimeout(() => {
+  //     setLoading(0);
+  //   }, "3000");
+  // }
 
-  if (state.loading === "succeeded") {
-    setTimeout(() => {
-      setLoading(0);
-    }, "5000");
-  }
-  const handleplusCartCount = (item) => {
-    toast(
-      `${
-        item.count === 0 || item.count === undefined
-          ? "✔ Product Added Successfully."
-          : "❌ This Product Already Added."
-      }`,
-      {
-        position: "bottom-left",
-        autoClose: 1500,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        transition: Flip,
-        className: "toast-success",
-      }
-    );
-
-    if (item.count === undefined || item.count === 0) {
-      item = { ...item, count: 0 };
-      const data = { count: item.count + 1 };
-      dispatch(changeCount({ item, data }));
-    }
+  const { id, image, title, price, availableSizes } = item;
+  const handlePlusLikeCount = () => {
+    toast.success("Product Added To Wishlist.", {
+      icon: <BsCheckCircle />,
+      position: "bottom-left",
+      autoClose: 1500,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      transition: Flip,
+      className: "toast-success",
+    });
+    dispatch(handleLikeItems(item));
   };
-  const handlePlusLikeCount = (item) => {
-    toast(
-      `${
-        !item.isLike
-          ? "✔ Product Added Successfully."
-          : "❌ Product removed from wishlist."
-      }`,
-      {
-        position: "bottom-left",
-        autoClose: 1500,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        transition: Flip,
-        className: "toast-success",
-      }
-    );
-    const data = { isLike: !item.isLike };
-    dispatch(changeLike({ item, data }));
-  };
-
-  const { id, image, title, price, isLike, availableSizes } = item;
-
   return (
     <div className="custom-card mb-4 justify-content-between position-relative">
       {loading ? (
@@ -83,38 +48,18 @@ const Products = ({ item, loading, setLoading }) => {
           <div className="img-custom-card position-relative overflow-hidden">
             <Image src={image} alt={title} loading="lazy" />
             <Nav className="product-tools position-absolute d-flex flex-column gap-1">
-              <NavItem
-                title="add to cart"
-                id={id}
-                onClick={() => handleplusCartCount(item)}
-              >
-                <FontAwesomeIcon
-                  className="cart-shop product-tool"
-                  icon={faCartShopping}
-                ></FontAwesomeIcon>
+              <NavItem id={id} onClick={() => handlePlusLikeCount()}>
+                <BsHeart className="like product-tool" />
               </NavItem>
-              <NavItem
-                title="add to wishlist"
-                id={id}
-                className={` ${isLike > 0 ? "likeRed" : "likeBlack"}`}
-                onClick={() => handlePlusLikeCount(item)}
-              >
-                <FontAwesomeIcon
-                  className="like product-tool"
-                  icon={faHeart}
-                ></FontAwesomeIcon>
-              </NavItem>
+
               <NavItem title="quick view">
-                <FontAwesomeIcon
-                  className="quick-view product-tool"
-                  icon={faSearch}
-                ></FontAwesomeIcon>
+                <Link to={`/productDetail/${id}`} style={{ color: "#bbb" }}>
+                  <BsSearch className="quick-view product-tool" />
+                </Link>
               </NavItem>
+
               <NavItem title="compare">
-                <FontAwesomeIcon
-                  className="compare product-tool"
-                  icon={faCodeCompare}
-                ></FontAwesomeIcon>
+                <BsShuffle className="compare product-tool" />
               </NavItem>
             </Nav>
           </div>
@@ -127,26 +72,9 @@ const Products = ({ item, loading, setLoading }) => {
           ) : (
             <>
               <div className="rating d-flex gap-1 mb-2">
-                <FontAwesomeIcon
-                  className="star fill"
-                  icon={faStar}
-                ></FontAwesomeIcon>
-                <FontAwesomeIcon
-                  className="star fill"
-                  icon={faStar}
-                ></FontAwesomeIcon>
-                <FontAwesomeIcon
-                  className="star fill"
-                  icon={faStar}
-                ></FontAwesomeIcon>
-                <FontAwesomeIcon
-                  className="star fill"
-                  icon={faStar}
-                ></FontAwesomeIcon>
-                <FontAwesomeIcon
-                  className="star"
-                  icon={faStar}
-                ></FontAwesomeIcon>
+                <BsStarFill className="star" />
+                <BsStarFill className="star" />
+                <BsStarFill className="star" />
               </div>
             </>
           )}
@@ -158,9 +86,16 @@ const Products = ({ item, loading, setLoading }) => {
             {loading ? (
               <Skeleton width={100} />
             ) : (
-              availableSizes.map((size) => {
-                return <div className="size-item">{size} </div>;
-              })
+              <>
+                {availableSizes.length > 0 &&
+                  availableSizes.map((size) => {
+                    return (
+                      <div className="size-item" key={uuidv4()}>
+                        {size}
+                      </div>
+                    );
+                  })}
+              </>
             )}
           </div>
         </div>

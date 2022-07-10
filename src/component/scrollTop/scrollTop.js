@@ -1,6 +1,5 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronUp } from "@fortawesome/free-solid-svg-icons";
+import { BsChevronUp } from "react-icons/bs";
 const ScrollTop = () => {
   const [visible, setVisible] = React.useState(false);
 
@@ -24,7 +23,7 @@ const ScrollTop = () => {
 
   return (
     <div className={`go-to-top ${visible && "showScroll"}`} onClick={goToTop}>
-      <FontAwesomeIcon icon={faChevronUp}></FontAwesomeIcon>
+      <BsChevronUp />
     </div>
   );
 };

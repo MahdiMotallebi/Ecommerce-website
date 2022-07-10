@@ -151,6 +151,10 @@ body {
 .account {
   cursor: pointer;
   position: relative;
+
+  .account-icon {
+    font-size: 1.2em;
+  }
   &:hover .hover-account {
     top: 50px;
     opacity: 1;
@@ -394,7 +398,7 @@ body {
   }
   .wishlist {
     right: 66.4%;
-    bottom: 3%;
+    bottom: 2%;
     @include x-small {
       bottom: 6%;
     }
@@ -421,7 +425,7 @@ body {
 }
 
 .bars {
-  color: #ddd;
+  fill: #ddd;
   font-size: 1.4em;
 }
 .logo {
@@ -490,7 +494,6 @@ body {
 }
 
 .shop-img {
-  filter: grayscale(90%);
   width: 200px;
   height: 100%;
   object-fit: cover;
@@ -501,32 +504,31 @@ body {
   bottom: 10px;
   right: 0.8em;
   color: #bbb;
-
-  .product-tool {
-    $size: 15px;
-    width: $size;
-    height: $size;
-    transition: 0.5s;
-    cursor: pointer;
-    &:hover {
-      color: #000;
-    }
+}
+.product-tool {
+  $size: 15px;
+  width: $size;
+  height: $size;
+  transition: 0.5s;
+  cursor: pointer;
+  &:hover {
+    color: #000;
   }
 }
 
 .container-size {
   .size-item {
-    $size: 20px;
+    $size: 30px;
     width: $size;
     height: $size;
-    padding: 1em;
-    background: $original-black;
+    background: $main-black;
     border-radius: 50%;
     color: #fff;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 0.8em;
+    cursor: pointer;
   }
 }
 
@@ -640,7 +642,6 @@ body {
 .imgCart {
   width: 70px;
   height: 80px;
-  filter: grayscale(90%);
 }
 .noLike_cart {
   height: 100%;
@@ -652,12 +653,27 @@ body {
   h4 {
     text-transform: capitalize;
     font-size: 1.5em;
-    font-weight: 500;
+    font-weight: 700;
+
+    @include x-small {
+      font-size: 1em;
+    }
   }
   p {
     font-size: 1em;
     letter-spacing: 1px;
     text-transform: capitalize;
+    @include x-small {
+      font-size: 0.8em;
+    }
+  }
+
+  img {
+    @include x-small {
+      $size: 60px;
+      width: $size;
+      height: $size;
+    }
   }
 }
 .likeItems .cartItems {
@@ -670,10 +686,10 @@ body {
   height: 150px;
 }
 
-.likeRed {
+.likeBlack {
   color: #000;
 }
-.likeBlack {
+.likeGray {
   color: #d3d3d3;
 }
 
@@ -814,10 +830,10 @@ body {
 .parallex {
   background: url("../img/parallex.jpg") no-repeat center / cover fixed;
   height: 100vh;
+  position: relative;
   @include x-small {
     background-position: 60% center;
   }
-  filter: grayscale(90%);
 }
 
 .parallex-content {
@@ -866,29 +882,31 @@ body {
 
 /***** React tab *****/
 
-.title-tab {
-  font-weight: 700;
-  position: relative;
-  letter-spacing: 1px;
-
-  &::before {
-    @extend %underline_title;
-  }
-}
-.react-tab {
-  .nav-link {
-    border: none;
-    color: #000;
-    font-weight: normal;
-    text-transform: uppercase;
-  }
-  .active {
-    border: none;
+.products-tab {
+  .title-tab {
     font-weight: 700;
-  }
+    position: relative;
+    letter-spacing: 1px;
 
-  justify-content: center;
-  border: none;
+    &::before {
+      @extend %underline_title;
+    }
+  }
+  .react-tab {
+    .nav-link {
+      border: none;
+      color: #000;
+      font-weight: normal;
+      text-transform: uppercase;
+    }
+    .active {
+      border: none;
+      font-weight: 700;
+    }
+
+    justify-content: center;
+    border: none;
+  }
 }
 
 /***** Logo img *****/
@@ -917,7 +935,6 @@ body {
   @include desktop {
     height: 80vh;
   }
-  filter: grayscale(90%);
 
   .content {
     left: 10%;
@@ -1236,7 +1253,7 @@ body {
     gap: 1em;
   }
   .footer-icon {
-    filter: grayscale(90%) drop-shadow(0 0 2px #bbb);
+    filter: drop-shadow(0 0 2px #bbb);
   }
 }
 
@@ -1671,5 +1688,73 @@ textarea {
 .control-shop-product {
   @include x-small {
     width: 100%;
+  }
+}
+
+/***** ProductDetail *****/
+.product-detail {
+  .product-tool {
+    $size: 22px;
+    width: $size;
+    height: $size;
+  }
+}
+
+.product-detail-description {
+  p {
+    color: $sub-text-color;
+  }
+}
+
+.activeSize {
+  background: $original-black !important;
+}
+
+.color-product {
+  $size: 30px;
+  width: $size;
+  height: $size;
+  border-radius: 50%;
+  cursor: pointer;
+
+  .check2 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+.product-detail-tab {
+  .nav-tabs {
+    border: none;
+    .title-tab {
+      font-weight: 700;
+      position: relative;
+      letter-spacing: 1px;
+
+      &::before {
+        @extend %underline_title;
+      }
+    }
+
+    .nav-link {
+      color: #000;
+      font-weight: normal;
+      text-transform: capitalize;
+      border: none;
+    }
+    .active {
+      font-weight: 700;
+      border-bottom: 1px solid #dee2e6;
+    }
+  }
+
+  .tab-content {
+    padding: 1em 2em;
+
+    .tab-pane {
+      color: $sub-text-color;
+      line-height: 1.8em;
+    }
   }
 }

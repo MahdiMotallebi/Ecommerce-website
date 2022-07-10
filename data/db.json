@@ -10,9 +10,12 @@
         "XL",
         "XXL"
       ],
-      "price": 3,
-      "count": 0,
-      "isLike": false
+      "colors": [
+        "#ff0000",
+        "#00ff00",
+        "#0000ff"
+      ],
+      "price": 3
     },
     {
       "id": "dress2",
@@ -23,22 +26,27 @@
         "M",
         "L"
       ],
-      "price": 25.5,
-      "count": 0,
-      "isLike": false
+      "colors": [
+        "#000",
+        "#ffb900"
+      ],
+      "price": 25.5
     },
     {
       "id": "dress3",
       "image": "/Img/shop/3.jpg",
-      "title": "Midi dress in pink ditsy floral",
+      "title": "dress in polka dot",
       "description": "This is for all the latest trends, no matter who you are, where you’re from and what you’re up to. Exclusive to ASOS, our universal brand is here for you, and comes in all our fit ranges: ASOS Curve, Tall, Petite and Maternity. Created by us, styled by you.",
       "availableSizes": [
         "M",
-        "L"
+        "XL",
+        "XXL"
       ],
-      "price": 12.2,
-      "isLike": false,
-      "count": 4
+      "colors": [
+        "#ffb900",
+        "#0000ff"
+      ],
+      "price": 6.3
     },
     {
       "id": "dress4",
@@ -48,9 +56,12 @@
       "availableSizes": [
         "XL"
       ],
-      "price": 6.3,
-      "isLike": true,
-      "count": 0
+      "colors": [
+        "#000",
+        "#00ff00",
+        "#0000ff"
+      ],
+      "price": 6.3
     },
     {
       "id": "dress5",
@@ -61,9 +72,10 @@
         "L",
         "XL"
       ],
-      "price": 45,
-      "count": 0,
-      "isLike": false
+      "colors": [
+        "#000"
+      ],
+      "price": 45
     },
     {
       "id": "dress6",
@@ -74,9 +86,12 @@
         "XL",
         "XXL"
       ],
-      "price": 67.8,
-      "count": 1,
-      "isLike": false
+      "colors": [
+        "#00ff00",
+        "#0000ff",
+        "#ff0000"
+      ],
+      "price": 67.8
     },
     {
       "id": "dress7",
@@ -87,8 +102,11 @@
         "XXL",
         "XL"
       ],
-      "price": 97.3,
-      "isLike": false
+      "colors": [
+        "#0000ff",
+        "#000"
+      ],
+      "price": 97.3
     },
     {
       "id": "dress8",
@@ -98,8 +116,11 @@
       "availableSizes": [
         "M"
       ],
-      "price": 18.5,
-      "isLike": false
+      "colors": [
+        "#000",
+        "#ff0000"
+      ],
+      "price": 18.5
     },
     {
       "id": "dress9",
@@ -110,8 +131,11 @@
         "L",
         "M"
       ],
-      "price": 38.3,
-      "isLike": false
+      "colors": [
+        "#000",
+        "#00ff00"
+      ],
+      "price": 38.3
     },
     {
       "id": "dress10",
@@ -122,8 +146,12 @@
         "L",
         "XXL"
       ],
-      "price": 71.1,
-      "isLike": true
+      "colors": [
+        "#ff0000",
+        "#ffb900",
+        "#00ff00"
+      ],
+      "price": 71.1
     },
     {
       "id": "dress11",
@@ -133,9 +161,11 @@
       "availableSizes": [
         "XXL"
       ],
-      "price": 32,
-      "count": 0,
-      "isLike": true
+      "colors": [
+        "#00ff00",
+        "#0000ff"
+      ],
+      "price": 32
     },
     {
       "id": "dress12",
@@ -146,9 +176,12 @@
         "M",
         "L"
       ],
-      "price": 21.5,
-      "count": 0,
-      "isLike": false
+      "colors": [
+        "#ffb900",
+        "#ff0000",
+        "#00ff00"
+      ],
+      "price": 21.5
     },
     {
       "id": "dress13",
@@ -159,9 +192,10 @@
         "M",
         "XXl"
       ],
-      "price": 10.2,
-      "isLike": false,
-      "count": 4
+      "colors": [
+        "#000"
+      ],
+      "price": 10.2
     },
     {
       "id": "dress14",
@@ -171,9 +205,10 @@
       "availableSizes": [
         "XL"
       ],
-      "price": 9,
-      "isLike": false,
-      "count": 0
+      "colors": [
+        "#00ff00"
+      ],
+      "price": 9
     },
     {
       "id": "dress15",
@@ -184,9 +219,10 @@
         "L",
         "XL"
       ],
-      "price": 40,
-      "count": 0,
-      "isLike": false
+      "colors": [
+        "#0000ff"
+      ],
+      "price": 40
     },
     {
       "id": "dress16",
@@ -196,9 +232,11 @@
       "availableSizes": [
         "XXL"
       ],
-      "price": 19.8,
-      "count": 1,
-      "isLike": false
+      "colors": [
+        "#00ff00",
+        "#ffb900"
+      ],
+      "price": 19.8
     },
     {
       "id": "dress17",
@@ -209,8 +247,10 @@
         "XXL",
         "XL"
       ],
-      "price": 87.3,
-      "isLike": false
+      "colors": [
+        "#ffb900"
+      ],
+      "price": 87.3
     },
     {
       "id": "dress18",
@@ -220,8 +260,11 @@
       "availableSizes": [
         "M"
       ],
-      "price": 55.9,
-      "isLike": false
+      "colors": [
+        "#ff0000",
+        "#00ff00"
+      ],
+      "price": 55.9
     },
     {
       "id": "dress19",
@@ -232,8 +275,10 @@
         "XL",
         "M"
       ],
-      "price": 78.3,
-      "isLike": false
+      "colors": [
+        "#ff0000"
+      ],
+      "price": 78.3
     }
   ],
   "comments": [
@@ -349,6 +394,129 @@
       "children": [],
       "avatar": "/static/media/comment2.7265f534e120763a918f.jpg",
       "createdAt": "2022-06-26T14:22:08.997Z"
+    },
+    {
+      "id": "eac16593-1a02-48f0-98c8-8756af701388",
+      "body": "hello",
+      "username": "mendy",
+      "userId": "2",
+      "parentId": "3",
+      "children": [],
+      "avatar": "/static/media/comment2.7265f534e120763a918f.jpg",
+      "createdAt": "2022-07-07T18:42:43.714Z"
+    }
+  ],
+  "cartItems": [
+    {
+      "id": "dress1L00ff00",
+      "title": "Midi sundress with shirring detail",
+      "image": "/Img/shop/1.jpg",
+      "price": 3,
+      "count": 2,
+      "size": "L",
+      "color": "#00ff00"
+    },
+    {
+      "id": "dress1Lff0000",
+      "title": "Midi sundress with shirring detail",
+      "image": "/Img/shop/1.jpg",
+      "price": 3,
+      "count": 2,
+      "size": "L",
+      "color": "#ff0000"
+    },
+    {
+      "id": "dress3XXL0000ff",
+      "title": "dress in polka dot",
+      "image": "/Img/shop/3.jpg",
+      "price": 6.3,
+      "count": 3,
+      "size": "XXL",
+      "color": "#0000ff"
+    },
+    {
+      "id": "dress5L000",
+      "title": "Frill mini dress in yellow polka dot",
+      "image": "/Img/shop/5.jpg",
+      "price": 45,
+      "count": 3,
+      "size": "L",
+      "color": "#000"
+    }
+  ],
+  "wishList": [
+    {
+      "id": "dress7",
+      "image": "/Img/shop/7.jpg",
+      "title": "yellow polka dot",
+      "description": "This is for all the latest trends, no matter who you are, where you’re from and what you’re up to. Exclusive to ASOS, our universal brand is here for you, and comes in all our fit ranges: ASOS Curve, Tall, Petite and Maternity. Created by us, styled by you.",
+      "availableSizes": [
+        "XXL",
+        "XL"
+      ],
+      "colors": [
+        "#0000ff",
+        "#000"
+      ],
+      "price": 97.3
+    },
+    {
+      "id": "dress5",
+      "image": "/Img/shop/5.jpg",
+      "title": "Frill mini dress in yellow polka dot",
+      "description": "This is for all the latest trends, no matter who you are, where you’re from and what you’re up to. Exclusive to ASOS, our universal brand is here for you, and comes in all our fit ranges: ASOS Curve, Tall, Petite and Maternity. Created by us, styled by you.",
+      "availableSizes": [
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "#000"
+      ],
+      "price": 45
+    },
+    {
+      "id": "dress14",
+      "image": "/Img/shop/14.jpg",
+      "title": "cami maxi dress in polka dot",
+      "description": "This is for all the latest trends, no matter who you are, where you’re from and what you’re up to. Exclusive to ASOS, our universal brand is here for you, and comes in all our fit ranges: ASOS Curve, Tall, Petite and Maternity. Created by us, styled by you.",
+      "availableSizes": [
+        "XL"
+      ],
+      "colors": [
+        "#00ff00"
+      ],
+      "price": 9
+    },
+    {
+      "id": "dress4",
+      "image": "/Img/shop/4.jpg",
+      "title": "cami maxi dress in polka dot",
+      "description": "This is for all the latest trends, no matter who you are, where you’re from and what you’re up to. Exclusive to ASOS, our universal brand is here for you, and comes in all our fit ranges: ASOS Curve, Tall, Petite and Maternity. Created by us, styled by you.",
+      "availableSizes": [
+        "XL"
+      ],
+      "colors": [
+        "#000",
+        "#00ff00",
+        "#0000ff"
+      ],
+      "price": 6.3
+    },
+    {
+      "id": "dress3",
+      "image": "/Img/shop/3.jpg",
+      "title": "dress in polka dot",
+      "description": "This is for all the latest trends, no matter who you are, where you’re from and what you’re up to. Exclusive to ASOS, our universal brand is here for you, and comes in all our fit ranges: ASOS Curve, Tall, Petite and Maternity. Created by us, styled by you.",
+      "availableSizes": [
+        "M",
+        "XL",
+        "XXL"
+      ],
+      "colors": [
+        "#ffb900",
+        "#0000ff"
+      ],
+      "price": 6.3
     }
   ]
 }

@@ -20,16 +20,16 @@ import { DropdownSubmenu } from "react-bootstrap-submenu";
 import Modal from "react-modal";
 
 import whiteLogo from "../../img/white-logo.png";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faBasketShopping,
-  faHeart,
-  faUser,
-  faBars,
-  faPhone,
-  faSearch,
-  faGear,
-} from "@fortawesome/free-solid-svg-icons";
+  BsSearch,
+  BsTelephoneFill,
+  BsHeartFill,
+  BsPerson,
+  BsGear,
+  BsBasket3,
+  BsList,
+} from "react-icons/bs";
+
 import { allState } from "../../features/shopSlice";
 import Cart from "../cart/cart";
 import Like from "../like/like";
@@ -44,20 +44,6 @@ const Header = () => {
   const heightSubmenu = useRef(null);
   const parentSubmenu = useRef(null);
   const containerSubmenu = useRef(null);
-
-  // useEffect(() => {
-  //   const h = heightSubmenu.current.getBoundingClientRect().height;
-  //   const ph = parentSubmenu.current.getBoundingClientRect().height;
-
-  //   if (showSubmenu) {
-  //     containerSubmenu.current.style.height = `${h}px`;
-  //     parentSubmenu.current.style.height = `${ph + h}px`;
-  //   } else {
-  //     const h1 = containerSubmenu.current.getBoundingClientRect().height;
-  //     containerSubmenu.current.style.height = 0;
-  //     parentSubmenu.current.style.height = `${ph - h1}px`;
-  //   }
-  // }, [showSubmenu]);
 
   const handleCloseCartModal = () => {
     setShowCartModal(false);
@@ -86,10 +72,7 @@ const Header = () => {
                       Welcome to Our store Multikart
                     </Nav.Item>
                     <Nav.Item className="py-lg-3">
-                      <FontAwesomeIcon
-                        className="mx-2"
-                        icon={faPhone}
-                      ></FontAwesomeIcon>
+                      <BsTelephoneFill className="mx-2" />
                       Call Us: 123 - 456 - 7890
                     </Nav.Item>
                   </Nav>
@@ -103,17 +86,12 @@ const Header = () => {
                       className="wishlist d-flex justify-content-center py-sm-3 align-items-center gap-2 text-capitalize "
                       onClick={() => setShowLikeModal(true)}
                     >
-                      <FontAwesomeIcon
-                        className="wishlist-icon"
-                        icon={faHeart}
-                      ></FontAwesomeIcon>
+                      <BsHeartFill className="wishlist-icon" />
+
                       <span className="text-wishlist">wishlist</span>
                     </Nav.Item>
                     <Nav.Item className="account py-sm-3 d-sm-flex justify-content-center align-items-center gap-2 text-capitalize">
-                      <FontAwesomeIcon
-                        className="account-icon"
-                        icon={faUser}
-                      ></FontAwesomeIcon>
+                      <BsPerson className="account-icon" />
                       <span className="text-account">my account</span>
 
                       <Nav className="hover-account">
@@ -165,10 +143,7 @@ const Header = () => {
             {/* Right Elements */}
             <Col className="d-flex align-items-center justify-content-end gap-3 rightNavbar">
               <div className="search" onClick={() => setShowSearch(true)}>
-                <FontAwesomeIcon
-                  className="search-icon"
-                  icon={faSearch}
-                ></FontAwesomeIcon>
+                <BsSearch className="search-icon" />
               </div>
               {showSearch && (
                 <Modal
@@ -197,17 +172,15 @@ const Header = () => {
                         className="btn-hover-search-modal shadow-none btn-submit-modalSearch"
                         id="button-addon2"
                       >
-                        <FontAwesomeIcon icon={faSearch}></FontAwesomeIcon>
+                        <BsSearch />
                       </Button>
                     </InputGroup>
                   </Form>
                 </Modal>
               )}
               <div className="gear">
-                <FontAwesomeIcon
-                  className="gear-icon "
-                  icon={faGear}
-                ></FontAwesomeIcon>
+                <BsGear className="gear-icon" />
+
                 <div className="hover-gear">
                   <h6>language</h6>
                   <Nav className="language d-flex flex-column">
@@ -227,10 +200,8 @@ const Header = () => {
                 className="basketShop"
                 onClick={() => setShowCartModal(true)}
               >
-                <FontAwesomeIcon
-                  className="cart-icon"
-                  icon={faBasketShopping}
-                ></FontAwesomeIcon>
+                <BsBasket3 className="cart-icon" />
+
                 <span className="count-shop-item">
                   {state.cartItems.length}
                 </span>
@@ -248,10 +219,7 @@ const Header = () => {
                 aria-expanded="false"
                 aria-label="Toggle navigation"
               >
-                <FontAwesomeIcon
-                  icon={faBars}
-                  className="bars"
-                ></FontAwesomeIcon>
+                <BsList className="bars" />
               </Navbar.Toggle>
             </Col>
             {/* End Right Elements */}
