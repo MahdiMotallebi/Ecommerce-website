@@ -4,6 +4,7 @@ import {
   allState,
   fetchCartItems,
   fetchComments,
+  fetchCompare,
   fetchProducts,
   fetchWishList,
 } from "./features/shopSlice";
@@ -18,6 +19,7 @@ import Register from "./component/account/register";
 import Footer from "./component/footer/footer";
 import SingleBlog from "./component/singleBlog/singleBlog";
 import Header from "./component/header/header";
+import Compare from "./component/compare/compare";
 import Loading from "./component/loading/loading";
 import ShopPage from "./pages/shopPage";
 import "react-loading-skeleton/dist/skeleton.css";
@@ -33,6 +35,7 @@ const App = () => {
     dispatch(fetchComments());
     dispatch(fetchCartItems());
     dispatch(fetchWishList());
+    dispatch(fetchCompare());
   }, []);
 
   return (
@@ -50,6 +53,7 @@ const App = () => {
         <Route path="singleBlog/:id" element={<SingleBlog />} />
         <Route path="productDetail/:id" element={<ProductDetail />} />
         <Route path="shop" element={<ShopPage />} />
+        <Route path="compare" element={<Compare />} />
         <Route path="*" element={<NoPage />} />
       </Routes>
       <ToastContainer />

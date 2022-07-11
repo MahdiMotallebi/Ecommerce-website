@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { LinkContainer } from "react-router-bootstrap";
+import { Link } from "react-router-dom";
 import {
   Container,
   Button,
@@ -28,6 +29,7 @@ import {
   BsGear,
   BsBasket3,
   BsList,
+  BsShuffle,
 } from "react-icons/bs";
 
 import { allState } from "../../features/shopSlice";
@@ -178,23 +180,10 @@ const Header = () => {
                   </Form>
                 </Modal>
               )}
-              <div className="gear">
-                <BsGear className="gear-icon" />
-
-                <div className="hover-gear">
-                  <h6>language</h6>
-                  <Nav className="language d-flex flex-column">
-                    <Nav.Item>english</Nav.Item>
-                    <Nav.Item>french</Nav.Item>
-                  </Nav>
-                  <h6>currency</h6>
-                  <Nav className="currency d-flex flex-column">
-                    <Nav.Item>usd</Nav.Item>
-                    <Nav.Item>ind</Nav.Item>
-                    <Nav.Item>eur</Nav.Item>
-                    <Nav.Item>gbp</Nav.Item>
-                  </Nav>
-                </div>
+              <div className="compare" title="compare">
+                <Link to="/compare">
+                  <BsShuffle className="compare-icon" />
+                </Link>
               </div>
               <div
                 className="basketShop"

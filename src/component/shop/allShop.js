@@ -5,12 +5,11 @@ import { Container, Row, Col } from "react-bootstrap";
 import { allState } from "../../features/shopSlice";
 import Products from "../products/products";
 import Category from "../category/category";
-import { ToastContainer } from "react-toastify";
 import Pagination from "../pagination/pagination";
-import { FaAlignLeft } from "react-icons/fa";
+import { BsFilter } from "react-icons/bs";
 const AllShop = () => {
   const state = useSelector(allState);
-  const [loading, setLoading] = React.useState(0);
+  const [loading, setLoading] = React.useState(1);
   const [showFilter, setShowFilter] = React.useState(false);
   React.useEffect(() => {
     window.scrollTo(0, 0);
@@ -24,7 +23,7 @@ const AllShop = () => {
               onClick={() => setShowFilter(!showFilter)}
               className="btn d-xl-none border-bottom text-capitalize"
             >
-              <FaAlignLeft className="me-2" />
+              <BsFilter className="me-2" />
               filters
             </button>
             <div

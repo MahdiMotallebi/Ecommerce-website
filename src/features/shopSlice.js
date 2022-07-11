@@ -6,6 +6,7 @@ const URL = "http://localhost:5000/products/";
 const URL_COMMENT = "http://localhost:5000/comments/";
 const URL_CARTITEMS = "http://localhost:5000/cartItems/";
 const URL_WISHLIST = "http://localhost:5000/wishList/";
+const URL_COMPARE = "http://localhost:5000/compare/";
 
 //get all data from database
 export const fetchComments = createAsyncThunk(
@@ -27,6 +28,14 @@ export const fetchCartItems = createAsyncThunk(
   "multiCart/fetchCartItems",
   async () => {
     const res = await axios.get(URL_CARTITEMS);
+    return res.data;
+  }
+);
+
+export const fetchCompare = createAsyncThunk(
+  "multiCart/fetchCompare",
+  async () => {
+    const res = await axios.get(URL_COMPARE);
     return res.data;
   }
 );
@@ -62,6 +71,7 @@ const initialState = {
   cartItems: [],
   likeItems: [],
   comments: [],
+  compare: [],
   temp: [],
   product: {},
   loading: "",
@@ -290,6 +300,15 @@ const clothingSlice = createSlice({
         });
       }
     },
+    handleCompare: (state, action) => {
+      state.compare.push(action.payload);
+      axios.post(URL_COMPARE, action.payload);
+    },
+    RemoveItemFromCompare: (state, action) => {
+      const temp = state.compare.filter((p) => p.id !== action.payload);
+      state.compare = temp;
+      axios.delete(URL_COMPARE + action.payload);
+    },
   },
   extraReducers: {
     // fetch products
@@ -385,6 +404,19 @@ const clothingSlice = createSlice({
       state.loading = "faild";
       state.error = action.error.message;
     },
+
+    //fetch compare list
+    [fetchCompare.pending]: (state) => {
+      state.loading = "loading";
+    },
+    [fetchCompare.fulfilled]: (state, action) => {
+      state.loading = "succeeded";
+      state.compare = action.payload;
+    },
+    [fetchCompare.rejected]: (state, action) => {
+      state.loading = "faild";
+      state.error = action.error.message;
+    },
   },
 });
 
@@ -417,5 +449,7 @@ export const {
   handleGetUniqueValue,
   setFilterValues,
   handleFilterByColor,
+  handleCompare,
+  RemoveItemFromCompare,
 } = clothingSlice.actions;
 export default clothingSlice.reducer;

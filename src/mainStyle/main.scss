@@ -214,16 +214,16 @@ body {
   }
 }
 
-.gear {
+.compare {
   position: relative;
-  &:hover .hover-gear {
+  &:hover .hover-compare {
     top: 30px;
     bottom: unset;
     opacity: 1;
     visibility: visible;
   }
 }
-.hover-gear {
+.hover-compare {
   position: absolute;
   background: #fff;
   box-shadow: 0 0 3px #ccc;
@@ -262,7 +262,7 @@ body {
   cursor: pointer;
 }
 .search-icon,
-.gear-icon,
+.compare-icon,
 .cart-icon {
   font-size: 1.4em;
   color: #ddd;
@@ -285,10 +285,11 @@ body {
     margin-bottom: 60px;
   }
   .search-icon,
-  .gear-icon,
+  .compare-icon,
   .cart-icon {
     font-size: unset;
     color: unset;
+    color: #888;
   }
   .top-header {
     height: 0;
@@ -307,7 +308,7 @@ body {
 
   .account,
   .wishlist,
-  .gear,
+  .compare,
   .search,
   .basketShop {
     position: fixed;
@@ -354,24 +355,9 @@ body {
     }
   }
 
-  .gear {
+  .compare {
     right: 16.6%;
     transform: translateX(16.6%);
-
-    &:hover .hover-gear {
-      opacity: 1;
-      visibility: visible;
-      bottom: 40px;
-      top: unset;
-    }
-
-    .hover-gear {
-      bottom: 20px;
-      right: 0;
-      left: unset;
-      top: unset;
-      transform: unset;
-    }
   }
 
   .account {

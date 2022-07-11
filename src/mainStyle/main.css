@@ -549,18 +549,18 @@ body {
   text-transform: capitalize;
 }
 
-.gear {
+.compare {
   position: relative;
 }
 
-.gear:hover .hover-gear {
+.compare:hover .hover-compare {
   top: 30px;
   bottom: unset;
   opacity: 1;
   visibility: visible;
 }
 
-.hover-gear {
+.hover-compare {
   position: absolute;
   background: #fff;
   -webkit-box-shadow: 0 0 3px #ccc;
@@ -577,13 +577,13 @@ body {
   right: 0;
 }
 
-.hover-gear h6 {
+.hover-compare h6 {
   text-transform: capitalize;
   color: #000;
   font-weight: 500;
 }
 
-.hover-gear .nav-item {
+.hover-compare .nav-item {
   color: #000;
   font-size: 1em;
   padding: 0.2em 1em;
@@ -591,11 +591,11 @@ body {
   font-size: 1rem;
 }
 
-.hover-gear .language .nav-item {
+.hover-compare .language .nav-item {
   text-transform: capitalize;
 }
 
-.hover-gear .currency .nav-item {
+.hover-compare .currency .nav-item {
   text-transform: uppercase;
 }
 
@@ -604,7 +604,7 @@ body {
 }
 
 .search-icon,
-.gear-icon,
+.compare-icon,
 .cart-icon {
   font-size: 1.4em;
   color: #ddd;
@@ -628,10 +628,11 @@ body {
     margin-bottom: 60px;
   }
   .search-icon,
-  .gear-icon,
+  .compare-icon,
   .cart-icon {
     font-size: unset;
     color: unset;
+    color: #888;
   }
   .top-header {
     height: 0;
@@ -650,7 +651,7 @@ body {
   }
   .account,
   .wishlist,
-  .gear,
+  .compare,
   .search,
   .basketShop {
     position: fixed;
@@ -667,7 +668,7 @@ body {
 @media (max-width: 577px) and (max-width: 400px) {
   .account,
   .wishlist,
-  .gear,
+  .compare,
   .search,
   .basketShop {
     font-size: 18px;
@@ -703,24 +704,10 @@ body {
     bottom: 50px;
     top: unset;
   }
-  .gear {
+  .compare {
     right: 16.6%;
     -webkit-transform: translateX(16.6%);
             transform: translateX(16.6%);
-  }
-  .gear:hover .hover-gear {
-    opacity: 1;
-    visibility: visible;
-    bottom: 40px;
-    top: unset;
-  }
-  .gear .hover-gear {
-    bottom: 20px;
-    right: 0;
-    left: unset;
-    top: unset;
-    -webkit-transform: unset;
-            transform: unset;
   }
   .account {
     right: 33.3%;

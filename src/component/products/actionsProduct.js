@@ -14,6 +14,7 @@ import {
   allState,
   handleCartItems,
   handleLikeItems,
+  handleCompare,
 } from "../../features/shopSlice";
 
 import { toast, Flip } from "react-toastify";
@@ -70,6 +71,28 @@ const ActionsProduct = () => {
       className: "toast-success",
     });
     dispatch(handleLikeItems(state.product));
+  };
+
+  const handleAddToCompare = () => {
+    let check = false;
+    if (state.compare.length > 0)
+      check = state.compare.some((p) => p.id === state.product.id);
+
+    toast.success(
+      `${check ? "Product Already Added." : "Product Added To Compare."}`,
+      {
+        icon: !check && <BsCheckCircle />,
+        position: "bottom-left",
+        autoClose: 1500,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        transition: Flip,
+        className: "toast-success",
+      }
+    );
+    !check && dispatch(handleCompare(state.product));
   };
   return (
     <>
@@ -185,7 +208,7 @@ const ActionsProduct = () => {
                         <BsHeart className="like product-tool" />
                       </NavItem>
 
-                      <NavItem title="compare">
+                      <NavItem title="compare" onClick={handleAddToCompare}>
                         <BsShuffle className="compare product-tool" />
                       </NavItem>
                     </Nav>

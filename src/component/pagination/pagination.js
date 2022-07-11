@@ -26,6 +26,7 @@ const Pagination = ({ setLoading }) => {
   };
 
   React.useEffect(() => {
+    setLoading(1);
     dispatch(handlePagination());
   }, [state.paginationValues.currentPage, state.temp]);
   return (

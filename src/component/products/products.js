@@ -1,6 +1,10 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { allState, handleLikeItems } from "../../features/shopSlice";
+import {
+  allState,
+  handleLikeItems,
+  handleCompare,
+} from "../../features/shopSlice";
 import { Nav, Image, NavItem } from "react-bootstrap";
 import Skeleton from "react-loading-skeleton";
 import {
@@ -18,11 +22,11 @@ import { v4 as uuidv4 } from "uuid";
 const Products = ({ item, loading = 0, setLoading }) => {
   const state = useSelector(allState);
   const dispatch = useDispatch();
-  // if (state.loading === "succeeded") {
-  //   setTimeout(() => {
-  //     setLoading(0);
-  //   }, "3000");
-  // }
+  if (state.loading === "succeeded") {
+    setTimeout(() => {
+      setLoading(0);
+    }, "3000");
+  }
 
   const { id, image, title, price, availableSizes } = item;
   const handlePlusLikeCount = () => {
@@ -38,6 +42,28 @@ const Products = ({ item, loading = 0, setLoading }) => {
       className: "toast-success",
     });
     dispatch(handleLikeItems(item));
+  };
+
+  const handleAddToCompare = () => {
+    let check = false;
+    if (state.compare.length > 0)
+      check = state.compare.some((p) => p.id === id);
+
+    toast.success(
+      `${check ? "Product Already Added." : "Product Added To Compare."}`,
+      {
+        icon: !check && <BsCheckCircle />,
+        position: "bottom-left",
+        autoClose: 1500,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        transition: Flip,
+        className: "toast-success",
+      }
+    );
+    !check && dispatch(handleCompare(item));
   };
   return (
     <div className="custom-card mb-4 justify-content-between position-relative">
@@ -58,7 +84,7 @@ const Products = ({ item, loading = 0, setLoading }) => {
                 </Link>
               </NavItem>
 
-              <NavItem title="compare">
+              <NavItem title="compare" onClick={handleAddToCompare}>
                 <BsShuffle className="compare product-tool" />
               </NavItem>
             </Nav>

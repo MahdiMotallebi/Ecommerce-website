@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Select from "react-select";
 import { Row, Col } from "react-bootstrap";
-import { BsCheck2 } from "react-icons/bs";
+import { BsFillXCircleFill } from "react-icons/bs";
 import {
   allState,
   handleCurrentPage,
@@ -11,12 +11,11 @@ import {
   handleGetUniqueValue,
   setFilterValues,
   handleFilterByColor,
-} from "../../features/shopSlice";
-import {
   handleFilterBySize,
   handleFilterBySort,
   handleFilterByPrice,
 } from "../../features/shopSlice";
+
 const Category = ({ setShowFilter }) => {
   const state = useSelector(allState);
   const dispatch = useDispatch();
@@ -53,7 +52,7 @@ const Category = ({ setShowFilter }) => {
     const result = state.categories.size.find(
       (option) => option.value === sizeVal
     );
-    console.log(result);
+
     return result;
   };
 
@@ -88,13 +87,10 @@ const Category = ({ setShowFilter }) => {
   };
   return (
     <div className="filterProduct border p-3 p-lg-4 my-3 bg-white">
-      <div className="d-flex justify-content-between align-items-center">
-        <h3 className="text-capitalize fw-bold mb-3">filters</h3>
-        <button
-          onClick={() => setShowFilter(false)}
-          className="btn bg-dark d-xl-none text-white rounded-circle"
-        >
-          x
+      <div className="d-flex justify-content-between align-items-center mb-3">
+        <h3 className="text-capitalize fw-bold m-0">filters</h3>
+        <button onClick={() => setShowFilter(false)} className="btn d-xl-none">
+          <BsFillXCircleFill style={{ width: "20px", height: "20px" }} />
         </button>
       </div>
       <Row className="category d-flex flex-column justify-content-center gap-5">
