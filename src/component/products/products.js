@@ -14,7 +14,7 @@ import {
   BsStarFill,
   BsShuffle,
 } from "react-icons/bs";
-
+import StarRating from "../../component/star/star";
 import { Link } from "react-router-dom";
 import { toast, Flip } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -28,7 +28,7 @@ const Products = ({ item, loading = 0, setLoading }) => {
     }, "3000");
   }
 
-  const { id, image, title, price, availableSizes } = item;
+  const { id, image, title, price, star, availableSizes } = item;
   const handlePlusLikeCount = () => {
     toast.success("Product Added To Wishlist.", {
       icon: <BsCheckCircle />,
@@ -98,9 +98,7 @@ const Products = ({ item, loading = 0, setLoading }) => {
           ) : (
             <>
               <div className="rating d-flex gap-1 mb-2">
-                <BsStarFill className="star" />
-                <BsStarFill className="star" />
-                <BsStarFill className="star" />
+                <StarRating star={star} />
               </div>
             </>
           )}
