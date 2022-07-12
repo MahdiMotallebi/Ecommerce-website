@@ -279,6 +279,9 @@ textarea {
 
 html {
   scroll-behavior: smooth;
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 .go-to-top {
