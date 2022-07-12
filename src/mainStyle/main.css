@@ -34,14 +34,21 @@
   letter-spacing: 1px;
   position: relative;
   overflow: hidden;
-  border: 1px solid #000;
   background: none;
   color: #fff;
+  border: none;
   z-index: 1;
 }
 
 .slick-content .shop-now:hover, .right .button-subscribe:hover, .custom-button:hover, .register-button:hover {
   color: #000;
+}
+
+.slick-content .shop-now::after, .right .button-subscribe::after, .custom-button::after, .register-button::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid #000;
 }
 
 .slick-content .shop-now::before, .right .button-subscribe::before, .custom-button::before, .register-button::before {
@@ -57,6 +64,7 @@
   -webkit-transition: 0.35s;
   transition: 0.35s;
   z-index: -1;
+  border: 1px solid #000;
 }
 
 .slick-content .shop-now:hover::before, .right .button-subscribe:hover::before, .custom-button:hover::before, .register-button:hover::before {
@@ -74,7 +82,6 @@
   overflow: hidden;
   -webkit-transition: 0.1s linear;
   transition: 0.1s linear;
-  border: 1px solid #000;
 }
 
 .overwriteBootstrap ul {

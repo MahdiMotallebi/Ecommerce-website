@@ -40,15 +40,21 @@ $title-fontSize: clamp(24px, 4vw, 35px);
   letter-spacing: 1px;
   position: relative;
   overflow: hidden;
-  border: 1px solid $original-black;
   background: none;
   color: #fff;
+  border: none;
   z-index: 1;
 }
 
 %italicHover {
   &:hover {
     color: $original-black;
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 1px solid $original-black;
   }
   &::before {
     content: "";
@@ -61,6 +67,7 @@ $title-fontSize: clamp(24px, 4vw, 35px);
     background: $original-black;
     transition: 0.35s;
     z-index: -1;
+    border: 1px solid $original-black;
   }
 
   &:hover::before {
@@ -77,5 +84,4 @@ $title-fontSize: clamp(24px, 4vw, 35px);
   position: relative;
   overflow: hidden;
   transition: 0.1s linear;
-  border: 1px solid #000;
 }
