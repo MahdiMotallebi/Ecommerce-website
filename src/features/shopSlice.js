@@ -12,14 +12,24 @@ const URL_COMPARE = "http://localhost:5000/compare/";
 export const fetchComments = createAsyncThunk(
   "multiCart/fetchComments",
   async () => {
-    const res = await axios.get(URL_COMMENT);
+    const res = await axios({
+      url: URL_COMMENT,
+      headers: {
+        "content-type": "application/json",
+      },
+    });
     return res.data;
   }
 );
 export const fetchProducts = createAsyncThunk(
   "multiCart/fetchProducts",
   async () => {
-    const res = await axios.get(URL);
+    const res = await axios({
+      url: URL,
+      headers: {
+        "content-type": "application/json",
+      },
+    });
     return res.data;
   }
 );
