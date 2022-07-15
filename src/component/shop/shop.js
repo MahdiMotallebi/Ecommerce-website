@@ -154,7 +154,7 @@ const Shop = () => {
           <div className="special-offer text-center">
             <Row>
               <Col>
-                <h6>special offer</h6>
+                <h6 className="border border-danger">special offer</h6>
                 <h3>top collection</h3>
               </Col>
             </Row>
