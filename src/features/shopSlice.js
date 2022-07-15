@@ -2,11 +2,11 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 import axios from "axios";
 
-const URL = "http://localhost:5000/products/";
-const URL_COMMENT = "http://localhost:5000/comments/";
-const URL_CARTITEMS = "http://localhost:5000/cartItems/";
-const URL_WISHLIST = "http://localhost:5000/wishList/";
-const URL_COMPARE = "http://localhost:5000/compare/";
+const URL = "http://127.0.0.1:5000/products/";
+const URL_COMMENT = "http://127.0.0.1:5000/comments/";
+const URL_CARTITEMS = "http://127.0.0.1:5000/cartItems/";
+const URL_WISHLIST = "http://127.0.0.1:5000/wishList/";
+const URL_COMPARE = "http://127.0.0.1:5000/compare/";
 
 //get all data from database
 export const fetchComments = createAsyncThunk(
