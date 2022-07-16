@@ -49,7 +49,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "jsonserver": "npx json-server -p 5000 -w data/db.json"
+    "jsonserver": "npx json-server -p 5000 -w data/db.json --host 192.168.1.50"
   },
   "eslintConfig": {
     "extends": [
