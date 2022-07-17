@@ -24,21 +24,20 @@ export const fetchComments = createAsyncThunk(
 export const fetchProducts = createAsyncThunk(
   "multiCart/fetchProducts",
   async () => {
-    const data = await sanityClient.fetch(
-      `*[_type == "products"]{_id,
-    title, description, image{
-      asset->{
-        
-        url
-      },
-      
-    }, availableSizes, colors, star, price
-  }`
-    );
+    //   const data = await sanityClient.fetch(
+    //     `*[_type == "products"]{_id,
+    //   title, description, image{
+    //     asset->{
 
-    // const res = await axios(URL);
-    // return res.data;
-    return data;
+    //       url
+    //     },
+
+    //   }, availableSizes, colors, star, price
+    // }`
+    //   );
+
+    const res = await axios(URL);
+    return res.data;
   }
 );
 
