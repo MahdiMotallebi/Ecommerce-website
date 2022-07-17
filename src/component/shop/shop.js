@@ -177,8 +177,8 @@ const Shop = () => {
                   <Slider {...mainShop}>
                     {state.items.map((item) => {
                       return (
-                        <div className="px-2">
-                          <Products item={item} key={uuidv4()} />
+                        <div className="px-2" key={uuidv4()}>
+                          <Products item={item} />
                         </div>
                       );
                     })}
@@ -255,7 +255,7 @@ const Shop = () => {
           <Row>
             <Slider {...blog}>
               {blogImage.map((img) => {
-                return <Blog img={img} id={uuidv4()} />;
+                return <Blog img={img} key={uuidv4()} />;
               })}
             </Slider>
           </Row>
@@ -268,7 +268,7 @@ const Shop = () => {
           <Col>
             <Slider {...instagram}>
               {instaImage.map((img) => {
-                return <Instagram img={img} />;
+                return <Instagram img={img} key={uuidv4()} />;
               })}
             </Slider>
           </Col>
@@ -282,7 +282,10 @@ const Shop = () => {
               <Slider {...logos}>
                 {logoImage.map((img) => {
                   return (
-                    <div className="container-logo-img d-flex justify-content-center align-items-center">
+                    <div
+                      className="container-logo-img d-flex justify-content-center align-items-center"
+                      key={uuidv4()}
+                    >
                       <Image src={img} className="logo-img" loading="lazy" />
                     </div>
                   );

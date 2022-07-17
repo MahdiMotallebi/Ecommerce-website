@@ -1,13 +1,12 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-
+import sanityClient from "../client";
 import axios from "axios";
-const u = "192.168.1.50";
 
-const URL = "http://192.168.1.50:5000/products/";
-const URL_COMMENT = "http://192.168.1.50:5000/comments/";
-const URL_CARTITEMS = "http://192.168.1.50:5000/cartItems/";
-const URL_WISHLIST = "http://192.168.1.50:5000/wishList/";
-const URL_COMPARE = "http://192.168.1.50:5000/compare/";
+const URL = "http://127.0.0.1:5000/products/";
+const URL_COMMENT = "http://127.0.0.1:5000/comments/";
+const URL_CARTITEMS = "http://127.0.0.1:5000/cartItems/";
+const URL_WISHLIST = "http://127.0.0.1:5000/wishList/";
+const URL_COMPARE = "http://127.0.0.1:5000/compare/";
 
 //get all data from database
 export const fetchComments = createAsyncThunk(
@@ -25,8 +24,21 @@ export const fetchComments = createAsyncThunk(
 export const fetchProducts = createAsyncThunk(
   "multiCart/fetchProducts",
   async () => {
-    const res = await axios(URL);
-    return res.data;
+    const data = await sanityClient.fetch(
+      `*[_type == "products"]{_id,
+    title, description, image{
+      asset->{
+        
+        url
+      },
+      
+    }, availableSizes, colors, star, price
+  }`
+    );
+
+    // const res = await axios(URL);
+    // return res.data;
+    return data;
   }
 );
 

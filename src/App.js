@@ -26,6 +26,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 import ScrollTop from "./component/scrollTop/scrollTop";
 import ProductDetail from "./pages/productDetail";
 import { ToastContainer } from "react-toastify";
+import sanityClient from "./client";
 const App = () => {
   const dispatch = useDispatch();
   const state = useSelector(allState);
