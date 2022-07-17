@@ -28,8 +28,8 @@ const Products = ({ item, loading = 0, setLoading }) => {
     }, "3000");
   }
 
-  const { image, title, price, star, availableSizes } = item;
-  const id = item._id;
+  const { id, image, title, price, star, availableSizes } = item;
+
   const handlePlusLikeCount = () => {
     toast.success("Product Added To Wishlist.", {
       icon: <BsCheckCircle />,
@@ -73,7 +73,7 @@ const Products = ({ item, loading = 0, setLoading }) => {
       ) : (
         <div className="container-img-custom-card d-flex justify-content-center align-items-center mb-2">
           <div className="img-custom-card position-relative overflow-hidden">
-            <Image src={image.asset.url} alt={title} loading="lazy" />
+            <Image src={image} alt={title} loading="lazy" />
             <Nav className="product-tools position-absolute d-flex flex-column gap-1">
               <NavItem id={id} onClick={() => handlePlusLikeCount()}>
                 <BsHeart className="like product-tool" />
