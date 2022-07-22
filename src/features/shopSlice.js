@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import sanityClient from '../client';
+import { data } from '../data/db';
 import axios from 'axios';
 
 const URL = 'https://0e31-185-207-249-102.ngrok.io/products/';
@@ -12,63 +12,46 @@ const URL_COMPARE = 'https://0e31-185-207-249-102.ngrok.io/compare/';
 export const fetchComments = createAsyncThunk(
   'multiCart/fetchComments',
   async () => {
-    const res = await axios({
-      url: URL_COMMENT,
-      headers: {
-        'content-type': 'application/json',
-      },
-    });
-    return res.data;
+    // const res = await axios.get(URL_COMMENT);
+    return data.comments;
   }
 );
 export const fetchProducts = createAsyncThunk(
   'multiCart/fetchProducts',
   async () => {
-    //   const data = await sanityClient.fetch(
-    //     `*[_type == "products"]{_id,
-    //   title, description, image{
-    //     asset->{
-
-    //       url
-    //     },
-
-    //   }, availableSizes, colors, star, price
-    // }`
-    //   );
-
-    const res = await axios.get(URL);
-    return res.data;
+    // const res = await axios.get(URL);
+    return data.products;
   }
 );
 
 export const fetchCartItems = createAsyncThunk(
   'multiCart/fetchCartItems',
   async () => {
-    const res = await axios.get(URL_CARTITEMS);
-    return res.data;
+    // const res = await axios.get(URL_CARTITEMS);
+    return data.cartItems;
   }
 );
 
 export const fetchCompare = createAsyncThunk(
   'multiCart/fetchCompare',
   async () => {
-    const res = await axios.get(URL_COMPARE);
-    return res.data;
+    // const res = await axios.get(URL_COMPARE);
+    return data.compare;
   }
 );
 
 export const fetchWishList = createAsyncThunk(
   'multiCart/fetchWishList',
   async () => {
-    const res = await axios.get(URL_WISHLIST);
-    return res.data;
+    // const res = await axios.get(URL_WISHLIST);
+    return data.wishList;
   }
 );
 
 export const postComment = createAsyncThunk(
   'multiCart/replyComment',
   async (rComment) => {
-    const res = axios.post(URL_COMMENT, rComment);
+    // const res = axios.post(URL_COMMENT, rComment);
   }
 );
 
