@@ -1,28 +1,28 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import sanityClient from "../client";
-import axios from "axios";
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import sanityClient from '../client';
+import axios from 'axios';
 
-const URL = "http://127.0.0.1:5000/products/";
-const URL_COMMENT = "http://127.0.0.1:5000/comments/";
-const URL_CARTITEMS = "http://127.0.0.1:5000/cartItems/";
-const URL_WISHLIST = "http://127.0.0.1:5000/wishList/";
-const URL_COMPARE = "http://127.0.0.1:5000/compare/";
+const URL = 'http://127.0.0.1:5000/products/';
+const URL_COMMENT = 'http://127.0.0.1:5000/comments/';
+const URL_CARTITEMS = 'http://127.0.0.1:5000/cartItems/';
+const URL_WISHLIST = 'http://127.0.0.1:5000/wishList/';
+const URL_COMPARE = 'http://127.0.0.1:5000/compare/';
 
 //get all data from database
 export const fetchComments = createAsyncThunk(
-  "multiCart/fetchComments",
+  'multiCart/fetchComments',
   async () => {
     const res = await axios({
       url: URL_COMMENT,
       headers: {
-        "content-type": "application/json",
+        'content-type': 'application/json',
       },
     });
     return res.data;
   }
 );
 export const fetchProducts = createAsyncThunk(
-  "multiCart/fetchProducts",
+  'multiCart/fetchProducts',
   async () => {
     //   const data = await sanityClient.fetch(
     //     `*[_type == "products"]{_id,
@@ -36,13 +36,13 @@ export const fetchProducts = createAsyncThunk(
     // }`
     //   );
 
-    const res = await axios(URL);
+    const res = await axios.get(URL);
     return res.data;
   }
 );
 
 export const fetchCartItems = createAsyncThunk(
-  "multiCart/fetchCartItems",
+  'multiCart/fetchCartItems',
   async () => {
     const res = await axios.get(URL_CARTITEMS);
     return res.data;
@@ -50,7 +50,7 @@ export const fetchCartItems = createAsyncThunk(
 );
 
 export const fetchCompare = createAsyncThunk(
-  "multiCart/fetchCompare",
+  'multiCart/fetchCompare',
   async () => {
     const res = await axios.get(URL_COMPARE);
     return res.data;
@@ -58,7 +58,7 @@ export const fetchCompare = createAsyncThunk(
 );
 
 export const fetchWishList = createAsyncThunk(
-  "multiCart/fetchWishList",
+  'multiCart/fetchWishList',
   async () => {
     const res = await axios.get(URL_WISHLIST);
     return res.data;
@@ -66,7 +66,7 @@ export const fetchWishList = createAsyncThunk(
 );
 
 export const postComment = createAsyncThunk(
-  "multiCart/replyComment",
+  'multiCart/replyComment',
   async (rComment) => {
     const res = axios.post(URL_COMMENT, rComment);
   }
@@ -91,17 +91,17 @@ const initialState = {
   compare: [],
   temp: [],
   product: {},
-  loading: "",
-  error: "",
+  loading: '',
+  error: '',
   activePagination: 0,
   paginationValues: {
     currentPage: 0,
     perPage: 6,
   },
   filterValues: {
-    size: "All",
-    color: "All",
-    sort: "",
+    size: 'All',
+    color: 'All',
+    sort: '',
     price: 0,
   },
   categories: {
@@ -112,7 +112,7 @@ const initialState = {
 };
 
 const clothingSlice = createSlice({
-  name: "multiCart",
+  name: 'multiCart',
   initialState,
   reducers: {
     handleFindProduct: (state, action) => {
@@ -126,24 +126,24 @@ const clothingSlice = createSlice({
     handleRemoveFilters: (state) => {
       state.filterValues = {
         ...state.filterValues,
-        size: "All",
-        color: "All",
-        sort: "",
+        size: 'All',
+        color: 'All',
+        sort: '',
         price: 0,
       };
     },
     setFilterValues: (state, action) => {
       switch (action.payload.type) {
-        case "color":
+        case 'color':
           state.filterValues.color = action.payload.val;
           break;
-        case "size":
+        case 'size':
           state.filterValues.size = action.payload.val;
           break;
-        case "sort":
+        case 'sort':
           state.filterValues.sort = action.payload.val;
           break;
-        case "price":
+        case 'price':
           state.filterValues.price = action.payload.val;
           break;
       }
@@ -160,8 +160,8 @@ const clothingSlice = createSlice({
       state.temp = [...state.items];
 
       if (
-        state.filterValues.size.toLowerCase() !== "all" &&
-        state.filterValues.size !== ""
+        state.filterValues.size.toLowerCase() !== 'all' &&
+        state.filterValues.size !== ''
       ) {
         state.temp = state.temp.filter((item) =>
           item.availableSizes.includes(state.filterValues.size)
@@ -170,7 +170,7 @@ const clothingSlice = createSlice({
     },
 
     handleFilterByColor: (state) => {
-      if (state.filterValues.color.toLowerCase() !== "all")
+      if (state.filterValues.color.toLowerCase() !== 'all')
         state.temp = state.temp.filter((item) =>
           item.colors.includes(state.filterValues.color)
         );
@@ -189,10 +189,10 @@ const clothingSlice = createSlice({
     },
     handleFilterBySort: (state, action) => {
       state.temp.sort((a, b) => {
-        if (state.filterValues.sort.toLowerCase() === "ascending") {
+        if (state.filterValues.sort.toLowerCase() === 'ascending') {
           if (a.price > b.price) return 1;
           return -1;
-        } else if (state.filterValues.sort.toLowerCase() === "descending") {
+        } else if (state.filterValues.sort.toLowerCase() === 'descending') {
           if (a.price < b.price) return 1;
           return -1;
         } else {
@@ -307,11 +307,11 @@ const clothingSlice = createSlice({
     handleGetUniqueValue: (state, action) => {
       const temp = state.items.map((p) => p[action.payload]).flat();
 
-      if (action.payload === "colors")
-        state.categories.colors = ["all", ...new Set(temp)];
+      if (action.payload === 'colors')
+        state.categories.colors = ['all', ...new Set(temp)];
 
-      if (action.payload === "availableSizes") {
-        const t = ["All", ...new Set(temp)];
+      if (action.payload === 'availableSizes') {
+        const t = ['All', ...new Set(temp)];
         state.categories.size = t.map((s) => {
           return { value: s, label: s };
         });
@@ -330,10 +330,10 @@ const clothingSlice = createSlice({
   extraReducers: {
     // fetch products
     [fetchProducts.pending]: (state) => {
-      state.loading = "loading";
+      state.loading = 'loading';
     },
     [fetchProducts.fulfilled]: (state, action) => {
-      state.loading = "succeeded";
+      state.loading = 'succeeded';
       state.items = action.payload;
       state.temp = action.payload;
 
@@ -345,16 +345,16 @@ const clothingSlice = createSlice({
       state.filterValues.maxVal = tempSort.at(-1).price;
     },
     [fetchProducts.rejected]: (state, action) => {
-      state.loading = "faild";
+      state.loading = 'faild';
       state.error = action.error.message;
     },
 
     //fetch comments
     [fetchComments.pending]: (state) => {
-      state.loading = "loading";
+      state.loading = 'loading';
     },
     [fetchComments.fulfilled]: (state, action) => {
-      state.loading = "succeeded";
+      state.loading = 'succeeded';
       var mapArr = {};
       action.payload.forEach((item) => {
         var id = item.id;
@@ -392,46 +392,46 @@ const clothingSlice = createSlice({
       }
     },
     [fetchComments.rejected]: (state, action) => {
-      state.loading = "faild";
+      state.loading = 'faild';
       state.error = action.error.message;
     },
 
     //fetch cartItems
     [fetchCartItems.pending]: (state) => {
-      state.loading = "loading";
+      state.loading = 'loading';
     },
     [fetchCartItems.fulfilled]: (state, action) => {
-      state.loading = "succeeded";
+      state.loading = 'succeeded';
       state.cartItems = action.payload;
     },
     [fetchCartItems.rejected]: (state, action) => {
-      state.loading = "faild";
+      state.loading = 'faild';
       state.error = action.error.message;
     },
 
     //fetch wishList
     [fetchWishList.pending]: (state) => {
-      state.loading = "loading";
+      state.loading = 'loading';
     },
     [fetchWishList.fulfilled]: (state, action) => {
-      state.loading = "succeeded";
+      state.loading = 'succeeded';
       state.likeItems = action.payload;
     },
     [fetchWishList.rejected]: (state, action) => {
-      state.loading = "faild";
+      state.loading = 'faild';
       state.error = action.error.message;
     },
 
     //fetch compare list
     [fetchCompare.pending]: (state) => {
-      state.loading = "loading";
+      state.loading = 'loading';
     },
     [fetchCompare.fulfilled]: (state, action) => {
-      state.loading = "succeeded";
+      state.loading = 'succeeded';
       state.compare = action.payload;
     },
     [fetchCompare.rejected]: (state, action) => {
-      state.loading = "faild";
+      state.loading = 'faild';
       state.error = action.error.message;
     },
   },
