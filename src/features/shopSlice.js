@@ -2,11 +2,11 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import sanityClient from '../client';
 import axios from 'axios';
 
-const URL = 'http://127.0.0.1:5000/products/';
-const URL_COMMENT = 'http://127.0.0.1:5000/comments/';
-const URL_CARTITEMS = 'http://127.0.0.1:5000/cartItems/';
-const URL_WISHLIST = 'http://127.0.0.1:5000/wishList/';
-const URL_COMPARE = 'http://127.0.0.1:5000/compare/';
+const URL = ' https://8b76-185-207-249-102.ngrok.io/products/';
+const URL_COMMENT = ' https://8b76-185-207-249-102.ngrok.io/comments/';
+const URL_CARTITEMS = ' https://8b76-185-207-249-102.ngrok.io/cartItems/';
+const URL_WISHLIST = ' https://8b76-185-207-249-102.ngrok.io/wishList/';
+const URL_COMPARE = ' https://8b76-185-207-249-102.ngrok.io/compare/';
 
 //get all data from database
 export const fetchComments = createAsyncThunk(
