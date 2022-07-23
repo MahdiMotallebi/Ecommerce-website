@@ -1,35 +1,24 @@
-import React, { useEffect } from "react";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Form from "react-bootstrap/Form";
-import Nav from "react-bootstrap/Nav";
-import Image from "react-bootstrap/Image";
-import LogoFooter from "../../img/black-logo.png";
-import { v4 as uuidv4 } from "uuid";
-import AOS from "aos";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from 'react';
+import { Row, Col, Form, Nav, Image, Button, Container } from 'react-bootstrap';
+import LogoFooter from '../../img/black-logo.png';
+import { v4 as uuidv4 } from 'uuid';
 import {
-  faTwitter,
-  faFacebook,
-  faGooglePlus,
-  faInstagram,
-} from "@fortawesome/free-brands-svg-icons";
-
-import Button from "react-bootstrap/Button";
-import Container from "react-bootstrap/Container";
-import {
-  faPhone,
-  faFax,
-  faEnvelope,
-  faLocationDot,
-} from "@fortawesome/free-solid-svg-icons";
+  BsTwitter,
+  BsFacebook,
+  BsInstagram,
+  BsGoogle,
+  BsFillTelephoneFill,
+  BsFillEnvelopeFill,
+  BsFillPinMapFill,
+  BsFillPrinterFill,
+} from 'react-icons/bs';
 
 const Footer = () => {
   const importAll = (r) => {
     return r.keys().map(r);
   };
   const footerIcon = importAll(
-    require.context("../../img/icon-footer", false, /\.(png|jpe?g|svg)$/)
+    require.context('../../img/icon-footer', false, /\.(png|jpe?g|svg)$/)
   );
   return (
     <footer className="footer">
@@ -85,22 +74,22 @@ const Footer = () => {
                 <Nav className="d-flex gap-4 mt-3 flex-row justify-content-start align-items-center ">
                   <Nav.Item>
                     <Nav.Link>
-                      <FontAwesomeIcon icon={faFacebook}></FontAwesomeIcon>
+                      <BsFacebook />
                     </Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
                     <Nav.Link>
-                      <FontAwesomeIcon icon={faTwitter}></FontAwesomeIcon>
+                      <BsTwitter />
                     </Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
                     <Nav.Link>
-                      <FontAwesomeIcon icon={faGooglePlus}></FontAwesomeIcon>
+                      <BsGoogle />
                     </Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
                     <Nav.Link>
-                      <FontAwesomeIcon icon={faInstagram}></FontAwesomeIcon>
+                      <BsInstagram />
                     </Nav.Link>
                   </Nav.Item>
                 </Nav>
@@ -146,19 +135,19 @@ const Footer = () => {
                 <h3 className="pb-2">store information</h3>
                 <Nav className="d-flex flex-column gap-2">
                   <Nav.Item>
-                    <FontAwesomeIcon icon={faLocationDot}></FontAwesomeIcon>
+                    <BsFillPinMapFill className="h4" />
                     multikart demo store, demo store india 345-659
                   </Nav.Item>
                   <Nav.Item>
-                    <FontAwesomeIcon icon={faPhone}></FontAwesomeIcon>
+                    <BsFillTelephoneFill />
                     Call Us: 123-456-7898
                   </Nav.Item>
                   <Nav.Item>
-                    <FontAwesomeIcon icon={faEnvelope}></FontAwesomeIcon>
+                    <BsFillEnvelopeFill />
                     Support@Fiot.Com
                   </Nav.Item>
                   <Nav.Item>
-                    <FontAwesomeIcon icon={faFax}></FontAwesomeIcon>
+                    <BsFillPrinterFill />
                     Fax: 123456
                   </Nav.Item>
                 </Nav>

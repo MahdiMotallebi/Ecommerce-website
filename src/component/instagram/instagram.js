@@ -1,18 +1,13 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faClock } from "@fortawesome/free-solid-svg-icons";
-import { faInstagram } from "@fortawesome/free-brands-svg-icons";
-import Image from "react-bootstrap/Image";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { BsInstagram } from 'react-icons/bs';
+import Image from 'react-bootstrap/Image';
 const Instagram = ({ img }) => {
   return (
     <div className="instagram-content position-relative">
       <Link to="#">
         <Image variant="top" src={img} loading="lazy" />
-        <FontAwesomeIcon
-          className="instagram-icon position-absolute top-50"
-          icon={faInstagram}
-        ></FontAwesomeIcon>
+        <BsInstagram className="instagram-icon position-absolute top-50" />
       </Link>
     </div>
   );

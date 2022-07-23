@@ -1,25 +1,24 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link, Outlet } from "react-router-dom";
-import Breadcrumb from "../breadCrumb/breadCrumb";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import ListGroup from "react-bootstrap/ListGroup";
-import Image from "react-bootstrap/Image";
-import headerSingleBlog from "../../img/singleBlog/header.jpg";
-import img1 from "../../img/singleBlog/1.jpg";
-import img2 from "../../img/singleBlog/2.jpg";
-import avatar from "../../img/singleBlog/comment2.jpg";
-import { v4 as uuidv4 } from "uuid";
-import Comments from "../../component/comments/comments";
-import { faComment, faHeart } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Formik } from "formik";
-import * as yup from "yup";
-import { addComment, postComment } from "../../features/shopSlice";
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, Outlet } from 'react-router-dom';
+import Breadcrumb from '../breadCrumb/breadCrumb';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import ListGroup from 'react-bootstrap/ListGroup';
+import Image from 'react-bootstrap/Image';
+import headerSingleBlog from '../../img/singleBlog/header.jpg';
+import img1 from '../../img/singleBlog/1.jpg';
+import img2 from '../../img/singleBlog/2.jpg';
+import avatar from '../../img/singleBlog/comment2.jpg';
+import { v4 as uuidv4 } from 'uuid';
+import Comments from '../../component/comments/comments';
+import { BsHeart } from 'react-icons/bs';
+import { Formik } from 'formik';
+import * as yup from 'yup';
+import { addComment, postComment } from '../../features/shopSlice';
 
 const SingleBlog = () => {
   const dispatch = useDispatch();
@@ -31,9 +30,8 @@ const SingleBlog = () => {
 
   React.useEffect(() => {
     window.scrollTo(0, 0);
-  }, [] );
-  
-  
+  }, []);
+
   return (
     <>
       <Breadcrumb />
@@ -63,13 +61,13 @@ const SingleBlog = () => {
                       </Col>
                       <Col xs={12} lg={3}>
                         <div className="count-like-post ">
-                          <FontAwesomeIcon icon={faHeart}></FontAwesomeIcon>{" "}
+                          <BsHeart />
                           <span className="d-inline-block ms-2">235 hits</span>
                         </div>
                       </Col>
                       <Col xs={12} lg={3}>
                         <div className="count-comment-post">
-                          <FontAwesomeIcon icon={faComment}></FontAwesomeIcon>
+                          <BsHeart />
 
                           <span className="d-inline-block ms-2">
                             104 comments
@@ -172,16 +170,16 @@ const SingleBlog = () => {
               <Col md={8} lg={5}>
                 <Formik
                   initialValues={{
-                    name: "",
-                    email: "",
-                    textComment: "",
+                    name: '',
+                    email: '',
+                    textComment: '',
                   }}
                   onSubmit={(values, props) => {
                     const newComment = {
                       id: uuidv4(),
                       body: values.textComment,
                       username: values.name,
-                      userId: "2",
+                      userId: '2',
                       parentId: null,
                       children: [],
                       avatar: `${avatar}`,

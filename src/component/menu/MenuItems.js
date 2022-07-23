@@ -1,14 +1,10 @@
-import React, { useState } from "react";
-import AnimateHeight from "react-animate-height";
-import {
-  faChevronDown,
-  faChevronRight,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Nav } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import DropDown from "./DropDown";
-import MegaMenu from "./megaMenu";
+import React, { useState } from 'react';
+import AnimateHeight from 'react-animate-height';
+import { BsChevronDown, BsChevronRight } from 'react-icons/bs';
+import { Nav } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import DropDown from './DropDown';
+import MegaMenu from './megaMenu';
 
 const MenuItems = ({ menu, depthLevel }) => {
   const [dropdown, setDropdown] = useState(false);
@@ -16,7 +12,7 @@ const MenuItems = ({ menu, depthLevel }) => {
 
   const handleCLick = () => {
     setDropdown((prev) => !prev);
-    setHeight(height === 0 ? "auto" : 0);
+    setHeight(height === 0 ? 'auto' : 0);
   };
   return (
     <>
@@ -32,11 +28,11 @@ const MenuItems = ({ menu, depthLevel }) => {
             {menu.title}
             {depthLevel > 0 ? (
               <span className="arrow-menu">
-                <FontAwesomeIcon icon={faChevronRight}></FontAwesomeIcon>
+                <BsChevronRight />
               </span>
             ) : (
               <span className="arrow-menu">
-                <FontAwesomeIcon icon={faChevronDown}></FontAwesomeIcon>
+                <BsChevronDown />
               </span>
             )}
           </Nav.Link>
@@ -60,7 +56,7 @@ const MenuItems = ({ menu, depthLevel }) => {
               <Nav.Link onClick={handleCLick} as={Link} to={menu.to}>
                 {menu.title}
                 <span className="arrow-menu">
-                  <FontAwesomeIcon icon={faChevronDown}></FontAwesomeIcon>
+                  <BsChevronDown />
                 </span>
               </Nav.Link>
               <MegaMenu menu={menu} height={height} />

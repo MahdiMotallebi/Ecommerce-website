@@ -1,16 +1,15 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { allState } from "../../features/shopSlice";
-import Instagram from "../../component/instagram/instagram";
-import Blog from "../../component/blog/blog";
-import Slider from "react-slick";
-import { Row, Container, Col, Image } from "react-bootstrap";
-import ProductsTab from "../ProductsTab/ProductsTab";
-import Products from "../products/products";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faClock, faCar, faBullhorn } from "@fortawesome/free-solid-svg-icons";
-import { v4 as uuidv4 } from "uuid";
-import { ToastContainer } from "react-toastify";
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { allState } from '../../features/shopSlice';
+import Instagram from '../../component/instagram/instagram';
+import Blog from '../../component/blog/blog';
+import Slider from 'react-slick';
+import { Row, Container, Col, Image } from 'react-bootstrap';
+import ProductsTab from '../ProductsTab/ProductsTab';
+import Products from '../products/products';
+import { BsTruck, BsClock, BsCapslock } from 'react-icons/bs';
+import { v4 as uuidv4 } from 'uuid';
+import { ToastContainer } from 'react-toastify';
 
 const Shop = () => {
   const state = useSelector(allState);
@@ -19,13 +18,13 @@ const Shop = () => {
     return r.keys().map(r);
   };
   const instaImage = importAll(
-    require.context("../../img/insta", false, /\.(png|jpe?g|svg)$/)
+    require.context('../../img/insta', false, /\.(png|jpe?g|svg)$/)
   );
   const blogImage = importAll(
-    require.context("../../img/blog", false, /\.(png|jpe?g|svg)$/)
+    require.context('../../img/blog', false, /\.(png|jpe?g|svg)$/)
   );
   const logoImage = importAll(
-    require.context("../../img/logos", false, /\.(png|jpe?g|svg)$/)
+    require.context('../../img/logos', false, /\.(png|jpe?g|svg)$/)
   );
 
   const mainShop = {
@@ -214,7 +213,7 @@ const Shop = () => {
             <Col xs={12} md={4}>
               <div className="news-one  hover-news px-2">
                 <div className="img-news">
-                  <FontAwesomeIcon icon={faCar}></FontAwesomeIcon>
+                  <BsTruck />
                 </div>
                 <div className="content-news">
                   <h3>free shipping</h3>
@@ -225,7 +224,7 @@ const Shop = () => {
             <Col xs={12} md={4}>
               <div className="news-two styleBorder hover-news px-2">
                 <div className="img-news">
-                  <FontAwesomeIcon icon={faClock}></FontAwesomeIcon>
+                  <BsCapslock />
                 </div>
                 <div className="content-news">
                   <h3>24 x 7 service</h3>
@@ -236,7 +235,7 @@ const Shop = () => {
             <Col xs={12} md={4}>
               <div className="news-three hover-news px-2">
                 <div className="img-news">
-                  <FontAwesomeIcon icon={faBullhorn}></FontAwesomeIcon>
+                  <BsClock />
                 </div>
                 <div className="content-news">
                   <h3>festival offer</h3>
