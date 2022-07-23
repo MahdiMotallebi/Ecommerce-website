@@ -317,8 +317,8 @@ const clothingSlice = createSlice({
     },
     [fetchProducts.fulfilled]: (state, action) => {
       state.loading = 'succeeded';
-      state.items = action.payload;
-      state.temp = action.payload;
+      state.items = [...action.payload];
+      state.temp = [...action.payload];
 
       const tempSort = state.items;
       tempSort.sort((a, b) => {
