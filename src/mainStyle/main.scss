@@ -1605,6 +1605,9 @@ textarea {
 }
 /***** allShop *****/
 
+.allShop {
+  overflow-x: hidden;
+}
 .custom-card {
   transition: 0.3s;
   cursor: pointer;

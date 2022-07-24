@@ -2147,6 +2147,10 @@ textarea:focus {
 }
 
 /***** allShop *****/
+.allShop {
+  overflow-x: hidden;
+}
+
 .custom-card {
   -webkit-transition: 0.3s;
   transition: 0.3s;
