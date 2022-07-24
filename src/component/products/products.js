@@ -1,46 +1,46 @@
-import React from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import {
   allState,
   handleLikeItems,
   handleCompare,
-} from "../../features/shopSlice";
-import { Nav, Image, NavItem } from "react-bootstrap";
-import Skeleton from "react-loading-skeleton";
+} from '../../features/shopSlice';
+import { Nav, Image, NavItem } from 'react-bootstrap';
+import Skeleton from 'react-loading-skeleton';
 import {
   BsHeart,
   BsCheckCircle,
   BsSearch,
   BsStarFill,
   BsShuffle,
-} from "react-icons/bs";
-import StarRating from "../../component/star/star";
-import { Link } from "react-router-dom";
-import { toast, Flip } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { v4 as uuidv4 } from "uuid";
+} from 'react-icons/bs';
+import StarRating from '../../component/star/star';
+import { Link } from 'react-router-dom';
+import { toast, Flip } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { v4 as uuidv4 } from 'uuid';
 const Products = ({ item, loading = 0, setLoading }) => {
   const state = useSelector(allState);
   const dispatch = useDispatch();
-  if (state.loading === "succeeded") {
+  if (state.loading === 'succeeded') {
     setTimeout(() => {
       setLoading(0);
-    }, "3000");
+    }, '3000');
   }
 
   const { id, image, title, price, star, availableSizes } = item;
 
   const handlePlusLikeCount = () => {
-    toast.success("Product Added To Wishlist.", {
+    toast.success('Product Added To Wishlist.', {
       icon: <BsCheckCircle />,
-      position: "bottom-left",
+      position: 'bottom-left',
       autoClose: 1500,
       hideProgressBar: true,
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
       transition: Flip,
-      className: "toast-success",
+      className: 'toast-success',
     });
     dispatch(handleLikeItems(item));
   };
@@ -51,17 +51,17 @@ const Products = ({ item, loading = 0, setLoading }) => {
       check = state.compare.some((p) => p.id === id);
 
     toast.success(
-      `${check ? "Product Already Added." : "Product Added To Compare."}`,
+      `${check ? 'Product Already Added.' : 'Product Added To Compare.'}`,
       {
         icon: !check && <BsCheckCircle />,
-        position: "bottom-left",
+        position: 'bottom-left',
         autoClose: 1500,
         hideProgressBar: true,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
         transition: Flip,
-        className: "toast-success",
+        className: 'toast-success',
       }
     );
     !check && dispatch(handleCompare(item));
@@ -80,13 +80,13 @@ const Products = ({ item, loading = 0, setLoading }) => {
               </NavItem>
 
               <NavItem title="quick view">
-                <Link to={`/productDetail/${id}`} style={{ color: "#bbb" }}>
+                <Link to={`/productDetail/${id}`} style={{ color: '#bbb' }}>
                   <BsSearch className="quick-view product-tool" />
                 </Link>
               </NavItem>
 
               <NavItem title="compare" onClick={handleAddToCompare}>
-                <BsShuffle className="compare product-tool" />
+                <BsShuffle className="product-tool" />
               </NavItem>
             </Nav>
           </div>

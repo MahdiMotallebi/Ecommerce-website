@@ -1,5 +1,5 @@
-import React from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import {
   Container,
   Row,
@@ -8,24 +8,24 @@ import {
   Nav,
   Button,
   NavItem,
-} from "react-bootstrap";
+} from 'react-bootstrap';
 
 import {
   allState,
   handleCartItems,
   handleLikeItems,
   handleCompare,
-} from "../../features/shopSlice";
+} from '../../features/shopSlice';
 
-import { toast, Flip } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast, Flip } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import {
   BsCart,
   BsHeart,
   BsShuffle,
   BsCheck2,
   BsCheckCircle,
-} from "react-icons/bs";
+} from 'react-icons/bs';
 
 const ActionsProduct = () => {
   const state = useSelector(allState);
@@ -33,8 +33,8 @@ const ActionsProduct = () => {
   const { id, image, title, description, price, availableSizes, colors } =
     state.product;
   const [count, setCount] = React.useState(1);
-  const [size, setSize] = React.useState("");
-  const [color, setColor] = React.useState("");
+  const [size, setSize] = React.useState('');
+  const [color, setColor] = React.useState('');
 
   const handleIncrease = () => {
     setCount((prev) => prev + 1);
@@ -45,30 +45,30 @@ const ActionsProduct = () => {
   };
 
   const handleplusCartCount = () => {
-    toast.success("Product Added To Cart.", {
+    toast.success('Product Added To Cart.', {
       icon: <BsCheckCircle />,
-      position: "bottom-left",
+      position: 'bottom-left',
       autoClose: 1500,
       hideProgressBar: true,
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
       transition: Flip,
-      className: "toast-success",
+      className: 'toast-success',
     });
     dispatch(handleCartItems({ id, size, count, color }));
   };
   const handlePlusLikeCount = () => {
-    toast.success("Product Added To Wishlist.", {
+    toast.success('Product Added To Wishlist.', {
       icon: <BsCheckCircle />,
-      position: "bottom-left",
+      position: 'bottom-left',
       autoClose: 1500,
       hideProgressBar: true,
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
       transition: Flip,
-      className: "toast-success",
+      className: 'toast-success',
     });
     dispatch(handleLikeItems(state.product));
   };
@@ -79,17 +79,17 @@ const ActionsProduct = () => {
       check = state.compare.some((p) => p.id === state.product.id);
 
     toast.success(
-      `${check ? "Product Already Added." : "Product Added To Compare."}`,
+      `${check ? 'Product Already Added.' : 'Product Added To Compare.'}`,
       {
         icon: !check && <BsCheckCircle />,
-        position: "bottom-left",
+        position: 'bottom-left',
         autoClose: 1500,
         hideProgressBar: true,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
         transition: Flip,
-        className: "toast-success",
+        className: 'toast-success',
       }
     );
     !check && dispatch(handleCompare(state.product));
@@ -155,7 +155,7 @@ const ActionsProduct = () => {
                             <div
                               key={index}
                               className={`size-item  ${
-                                size === s && "activeSize"
+                                size === s && 'activeSize'
                               }`}
                               onClick={() => setSize(s)}
                             >
@@ -178,12 +178,12 @@ const ActionsProduct = () => {
                                 color === c
                                   ? {
                                       background: c,
-                                      outline: "1px solid black",
-                                      outlineOffset: "1px",
+                                      outline: '1px solid black',
+                                      outlineOffset: '1px',
                                     }
                                   : {
                                       background: c,
-                                      outline: "none",
+                                      outline: 'none',
                                     }
                               }
                               className="color-product position-relative"
@@ -209,7 +209,7 @@ const ActionsProduct = () => {
                       </NavItem>
 
                       <NavItem title="compare" onClick={handleAddToCompare}>
-                        <BsShuffle className="compare product-tool" />
+                        <BsShuffle className="product-tool" />
                       </NavItem>
                     </Nav>
                   </div>

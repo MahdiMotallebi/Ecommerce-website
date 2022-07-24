@@ -286,8 +286,6 @@ textarea {
 
 html {
   scroll-behavior: smooth;
-  height: 100%;
-  width: 100%;
   overflow-x: hidden;
 }
 
@@ -557,56 +555,6 @@ body {
 
 .hover-cart::first-letter {
   text-transform: capitalize;
-}
-
-.compare {
-  position: relative;
-}
-
-.compare:hover .hover-compare {
-  top: 30px;
-  bottom: unset;
-  opacity: 1;
-  visibility: visible;
-}
-
-.hover-compare {
-  position: absolute;
-  background: #fff;
-  -webkit-box-shadow: 0 0 3px #ccc;
-          box-shadow: 0 0 3px #ccc;
-  width: 180px;
-  padding: 1em;
-  opacity: 0;
-  visibility: hidden;
-  -webkit-transition: 0.2s ease-in;
-  transition: 0.2s ease-in;
-  z-index: 100;
-  top: 50px;
-  bottom: unset;
-  right: 0;
-}
-
-.hover-compare h6 {
-  text-transform: capitalize;
-  color: #000;
-  font-weight: 500;
-}
-
-.hover-compare .nav-item {
-  color: #000;
-  font-size: 1em;
-  padding: 0.2em 1em;
-  cursor: pointer;
-  font-size: 1rem;
-}
-
-.hover-compare .language .nav-item {
-  text-transform: capitalize;
-}
-
-.hover-compare .currency .nav-item {
-  text-transform: uppercase;
 }
 
 .wishlist {

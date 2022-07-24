@@ -1,5 +1,5 @@
-import React from "react";
-import { BsChevronUp } from "react-icons/bs";
+import React from 'react';
+import { BsChevronUp } from 'react-icons/bs';
 const ScrollTop = () => {
   const [visible, setVisible] = React.useState(false);
 
@@ -16,13 +16,13 @@ const ScrollTop = () => {
     window.scroll({
       top: 0,
       left: 0,
-      behavior: "smooth",
+      behavior: 'smooth',
     });
   };
-  window.addEventListener("scroll", handleScrollTop);
+  window.addEventListener('scroll', handleScrollTop);
 
   return (
-    <div className={`go-to-top ${visible && "showScroll"}`} onClick={goToTop}>
+    <div className={`go-to-top ${visible && 'showScroll'}`} onClick={goToTop}>
       <BsChevronUp />
     </div>
   );

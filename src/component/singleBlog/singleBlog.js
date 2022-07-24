@@ -15,7 +15,7 @@ import img2 from '../../img/singleBlog/2.jpg';
 import avatar from '../../img/singleBlog/comment2.jpg';
 import { v4 as uuidv4 } from 'uuid';
 import Comments from '../../component/comments/comments';
-import { BsHeart } from 'react-icons/bs';
+import { BsHeart, BsChat } from 'react-icons/bs';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import { addComment, postComment } from '../../features/shopSlice';
@@ -67,7 +67,7 @@ const SingleBlog = () => {
                       </Col>
                       <Col xs={12} lg={3}>
                         <div className="count-comment-post">
-                          <BsHeart />
+                          <BsChat />
 
                           <span className="d-inline-block ms-2">
                             104 comments

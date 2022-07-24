@@ -1,12 +1,12 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { v4 as uuidv4 } from "uuid";
-import { Container, Row, Col } from "react-bootstrap";
-import { allState } from "../../features/shopSlice";
-import Products from "../products/products";
-import Category from "../category/category";
-import Pagination from "../pagination/pagination";
-import { BsFilter } from "react-icons/bs";
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { v4 as uuidv4 } from 'uuid';
+import { Container, Row, Col } from 'react-bootstrap';
+import { allState } from '../../features/shopSlice';
+import Products from '../products/products';
+import Category from '../category/category';
+import Pagination from '../pagination/pagination';
+import { BsFilter } from 'react-icons/bs';
 const AllShop = () => {
   const state = useSelector(allState);
   const [loading, setLoading] = React.useState(1);
@@ -15,7 +15,7 @@ const AllShop = () => {
     window.scrollTo(0, 0);
   }, [state.paginationValues.currentPage]);
   return (
-    <div className="allShop my-4">
+    <div className="allShop my-4 w-100 h-100 overflow-hidden">
       <Container>
         <Row>
           <Col xl={3}>
@@ -28,7 +28,7 @@ const AllShop = () => {
             </button>
             <div
               className={`filterPanel ${
-                showFilter ? "showFilter" : "hideFilter"
+                showFilter ? 'showFilter' : 'hideFilter'
               }`}
             >
               <Category setShowFilter={setShowFilter} />
