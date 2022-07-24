@@ -15,10 +15,10 @@ const AllShop = () => {
     window.scrollTo(0, 0);
   }, [state.paginationValues.currentPage]);
   return (
-    <div className="allShop my-4 w-100 h-100 overflow-hidden">
+    <div className="allShop my-4">
       <Container>
         <Row>
-          <Col xl={3}>
+          {/* <Col xl={3}>
             <button
               onClick={() => setShowFilter(!showFilter)}
               className="btn d-xl-none border-bottom text-capitalize"
@@ -33,7 +33,7 @@ const AllShop = () => {
             >
               <Category setShowFilter={setShowFilter} />
             </div>
-          </Col>
+          </Col> */}
           <Col>
             <div className="h-100 pt-3 position-relative">
               <Row className="g-0">
