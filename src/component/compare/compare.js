@@ -1,31 +1,31 @@
-import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { allState, RemoveItemFromCompare } from "../../features/shopSlice";
-import { Container, Row, Col, Image } from "react-bootstrap";
-import { toast, Flip } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { v4 as uuidv4 } from "uuid";
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { allState, RemoveItemFromCompare } from '../../features/shopSlice';
+import { Container, Row, Col, Image } from 'react-bootstrap';
+import { toast, Flip } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { v4 as uuidv4 } from 'uuid';
 import {
   BsFillXCircleFill,
   BsXCircle,
   BsCheckCircle,
   BsShuffle,
-} from "react-icons/bs";
+} from 'react-icons/bs';
 const Compare = () => {
   const state = useSelector(allState);
   const dispatch = useDispatch();
 
   const handleRemove = (id) => {
-    toast.error("Product Removed From Compare.", {
+    toast.error('Product Removed From Compare.', {
       icon: <BsXCircle />,
-      position: "bottom-left",
+      position: 'bottom-left',
       autoClose: 1500,
       hideProgressBar: true,
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
       transition: Flip,
-      className: "toast-success",
+      className: 'toast-success',
     });
     dispatch(RemoveItemFromCompare(id));
   };
@@ -42,10 +42,10 @@ const Compare = () => {
       }
     };
 
-    window.addEventListener("resize", handleWindowResize);
+    window.addEventListener('resize', handleWindowResize);
 
     return () => {
-      window.removeEventListener("resize", handleWindowResize);
+      window.removeEventListener('resize', handleWindowResize);
     };
   }, []);
   return (
@@ -59,7 +59,7 @@ const Compare = () => {
                 <Col xs={6} md={3} key={uuidv4()}>
                   <div className="d-flex flex-column gap-4 border p-3 position-relative">
                     <button
-                      className="btn position-absolute top-0 end-0"
+                      className="btn border-0 position-absolute top-0 end-0"
                       onClick={() => handleRemove(id)}
                     >
                       <BsFillXCircleFill />
@@ -70,7 +70,7 @@ const Compare = () => {
                           src={image}
                           alt={title}
                           loading="lazy"
-                          style={{ width: "120px", height: "150px" }}
+                          style={{ width: '120px', height: '150px' }}
                         />
                       </div>
                       <h6>${price}</h6>

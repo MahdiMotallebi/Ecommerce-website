@@ -11,8 +11,6 @@
 
 html {
   scroll-behavior: smooth;
-  // height: 100%;
-  // width: 100%;
   overflow-x: hidden;
 }
 
@@ -1572,15 +1570,16 @@ textarea {
 
 .filterPanel {
   top: 0px;
+  right: 0;
   z-index: 100000;
   display: block;
   position: absolute;
   width: 300px;
+  transition: 0.5s;
 
   @include x-small {
     width: 200px;
   }
-  transition: 0.5s;
 
   @include desktop {
     position: relative;

@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import Select from "react-select";
-import { Row, Col } from "react-bootstrap";
-import { BsFillXCircleFill } from "react-icons/bs";
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import Select from 'react-select';
+import { Row, Col } from 'react-bootstrap';
+import { BsFillXCircleFill } from 'react-icons/bs';
 import {
   allState,
   handleCurrentPage,
@@ -14,21 +14,21 @@ import {
   handleFilterBySize,
   handleFilterBySort,
   handleFilterByPrice,
-} from "../../features/shopSlice";
+} from '../../features/shopSlice';
 
 const Category = ({ setShowFilter }) => {
   const state = useSelector(allState);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(handleGetUniqueValue("colors"));
-    dispatch(handleGetUniqueValue("availableSizes"));
+    dispatch(handleGetUniqueValue('colors'));
+    dispatch(handleGetUniqueValue('availableSizes'));
   }, [state.items]);
 
   const sort = [
-    { value: "Newest", label: "Newest" },
-    { value: "Descending", label: "Descending" },
-    { value: "Ascending", label: "Ascending" },
+    { value: 'Newest', label: 'Newest' },
+    { value: 'Descending', label: 'Descending' },
+    { value: 'Ascending', label: 'Ascending' },
   ];
 
   useEffect(() => {
@@ -68,29 +68,32 @@ const Category = ({ setShowFilter }) => {
   const customStyles = {
     control: (provided, state) => ({
       ...provided,
-      background: "none",
-      border: "1px solid #bbb",
-      cursor: "pointer",
-      outline: "none",
+      background: 'none',
+      border: '1px solid #bbb',
+      cursor: 'pointer',
+      outline: 'none',
     }),
 
     option: (provided, state) => ({
       ...provided,
-      background: state.isFocused ? "#f5f5f5" : "#fff",
-      color: "#000",
+      background: state.isFocused ? '#f5f5f5' : '#fff',
+      color: '#000',
     }),
     placeholder: (provided, state) => ({
       ...provided,
       opacity: 0.7,
-      letterSpacing: ".5px",
+      letterSpacing: '.5px',
     }),
   };
   return (
     <div className="filterProduct border p-3 p-lg-4 my-3 bg-white">
       <div className="d-flex justify-content-between align-items-center mb-3">
         <h3 className="text-capitalize fw-bold m-0">filters</h3>
-        <button onClick={() => setShowFilter(false)} className="btn d-xl-none">
-          <BsFillXCircleFill style={{ width: "20px", height: "20px" }} />
+        <button
+          onClick={() => setShowFilter(false)}
+          className="btn border-0 d-xl-none"
+        >
+          <BsFillXCircleFill style={{ width: '20px', height: '20px' }} />
         </button>
       </div>
       <Row className="category d-flex flex-column justify-content-center gap-5">
@@ -105,7 +108,7 @@ const Category = ({ setShowFilter }) => {
               placeholder="Select size"
               value={defaultValueSize(state.filterValues.size)}
               onChange={(e) =>
-                dispatch(setFilterValues({ type: "size", val: e.value }))
+                dispatch(setFilterValues({ type: 'size', val: e.value }))
               }
               placeholder="Filter By Size"
             />
@@ -121,7 +124,7 @@ const Category = ({ setShowFilter }) => {
               placeholder="Select sort"
               value={defaultValueSort(sort, state.filterValues.sort)}
               onChange={(e) =>
-                dispatch(setFilterValues({ type: "sort", val: e.value }))
+                dispatch(setFilterValues({ type: 'sort', val: e.value }))
               }
               placeholder="Filter By Price"
             />
@@ -139,17 +142,17 @@ const Category = ({ setShowFilter }) => {
                     state.filterValues.color.toLowerCase() === c
                       ? {
                           background: c,
-                          outline: "1px solid black",
-                          outlineOffset: "1px",
+                          outline: '1px solid black',
+                          outlineOffset: '1px',
                         }
-                      : { background: c, outline: "none" }
+                      : { background: c, outline: 'none' }
                   }
                   className="color-product position-relative border d-flex justify-content-center align-items-center"
                   onClick={() =>
-                    dispatch(setFilterValues({ type: "color", val: c }))
+                    dispatch(setFilterValues({ type: 'color', val: c }))
                   }
                 >
-                  {c === "all" && "All"}
+                  {c === 'all' && 'All'}
                 </div>
               );
             })}
@@ -170,7 +173,7 @@ const Category = ({ setShowFilter }) => {
                 className="range-input"
                 onInput={(e) =>
                   dispatch(
-                    setFilterValues({ type: "price", val: e.target.value })
+                    setFilterValues({ type: 'price', val: e.target.value })
                   )
                 }
               />

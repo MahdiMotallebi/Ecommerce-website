@@ -18,10 +18,10 @@ const AllShop = () => {
     <div className="allShop my-4">
       <Container>
         <Row>
-          <Col xl={3}>
+          <Col xl={3} className="relative">
             <button
               onClick={() => setShowFilter(!showFilter)}
-              className="btn d-xl-none border-bottom text-capitalize"
+              className="btn d-xl-none border text-capitalize"
             >
               <BsFilter className="me-2" />
               filters

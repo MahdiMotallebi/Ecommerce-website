@@ -2105,6 +2105,7 @@ textarea:focus {
 
 .filterPanel {
   top: 0px;
+  right: 0;
   z-index: 100000;
   display: block;
   position: absolute;
