@@ -1,12 +1,14 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
+
 import {
   allState,
   fetchCartItems,
   fetchComments,
   fetchCompare,
   fetchProducts,
-  fetchWishList,
+  fetchWishList
 } from './features/shopSlice';
 import { Routes, Route } from 'react-router-dom';
 import Home from './pages/home';
@@ -26,8 +28,14 @@ import 'react-loading-skeleton/dist/skeleton.css';
 import ScrollTop from './component/scrollTop/scrollTop';
 import ProductDetail from './pages/productDetail';
 import { ToastContainer } from 'react-toastify';
+import Setting from './component/lang/setting';
+import cookies from 'js-cookie';
 const App = () => {
   const dispatch = useDispatch();
+  const state = useSelector(allState);
+  const { t } = useTranslation();
+  const currentLang = cookies.get('i18next');
+  const currentLanguage = state.language.find((l) => l.code === currentLang);
 
   React.useEffect(() => {
     dispatch(fetchProducts());
@@ -37,6 +45,10 @@ const App = () => {
     dispatch(fetchCompare());
   }, []);
 
+  React.useEffect(() => {
+    document.body.dir = currentLanguage.dir || 'ltr';
+    document.title = t('title page');
+  }, [t, currentLang]);
   return (
     <>
       {/* {state.loading === "loading" || state.loading === "faild" ? (
@@ -45,6 +57,7 @@ const App = () => {
         <> */}
       <Header />
       <ScrollTop />
+      {/* <Setting /> */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="login" element={<Login />} />
@@ -57,8 +70,6 @@ const App = () => {
       </Routes>
       <ToastContainer />
       <Footer />
-      {/* </>
-      )} */}
     </>
   );
 };

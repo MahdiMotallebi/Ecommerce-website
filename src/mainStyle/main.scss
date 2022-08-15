@@ -1,6 +1,36 @@
 @import 'config';
 @import 'overrideBootstrap';
 
+// ّImport Font
+@font-face {
+  font-family: Shabnam;
+  font-style: normal;
+  font-weight: normal;
+  src: url('../Font/eot/Shabnam.eot');
+  src: url('../Font/eot/Shabnam.eot?#iefix') format('embedded-opentype'),
+    url('../Font/woff/Shabnam.woff2') format('woff2'),
+    url('../Font/woff/Shabnam.woff') format('woff'),
+    url('../Font/ttf/Shabnam.ttf') format('truetype');
+}
+@font-face {
+  font-family: Shabnam;
+  font-style: normal;
+  font-weight: bold;
+  src: url('../Font/eot/Shabnam-Bold.eot');
+  src: url('../Font/eot/Shabnam-Bold.eot?#iefix') format('embedded-opentype'),
+    url('../Font/woff/Shabnam-Bold.woff2') format('woff2'),
+    url('../Font/woff/Shabnam-Bold.woff') format('woff'),
+    url('../Font/ttf/Shabnam-Bold.ttf') format('truetype');
+}
+@font-face {
+  font-family: Shabnam;
+  font-style: normal;
+  font-weight: light;
+  src: url('../Font/woff/Shabnam-Light.woff2') format('woff2'),
+    url('../Font/woff/Shabnam-Light.woff') format('woff'),
+    url('../Font/ttf/Shabnam-Light.ttf') format('truetype');
+}
+
 *,
 *::before,
 *::after {
@@ -12,6 +42,36 @@
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
+}
+
+body {
+  font-family: 'Titillium Web', Shabnam, sans-serif;
+  overflow-x: hidden;
+  height: 100%;
+}
+
+.ltr {
+  direction: ltr;
+  text-align: left;
+}
+
+.rtl {
+  direction: rtl;
+  text-align: right;
+}
+
+//custom scrollbar css
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 50px;
 }
 
 .go-to-top {
@@ -39,11 +99,7 @@ html {
   opacity: 1;
   visibility: visible;
 }
-body {
-  font-family: 'Titillium Web', sans-serif;
-  overflow-x: hidden;
-  height: 100%;
-}
+
 /***** Loading *****/
 .loading {
   display: flex;
@@ -890,10 +946,14 @@ body {
     }
   }
 
+  h4:lang(fa) {
+    letter-spacing: 0;
+  }
   h4 {
     font-size: clamp(16px, 2vw, 20px);
     letter-spacing: 6px;
     text-transform: capitalize;
+
     color: $sub-text-color;
   }
 
@@ -1274,7 +1334,7 @@ body {
 
   .col-four {
     svg {
-      margin-right: 1.5em;
+      // margin-right: 1.5em;
       display: inline-block;
       font-size: 14px;
     }
@@ -1702,6 +1762,41 @@ textarea {
     .tab-pane {
       color: $sub-text-color;
       line-height: 1.8em;
+    }
+  }
+}
+
+/***** Setting *****/
+.setting {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1000000;
+  right: 0;
+  font-size: 2em;
+  background-color: $original-black;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.3em;
+  cursor: pointer;
+}
+
+.language {
+  position: fixed;
+  top: 50%;
+  z-index: 1000000;
+  transform: translateY(-50%);
+  right: 3.2em;
+
+  li {
+    cursor: pointer;
+    padding: 0.5em;
+    transition: 0.3s;
+    border-radius: 3px;
+    &:hover {
+      background-color: #eeeeee;
     }
   }
 }

@@ -275,6 +275,29 @@ textarea {
   }
 }
 
+@font-face {
+  font-family: Shabnam;
+  font-style: normal;
+  font-weight: normal;
+  src: url("../Font/eot/Shabnam.eot");
+  src: url("../Font/eot/Shabnam.eot?#iefix") format("embedded-opentype"), url("../Font/woff/Shabnam.woff2") format("woff2"), url("../Font/woff/Shabnam.woff") format("woff"), url("../Font/ttf/Shabnam.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: Shabnam;
+  font-style: normal;
+  font-weight: bold;
+  src: url("../Font/eot/Shabnam-Bold.eot");
+  src: url("../Font/eot/Shabnam-Bold.eot?#iefix") format("embedded-opentype"), url("../Font/woff/Shabnam-Bold.woff2") format("woff2"), url("../Font/woff/Shabnam-Bold.woff") format("woff"), url("../Font/ttf/Shabnam-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: Shabnam;
+  font-style: normal;
+  font-weight: light;
+  src: url("../Font/woff/Shabnam-Light.woff2") format("woff2"), url("../Font/woff/Shabnam-Light.woff") format("woff"), url("../Font/ttf/Shabnam-Light.ttf") format("truetype");
+}
+
 *,
 *::before,
 *::after {
@@ -287,6 +310,35 @@ textarea {
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
+}
+
+body {
+  font-family: 'Titillium Web', Shabnam, sans-serif;
+  overflow-x: hidden;
+  height: 100%;
+}
+
+.ltr {
+  direction: ltr;
+  text-align: left;
+}
+
+.rtl {
+  direction: rtl;
+  text-align: right;
+}
+
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 50px;
 }
 
 .go-to-top {
@@ -319,12 +371,6 @@ html {
 .showScroll {
   opacity: 1;
   visibility: visible;
-}
-
-body {
-  font-family: 'Titillium Web', sans-serif;
-  overflow-x: hidden;
-  height: 100%;
 }
 
 /***** Loading *****/
@@ -1350,6 +1396,10 @@ body {
   }
 }
 
+.slick-content h4:lang(fa) {
+  letter-spacing: 0;
+}
+
 .slick-content h4 {
   font-size: clamp(16px, 2vw, 20px);
   letter-spacing: 6px;
@@ -2253,5 +2303,50 @@ textarea:focus {
 .product-detail-tab .tab-content .tab-pane {
   color: #888;
   line-height: 1.8em;
+}
+
+/***** Setting *****/
+.setting {
+  position: fixed;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  z-index: 1000000;
+  right: 0;
+  font-size: 2em;
+  background-color: #000;
+  color: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0.3em;
+  cursor: pointer;
+}
+
+.language {
+  position: fixed;
+  top: 50%;
+  z-index: 1000000;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  right: 3.2em;
+}
+
+.language li {
+  cursor: pointer;
+  padding: 0.5em;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  border-radius: 3px;
+}
+
+.language li:hover {
+  background-color: #eeeeee;
 }
 /*# sourceMappingURL=main.css.map */

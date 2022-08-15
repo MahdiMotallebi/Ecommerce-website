@@ -1,7 +1,7 @@
-import React, { useState, useRef, useEffect } from "react";
-import { useSelector } from "react-redux";
-import { LinkContainer } from "react-router-bootstrap";
-import { Link } from "react-router-dom";
+import React, { useState, useRef } from 'react';
+import { useSelector } from 'react-redux';
+import { LinkContainer } from 'react-router-bootstrap';
+import { Link } from 'react-router-dom';
 import {
   Container,
   Button,
@@ -13,39 +13,31 @@ import {
   Image,
   InputGroup,
   FormControl,
-  NavDropdown,
-  Dropdown,
-} from "react-bootstrap";
-
-import { DropdownSubmenu } from "react-bootstrap-submenu";
-import Modal from "react-modal";
-
-import whiteLogo from "../../img/white-logo.png";
+} from 'react-bootstrap';
+import Modal from 'react-modal';
+import whiteLogo from '../../img/white-logo.png';
 import {
   BsSearch,
   BsTelephoneFill,
   BsHeartFill,
   BsPerson,
-  BsGear,
   BsBasket3,
   BsList,
   BsShuffle,
-} from "react-icons/bs";
+} from 'react-icons/bs';
 
-import { allState } from "../../features/shopSlice";
-import Cart from "../cart/cart";
-import Like from "../like/like";
-import { menuItems } from "../../menuItems";
-import MenuItems from "../menu/MenuItems";
+import { allState } from '../../features/shopSlice';
+import Cart from '../cart/cart';
+import Like from '../like/like';
+import { menuItems } from '../../menuItems';
+import MenuItems from '../menu/MenuItems';
+import { useTranslation } from 'react-i18next';
 const Header = () => {
   const state = useSelector(allState);
+  const { t } = useTranslation();
   const [showCartModal, setShowCartModal] = useState(false);
   const [showLikeModal, setShowLikeModal] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
-  const [showSubmenu, setShowSubmenu] = useState(false);
-  const heightSubmenu = useRef(null);
-  const parentSubmenu = useRef(null);
-  const containerSubmenu = useRef(null);
 
   const handleCloseCartModal = () => {
     setShowCartModal(false);
@@ -70,12 +62,10 @@ const Header = () => {
               <Col>
                 <div className="top-header-left d-none d-lg-flex">
                   <Nav className="d-flex  align-items-center gap-4">
-                    <Nav.Item className="py-lg-3">
-                      Welcome to Our store Multikart
-                    </Nav.Item>
+                    <Nav.Item className="py-lg-3">{t('welcome')}</Nav.Item>
                     <Nav.Item className="py-lg-3">
                       <BsTelephoneFill className="mx-2" />
-                      Call Us: 123 - 456 - 7890
+                      {t('telephone')}
                     </Nav.Item>
                   </Nav>
                 </div>
@@ -90,18 +80,18 @@ const Header = () => {
                     >
                       <BsHeartFill className="wishlist-icon" />
 
-                      <span className="text-wishlist">wishlist</span>
+                      <span className="text-wishlist">{t('wishlist')}</span>
                     </Nav.Item>
                     <Nav.Item className="account py-sm-3 d-sm-flex justify-content-center align-items-center gap-2 text-capitalize">
                       <BsPerson className="account-icon" />
-                      <span className="text-account">my account</span>
+                      <span className="text-account">{t('account')}</span>
 
                       <Nav className="hover-account">
                         <LinkContainer to="login">
-                          <Nav.Link>login</Nav.Link>
+                          <Nav.Link>{t('login')}</Nav.Link>
                         </LinkContainer>
                         <LinkContainer to="register">
-                          <Nav.Link>register</Nav.Link>
+                          <Nav.Link>{t('register')}</Nav.Link>
                         </LinkContainer>
                       </Nav>
                     </Nav.Item>
@@ -164,7 +154,7 @@ const Header = () => {
                   <Form className="form-search-modal">
                     <InputGroup className="mb-3">
                       <FormControl
-                        placeholder="Search a Product"
+                        placeholder={t('Search a Product')}
                         aria-label="Recipient's username"
                         aria-describedby="basic-addon2"
                         className="input-modal shadown-none"
@@ -196,7 +186,7 @@ const Header = () => {
                 </span>
                 {state.cartItems.length === 0 && (
                   <div className="hover-cart">
-                    your cart is currently empty.
+                    {t('your cart is currently empty')}
                   </div>
                 )}
               </div>

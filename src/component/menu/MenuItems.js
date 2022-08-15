@@ -5,11 +5,12 @@ import { Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import DropDown from './DropDown';
 import MegaMenu from './megaMenu';
+import { useTranslation } from 'react-i18next';
 
 const MenuItems = ({ menu, depthLevel }) => {
   const [dropdown, setDropdown] = useState(false);
   const [height, setHeight] = useState(0);
-
+  const { t } = useTranslation();
   const handleCLick = () => {
     setDropdown((prev) => !prev);
     setHeight(height === 0 ? 'auto' : 0);
@@ -25,7 +26,7 @@ const MenuItems = ({ menu, depthLevel }) => {
             aria-controls="dropdown-control-area"
             onClick={handleCLick}
           >
-            {menu.title}
+            {t(`${menu.title}`)}
             {depthLevel > 0 ? (
               <span className="arrow-menu">
                 <BsChevronRight />
@@ -54,7 +55,7 @@ const MenuItems = ({ menu, depthLevel }) => {
           {menu.megaMenu ? (
             <Nav.Item className="mega">
               <Nav.Link onClick={handleCLick} as={Link} to={menu.to}>
-                {menu.title}
+                {t(`${menu.title}`)}
                 <span className="arrow-menu">
                   <BsChevronDown />
                 </span>
@@ -64,7 +65,7 @@ const MenuItems = ({ menu, depthLevel }) => {
           ) : (
             <Nav.Item>
               <Nav.Link as={Link} to={menu.to}>
-                {menu.title}
+                {t(`${menu.title}`)}
               </Nav.Link>
             </Nav.Item>
           )}

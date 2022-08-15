@@ -19,9 +19,11 @@ import { BsHeart, BsChat } from 'react-icons/bs';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import { addComment, postComment } from '../../features/shopSlice';
+import { useTranslation } from 'react-i18next';
 
 const SingleBlog = () => {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
   const schema = yup.object().shape({
     name: yup.string().required(),
     email: yup.string().email().required(),
@@ -47,7 +49,7 @@ const SingleBlog = () => {
               <Col xs={12}>
                 <div className="mt-3 detail-post-container border-bottom pb-3">
                   <h3 className="text-uppercase fw-bold">
-                    also the leap into electronic typesetting
+                    {t('title_singleBlog')}
                   </h3>
                   <div className="detail-blog-post">
                     <Row className="gy-2">
@@ -56,13 +58,15 @@ const SingleBlog = () => {
                       </Col>
                       <Col xs={12} lg={3}>
                         <div className="author text-capitalize">
-                          posted by : mahdi motallebi shariar
+                          {t('post_by')}: mahdi motallebi shariar
                         </div>
                       </Col>
                       <Col xs={12} lg={3}>
                         <div className="count-like-post ">
                           <BsHeart />
-                          <span className="d-inline-block ms-2">235 hits</span>
+                          <span className="d-inline-block ms-2">
+                            235 {t('hits')}
+                          </span>
                         </div>
                       </Col>
                       <Col xs={12} lg={3}>
@@ -70,7 +74,7 @@ const SingleBlog = () => {
                           <BsChat />
 
                           <span className="d-inline-block ms-2">
-                            104 comments
+                            104 {t('comments')}
                           </span>
                         </div>
                       </Col>
@@ -80,20 +84,7 @@ const SingleBlog = () => {
               </Col>
               <Col xs={12}>
                 <p className="my-3 single-blog-content">
-                  fusce scelerisque augue a viverra semper. Etiam nisi nibh,
-                  vestibulum quis augue id, imperdiet fringilla dolor. Nulla sed
-                  nisl vel nisi cursus finibus. Vivamus ut augue nec justo
-                  viverra laoreet. Nunc efficitur, arcu ac cursus gravida, lorem
-                  elit accumsan orci ac nunc fermentum vehicula. Cras quis neque
-                  urna. Pellentesque mollis, dui nec elementum elementum, ipsum
-                  quam suscipit ligula, sit amet lobortis dolor sem sed neque.
-                  Vivamus consequat est non sodales efficitur. Aliquam sodales
-                  eleifend sodales. Aliquam auctor ipsum quis nisl facilisis, at
-                  convallis mauris iaculis. Duis eleifend, magna ac convallis
-                  blandit, dui dui auctor leo, sed tincidunt nisi mauris ut
-                  nulla. Praesent porttitor dui ac turpis commodo porttitor.
-                  Integer ligula nisi, bibendum non sem at, porta condimentum
-                  dui. Proin id eleifend diam, euismod dictum nibh. Ut
+                  {t('des_singleBlog')}
                 </p>
               </Col>
             </Row>
@@ -109,52 +100,24 @@ const SingleBlog = () => {
               <Col xs={12} md={6}>
                 <ListGroup as="ol" numbered>
                   <ListGroup.Item as="li">
-                    Donec ut metus sit amet elit consectetur facilisis id vel
-                    turpis.
+                    {t('question_singleBlog')}
                   </ListGroup.Item>
                   <ListGroup.Item as="li">
-                    Aenean in mi eu elit mollis tincidunt.
+                    {t('question_singleBlog')}
                   </ListGroup.Item>
                   <ListGroup.Item as="li">
-                    Etiam blandit metus vitae purus lacinia ultricies.
+                    {t('question_singleBlog')}
                   </ListGroup.Item>
                   <ListGroup.Item as="li">
-                    Donec ut metus sit amet elit consectetur facilisis id vel
-                    turpis.
+                    {t('question_singleBlog')}
                   </ListGroup.Item>
                   <ListGroup.Item as="li">
-                    Aenean in mi eu elit mollis tincidunt.
-                  </ListGroup.Item>
-                  <ListGroup.Item as="li">
-                    Etiam blandit metus vitae purus lacinia ultricies.
-                  </ListGroup.Item>
-                  <ListGroup.Item as="li">
-                    Donec ut metus sit amet elit consectetur facilisis id vel
-                    turpis.
-                  </ListGroup.Item>
-                  <ListGroup.Item as="li">
-                    Aenean in mi eu elit mollis tincidunt.
-                  </ListGroup.Item>
-                  <ListGroup.Item as="li">
-                    Etiam blandit metus vitae purus lacinia ultricies.
+                    {t('question_singleBlog')}
                   </ListGroup.Item>
                 </ListGroup>
               </Col>
               <Col xs={12} md={6} className="single-blog-content">
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Nobis aut, suscipit fugiat, beatae distinctio, magni quidem
-                  delectus ea doloribus quisquam perspiciatis ab? Reiciendis
-                  tempora blanditiis enim at expedita atque voluptatem corrupti
-                  aperiam facere iusto ratione, vero minima suscipit numquam
-                  molestias dolore rem laboriosam sapiente distinctio? Lorem
-                  ipsum dolor sit amet, consectetur adipisicing elit. Nobis aut,
-                  suscipit fugiat, beatae distinctio, magni quidem delectus ea
-                  doloribus quisquam perspiciatis ab? Reiciendis tempora
-                  blanditiis enim at expedita atque voluptatem corrupti aperiam
-                  facere iusto ratione, vero minima suscipit numquam molestias
-                  dolore rem laboriosam sapiente distinctio?
-                </p>
+                <p>{t('des_singleBlog')}</p>
               </Col>
             </Row>
           </div>
@@ -165,7 +128,9 @@ const SingleBlog = () => {
           </div>
 
           <div className="form-comment">
-            <h4 className="text-uppercase fw-bold mb-3">leave your comment</h4>
+            <h4 className="text-uppercase fw-bold mb-3">
+              {t('leave_comment')}
+            </h4>
             <Row>
               <Col md={8} lg={5}>
                 <Formik
@@ -202,7 +167,7 @@ const SingleBlog = () => {
                   }) => (
                     <Form onSubmit={handleSubmit}>
                       <Form.Group className="mb-3" controlId="form.Name">
-                        <Form.Label>name</Form.Label>
+                        <Form.Label>{t('name')}</Form.Label>
                         <Form.Control
                           name="name"
                           value={values.name}
@@ -213,11 +178,11 @@ const SingleBlog = () => {
                           isValid={!errors.name && touched.name}
                         />
                         <Form.Control.Feedback type="invalid">
-                          {errors.name}
+                          {t('name error')}
                         </Form.Control.Feedback>
                       </Form.Group>
                       <Form.Group className="mb-3" controlId="form.Email">
-                        <Form.Label>email address</Form.Label>
+                        <Form.Label>{t('email address')}</Form.Label>
                         <Form.Control
                           name="email"
                           value={values.email}
@@ -228,11 +193,11 @@ const SingleBlog = () => {
                           isValid={!errors.email && touched.email}
                         />
                         <Form.Control.Feedback type="invalid">
-                          {errors.email}
+                          {t('email error')}
                         </Form.Control.Feedback>
                       </Form.Group>
                       <Form.Group className="mb-3" controlId="form.Textarea">
-                        <Form.Label>comment</Form.Label>
+                        <Form.Label>{t('comment')}</Form.Label>
                         <Form.Control
                           name="textComment"
                           value={values.textComment}
@@ -244,7 +209,7 @@ const SingleBlog = () => {
                           isValid={!errors.textComment && touched.textComment}
                         />
                         <Form.Control.Feedback type="invalid">
-                          {errors.textComment}
+                          {t('comment error')}
                         </Form.Control.Feedback>
                       </Form.Group>
                       <Button
@@ -252,7 +217,7 @@ const SingleBlog = () => {
                         className="mt-3 custom-button py-2 px-3 rounded-0 text-uppercase"
                         variant="none"
                       >
-                        post comment
+                        {t('post comment')}
                       </Button>
                     </Form>
                   )}

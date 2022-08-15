@@ -1,51 +1,53 @@
-import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { allState, handleRemoveFromWishlist } from "../../features/shopSlice";
-import { Button, Image, Row, Col, Container } from "react-bootstrap";
-import { v4 as uuidv4 } from "uuid";
-import { toast, Flip } from "react-toastify";
-import { BsXCircle } from "react-icons/bs";
-import "react-toastify/dist/ReactToastify.css";
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { allState, handleRemoveFromWishlist } from '../../features/shopSlice';
+import { Button, Image, Row, Col, Container } from 'react-bootstrap';
+import { v4 as uuidv4 } from 'uuid';
+import { toast, Flip } from 'react-toastify';
+import { BsXCircle } from 'react-icons/bs';
+import { useTranslation } from 'react-i18next';
+import 'react-toastify/dist/ReactToastify.css';
 const Like = () => {
   const state = useSelector(allState);
   const dispatch = useDispatch();
+  const { t } = useTranslation();
   const handleDelete = (item) => {
-    toast("Product Removed From Wishlist.", {
+    toast('Product Removed From Wishlist.', {
       icon: <BsXCircle />,
-      position: "bottom-left",
+      position: 'bottom-left',
       autoClose: 1500,
       hideProgressBar: true,
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
       transition: Flip,
-      className: "toast-success",
+      className: 'toast-success',
     });
     dispatch(handleRemoveFromWishlist(item.id));
   };
   return (
-    <Container className={`${state.likeItems.length > 0 ? "" : "h-100"}`}>
+    <Container className={`${state.likeItems.length > 0 ? '' : 'h-100'}`}>
       {state.likeItems.length > 0 ? (
         <>
           <Row className="gx-0 d-none d-lg-flex">
             <Col>
               <div className="border  text-center text-capitalize fw-bold p-2 bg-dark text-white column-thead">
-                image
+                {t('image')}
               </div>
             </Col>
             <Col>
               <div className="border text-center text-capitalize fw-bold p-2 bg-dark text-white column-thead">
-                product name
+                {t('product name')}
               </div>
             </Col>
             <Col>
               <div className="border text-center text-capitalize fw-bold p-2 bg-dark text-white column-thead">
-                price
+                {t('price')}
               </div>
             </Col>
             <Col>
               <div className="border text-center text-capitalize fw-bold p-2 bg-dark text-white column-thead">
-                action
+                {t('action')}
               </div>
             </Col>
           </Row>

@@ -5,6 +5,7 @@ import { Container, Row, Col, Image } from 'react-bootstrap';
 import { toast, Flip } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { v4 as uuidv4 } from 'uuid';
+import { useTranslation } from 'react-i18next';
 import {
   BsFillXCircleFill,
   BsXCircle,
@@ -14,6 +15,7 @@ import {
 const Compare = () => {
   const state = useSelector(allState);
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   const handleRemove = (id) => {
     toast.error('Product Removed From Compare.', {
@@ -76,12 +78,12 @@ const Compare = () => {
                       <h6>${price}</h6>
                     </div>
                     <div className="title-compare">
-                      <h5 className="text-capitalize fw-bold">title</h5>
+                      <h5 className="text-capitalize fw-bold">{t('title')}</h5>
                       <h6>{title}</h6>
                     </div>
 
                     <div className="size-compare">
-                      <h5 className="text-capitalize fw-bold">size</h5>
+                      <h5 className="text-capitalize fw-bold">{t('size')}</h5>
                       <div className="container-size d-flex gap-2 my-2">
                         {availableSizes.map((size) => {
                           return (
@@ -93,7 +95,7 @@ const Compare = () => {
                       </div>
                     </div>
                     <div className="color-compare">
-                      <h5 className="text-capitalize fw-bold">color</h5>
+                      <h5 className="text-capitalize fw-bold">{t('color')}</h5>
 
                       <div className="container-size d-flex gap-2 my-2">
                         {colors.map((color) => {

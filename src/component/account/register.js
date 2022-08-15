@@ -1,33 +1,34 @@
-import React from "react";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-import Image from "react-bootstrap/Image";
-import formImage from "../../img/account/img4.webp";
-import { Formik } from "formik";
-import * as yup from "yup";
-import { Link } from "react-router-dom";
-import Breadcrumb from "../breadCrumb/breadCrumb";
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import Image from 'react-bootstrap/Image';
+import formImage from '../../img/account/img4.webp';
+import { Formik } from 'formik';
+import * as yup from 'yup';
+import { Link } from 'react-router-dom';
+import Breadcrumb from '../breadCrumb/breadCrumb';
+import { useTranslation } from 'react-i18next';
 
 const Register = () => {
+  const { t } = useTranslation();
   const schema = yup.object().shape({
     name: yup.string().required(),
-    email: yup.string().email("enter a valid email.").required(),
+    email: yup.string().email('enter a valid email.').required(),
     password: yup.string().required(),
     confirm_password: yup
       .string()
-      .required("confirm password is required field")
-      .oneOf([yup.ref("password")], "passwords do not match."),
+      .required('confirm password is required field')
+      .oneOf([yup.ref('password')], 'passwords do not match.'),
 
     term: yup
       .bool()
       .required()
-      .oneOf([true], "you must agree before submitting."),
+      .oneOf([true], 'you must agree before submitting.'),
   });
-  console.log("hello");
+  console.log('hello');
   return (
     <>
       <Breadcrumb />
@@ -41,15 +42,15 @@ const Register = () => {
               <Card className="rounded-0  h-100 py-3 px-1 py-lg-4">
                 <Card.Body>
                   <h2 className="fw-bold text-uppercase text-center mb-5">
-                    create an account
+                    {t('create an account')}
                   </h2>
 
                   <Formik
                     initialValues={{
-                      name: "",
-                      email: "",
-                      password: "",
-                      confirm_password: "",
+                      name: '',
+                      email: '',
+                      password: '',
+                      confirm_password: '',
                       term: false,
                     }}
                     onSumbit={console.log()}
@@ -72,7 +73,7 @@ const Register = () => {
                             className="form-outline mb-4"
                           >
                             <Form.Label className="form-label">
-                              your name
+                              {t('your name')}
                             </Form.Label>
                             <Form.Control
                               type="text"
@@ -86,7 +87,7 @@ const Register = () => {
                               isValid={!errors.name && touched.name}
                             />
                             <Form.Control.Feedback type="invalid">
-                              {errors.name}
+                              {t('name error')}
                             </Form.Control.Feedback>
                           </Form.Group>
 
@@ -96,7 +97,7 @@ const Register = () => {
                             className="form-outline mb-4"
                           >
                             <Form.Label className="form-label">
-                              your email
+                              {t('your email')}
                             </Form.Label>
                             <Form.Control
                               type="email"
@@ -110,7 +111,7 @@ const Register = () => {
                               isValid={!errors.email && touched.email}
                             />
                             <Form.Control.Feedback type="invalid">
-                              {errors.email}
+                              {t('email error')}
                             </Form.Control.Feedback>
                           </Form.Group>
 
@@ -120,7 +121,7 @@ const Register = () => {
                             className="form-outline mb-4"
                           >
                             <Form.Label className="form-label">
-                              password
+                              {t('password')}
                             </Form.Label>
                             <Form.Control
                               type="password"
@@ -134,7 +135,7 @@ const Register = () => {
                               isValid={!errors.password && touched.password}
                             />
                             <Form.Control.Feedback type="invalid">
-                              {errors.password}
+                              {t('password error')}
                             </Form.Control.Feedback>
                           </Form.Group>
 
@@ -144,7 +145,7 @@ const Register = () => {
                             className="form-outline mb-4"
                           >
                             <Form.Label className="form-label">
-                              repeat your password
+                              {t('repeat your password')}
                             </Form.Label>
                             <Form.Control
                               type="password"
@@ -164,7 +165,7 @@ const Register = () => {
                               }
                             />
                             <Form.Control.Feedback type="invalid">
-                              {errors.confirm_password}
+                              {t('password-confirm error')}
                             </Form.Control.Feedback>
                           </Form.Group>
 
@@ -179,13 +180,13 @@ const Register = () => {
                               onChange={handleChange}
                               onBlur={handleBlur}
                               isInvalid={!!errors.term && touched.term}
-                              feedback={errors.term}
+                              feedback={t('term error')}
                               feedbackType="invalid"
                             />
                             <Form.Label className="mb-0">
-                              i agree all statements in
+                              {t('term1')}
                               <Link to="#" className="ms-2 text-body">
-                                <u>Terms of service</u>
+                                <u>{t('term2')}</u>
                               </Link>
                             </Form.Label>
                           </Form.Group>
@@ -195,13 +196,16 @@ const Register = () => {
                           className="custom-button rounded-0 text-uppercase mt-2 py-2 px-4"
                           variant="none"
                         >
-                          register
+                          {t('register')}
                         </Button>
 
                         <p class="text-center  mt-3 mt-lg-5 mb-0">
-                          have already an account?
-                          <Link to="/login" className="fw-bold text-body ms-1">
-                            <u>Login here</u>
+                          {t('have already an account?')}
+                          <Link
+                            to="/login"
+                            className="fw-bold text-body ms-1 text-capitalize"
+                          >
+                            <u>{t('login here')}</u>
                           </Link>
                         </p>
                       </Form>

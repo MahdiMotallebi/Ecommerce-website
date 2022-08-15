@@ -1,22 +1,24 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { Row, Button, Col, Image, Container } from "react-bootstrap";
-import noCart from "../../img/not-cart.png";
-import { toast, Flip } from "react-toastify";
-import { BsXCircle } from "react-icons/bs";
-import "react-toastify/dist/ReactToastify.css";
-import { v4 as uuidv4 } from "uuid";
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { Row, Button, Col, Image, Container } from 'react-bootstrap';
+import noCart from '../../img/not-cart.png';
+import { toast, Flip } from 'react-toastify';
+import { BsXCircle } from 'react-icons/bs';
+import 'react-toastify/dist/ReactToastify.css';
+import { v4 as uuidv4 } from 'uuid';
+import { useTranslation } from 'react-i18next';
 import {
   allState,
   handleDecCount,
   handleIncCount,
   handleRemoverFromCart,
-} from "../../features/shopSlice";
+} from '../../features/shopSlice';
 
 const Cart = () => {
   const state = useSelector(allState);
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   React.useEffect(() => {
     totalCart();
@@ -28,16 +30,16 @@ const Cart = () => {
   };
 
   const handleDelete = (id) => {
-    toast("Product removed From Cart. ", {
+    toast('Product removed From Cart. ', {
       icon: <BsXCircle />,
-      position: "bottom-left",
+      position: 'bottom-left',
       autoClose: 1500,
       hideProgressBar: true,
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
       transition: Flip,
-      className: "toast-success",
+      className: 'toast-success',
     });
     dispatch(handleRemoverFromCart(id));
   };
@@ -50,43 +52,43 @@ const Cart = () => {
   };
 
   return (
-    <Container className={`${state.cartItems.length > 0 ? "" : "h-100"}`}>
+    <Container className={`${state.cartItems.length > 0 ? '' : 'h-100'}`}>
       {state.cartItems.length > 0 ? (
         <>
           <Row className="gx-0 d-none d-lg-flex">
             <Col>
               <div className="border  text-center text-capitalize fw-bold p-2 bg-dark text-white column-thead">
-                image
+                {t('image')}
               </div>
             </Col>
             <Col>
               <div className="border text-center text-capitalize fw-bold p-2 bg-dark text-white column-thead">
-                name
+                {t('name')}
               </div>
             </Col>
             <Col>
               <div className="border text-center text-capitalize fw-bold p-2 bg-dark text-white column-thead">
-                price
+                {t('price')}
               </div>
             </Col>
             <Col>
               <div className="border text-center text-capitalize fw-bold p-2 bg-dark text-white column-thead">
-                quantity
+                {t('quantity')}
               </div>
             </Col>
             <Col>
               <div className="border text-center text-capitalize fw-bold p-2 bg-dark text-white column-thead">
-                size
+                {t('size')}
               </div>
             </Col>
             <Col>
               <div className="border text-center text-capitalize fw-bold p-2 bg-dark text-white column-thead">
-                color
+                {t('color')}
               </div>
             </Col>
             <Col>
               <div className="border text-center text-capitalize fw-bold p-2 bg-dark text-white column-thead">
-                action
+                {t('action')}
               </div>
             </Col>
           </Row>
@@ -153,9 +155,9 @@ const Cart = () => {
                         <div
                           style={{
                             background: color,
-                            width: "20px",
-                            height: "20px",
-                            borderRadius: "50%",
+                            width: '20px',
+                            height: '20px',
+                            borderRadius: '50%',
                           }}
                         ></div>
                       </div>
@@ -208,7 +210,7 @@ const Cart = () => {
                 className="d-flex justify-content-between justify-content-sm-start gap-sm-3 align-items-center mb-3 mb-sm-0 "
               >
                 <p className="total-text text-capitalize fw-bold">
-                  total Price:
+                  {t('total price')}:
                 </p>
                 <p className="total-price"> ${totalCart()}</p>
               </Col>
@@ -217,7 +219,7 @@ const Cart = () => {
                   className="checkout-btn d-block d-sm-inline-block py-2 px-2 px-sm-4 text-white text-uppercase text-center"
                   to="/checkout"
                 >
-                  checkout
+                  {t('checkout')}
                 </Link>
               </Col>
             </Row>

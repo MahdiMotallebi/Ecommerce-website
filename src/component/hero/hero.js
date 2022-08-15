@@ -1,18 +1,20 @@
-import React, { useEffect } from "react";
-import Slider from "react-slick";
-import { Link } from "react-router-dom";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Container from "react-bootstrap/Container";
-import Image from "react-bootstrap/Image";
-import hero1 from "../../img/hero1.jpg";
-import hero2 from "../../img/hero2.jpg";
-import subBanner1 from "../../img/sub-banner1.jpg";
-import subBanner2 from "../../img/sub-banner2.jpg";
-import NextArrow from "../arrowSlick/nextArrow";
-import PrevArrow from "../arrowSlick/prevArrow";
+import React, { useEffect } from 'react';
+import Slider from 'react-slick';
+import { Link } from 'react-router-dom';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+import Image from 'react-bootstrap/Image';
+import hero1 from '../../img/hero1.jpg';
+import hero2 from '../../img/hero2.jpg';
+import subBanner1 from '../../img/sub-banner1.jpg';
+import subBanner2 from '../../img/sub-banner2.jpg';
+import NextArrow from '../arrowSlick/nextArrow';
+import PrevArrow from '../arrowSlick/prevArrow';
+import { useTranslation } from 'react-i18next';
 const Hero = (props) => {
   const { onClick } = props;
+  const { t } = useTranslation();
   const settings = {
     dots: false,
     infinite: true,
@@ -25,24 +27,6 @@ const Hero = (props) => {
     prevArrow: <PrevArrow onClick={onClick} />,
   };
 
-  // function PrevArrow(props) {
-  //   const { className, onClick } = props;
-  //   return (
-  //     <div className="prev-arrow" onClick={onClick}>
-  //       <FaChevronLeft />
-  //     </div>
-  //   );
-  // }
-
-  // function NextArrow(props) {
-  //   const { className, onClick } = props;
-  //   return (
-  //     <div className="next-arrow" onClick={onClick}>
-  //       <FaChevronRight />
-  //     </div>
-  //   );
-  // }
-
   return (
     <>
       <section className="hero-slider">
@@ -52,19 +36,19 @@ const Hero = (props) => {
               className="slick-content position-relative d-flex justify-content-center align-items-center"
               style={{
                 backgroundImage: `url(${hero1})`,
-                backgroundPosition: "60%",
-                backgroundSize: "cover",
-                backgroundRepeat: "no-repeat",
+                backgroundPosition: '60%',
+                backgroundSize: 'cover',
+                backgroundRepeat: 'no-repeat',
               }}
             >
               <Container>
                 <Row>
                   <Col>
                     <div className="content position-absolute">
-                      <h4>welcome to fashion</h4>
-                      <h2>men fashion</h2>
+                      <h4>{t('welcome to fashion')}</h4>
+                      <h2>{t('men fashion')}</h2>
                       <Link className="shop-now" to="/shop">
-                        shop now
+                        {t('shop now')}
                       </Link>
                     </div>
                   </Col>
@@ -78,19 +62,19 @@ const Hero = (props) => {
               className="slick-content position-relative d-flex justify-content-center align-items-center"
               style={{
                 backgroundImage: `url(${hero2})`,
-                backgroundPosition: "60%",
-                backgroundSize: "cover",
-                backgroundRepeat: "no-repeat",
+                backgroundPosition: '60%',
+                backgroundSize: 'cover',
+                backgroundRepeat: 'no-repeat',
               }}
             >
               <Container>
                 <Row>
                   <Col>
                     <div className="content position-absolute">
-                      <h4>welcome to fashion</h4>
-                      <h2>women fashion</h2>
-                      <Link className="shop-now" to="/">
-                        shop now
+                      <h4>{t('welcome to fashion')}</h4>
+                      <h2>{t('women fashion')}</h2>
+                      <Link className="shop-now" to="/shop">
+                        {t('shop now')}
                       </Link>
                     </div>
                   </Col>
@@ -109,8 +93,8 @@ const Hero = (props) => {
                 <div className="sub-banner men position-relative">
                   <Image src={subBanner1} alt="men" fluid></Image>
                   <div className="sub-banner-content position-absolute">
-                    <h6>save 30%</h6>
-                    <h4>men</h4>
+                    <h6>{t('save')} 30%</h6>
+                    <h4>{t('men')}</h4>
                   </div>
                 </div>
               </Link>
@@ -121,8 +105,8 @@ const Hero = (props) => {
                 <div className="sub-banner women  position-relative">
                   <Image src={subBanner2} alt="women"></Image>
                   <div className="sub-banner-content position-absolute">
-                    <h6>save 60%</h6>
-                    <h4>women</h4>
+                    <h6>{t('save')} 60%</h6>
+                    <h4>{t('women')}</h4>
                   </div>
                 </div>
               </Link>

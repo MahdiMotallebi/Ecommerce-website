@@ -1,19 +1,21 @@
-import React from "react";
-import { Image, Col, Row, Form, Button } from "react-bootstrap";
-import comment1 from "../../img/singleBlog/comment1.jpg";
+import React from 'react';
+import { Image, Col, Row, Form, Button } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
+import comment1 from '../../img/singleBlog/comment1.jpg';
 const Comment = ({ comment, handleSubmit }) => {
+  const { t } = useTranslation();
   const { body, username, createdAt, children, parentId, avatar } = comment;
   const [showReplyForm, setShowReplyForm] = React.useState(false);
-  const [textareaValue, setTextareaValue] = React.useState("");
+  const [textareaValue, setTextareaValue] = React.useState('');
 
   return (
     <Col
       xs={12}
-      className={`user-comment ${parentId === null ? "mt-3 mt-sm-5" : "mt-1"}`}
+      className={`user-comment ${parentId === null ? 'mt-3 mt-sm-5' : 'mt-1'}`}
     >
       <div
         className={`comment ${
-          parentId === null ? "p-1 pt-3" : "p-3"
+          parentId === null ? 'p-1 pt-3' : 'p-3'
         } d-flex flex-column flex-lg-row aling-items-start gap-3`}
       >
         <Image
@@ -34,7 +36,7 @@ const Comment = ({ comment, handleSubmit }) => {
               className="reply d-inline-block text-capitalize"
               onClick={() => setShowReplyForm(true)}
             >
-              reply
+              {t('reply')}
             </span>
             {showReplyForm && (
               <div className="form-container">
@@ -67,14 +69,14 @@ const Comment = ({ comment, handleSubmit }) => {
                     className="reply border-0 bg-transparent"
                     variant="none"
                   >
-                    reply
+                    {t('reply')}
                   </button>
                   <button
                     className="reply ms-3 border-0 bg-transparent"
                     variant="none"
                     onClick={() => setShowReplyForm(false)}
                   >
-                    cancel
+                    {t('cancel')}
                   </button>
                 </Form>
               </div>

@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import Select from 'react-select';
 import { Row, Col } from 'react-bootstrap';
 import { BsFillXCircleFill } from 'react-icons/bs';
+import { useTranslation } from 'react-i18next';
 import {
   allState,
   handleCurrentPage,
@@ -19,6 +20,7 @@ import {
 const Category = ({ setShowFilter }) => {
   const state = useSelector(allState);
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   useEffect(() => {
     dispatch(handleGetUniqueValue('colors'));
@@ -26,9 +28,9 @@ const Category = ({ setShowFilter }) => {
   }, [state.items]);
 
   const sort = [
-    { value: 'Newest', label: 'Newest' },
-    { value: 'Descending', label: 'Descending' },
-    { value: 'Ascending', label: 'Ascending' },
+    { value: t('newest'), label: t('newest') },
+    { value: t('descending'), label: t('descending') },
+    { value: t('ascending'), label: t('ascending') },
   ];
 
   useEffect(() => {
@@ -46,9 +48,6 @@ const Category = ({ setShowFilter }) => {
   ]);
 
   const defaultValueSize = (sizeVal) => {
-    // if (sizeVal === "ALL") {
-    //   defaultValueSort(sort, state.filterValues.sort);
-    // }
     const result = state.categories.size.find(
       (option) => option.value === sizeVal
     );
@@ -105,7 +104,6 @@ const Category = ({ setShowFilter }) => {
               styles={customStyles}
               name="size"
               options={state.categories.size}
-              placeholder="Select size"
               value={defaultValueSize(state.filterValues.size)}
               onChange={(e) =>
                 dispatch(setFilterValues({ type: 'size', val: e.value }))
@@ -116,23 +114,22 @@ const Category = ({ setShowFilter }) => {
         </Col>
         <Col xs={12}>
           <div className="sort">
-            <h5 className="text-capitalize">sort</h5>
+            <h5 className="text-capitalize">{t('sort')}</h5>
             <Select
               styles={customStyles}
               name="sort"
               options={sort}
-              placeholder="Select sort"
               value={defaultValueSort(sort, state.filterValues.sort)}
               onChange={(e) =>
                 dispatch(setFilterValues({ type: 'sort', val: e.value }))
               }
-              placeholder="Filter By Price"
+              placeholder={t('filter by price')}
             />
           </div>
         </Col>
 
         <Col xs={12}>
-          <h5 className="text-capitalize">colors</h5>
+          <h5 className="text-capitalize">{t('color')}</h5>
           <div className="d-flex gap-2">
             {state.categories.colors.map((c, index) => {
               return (
@@ -161,7 +158,7 @@ const Category = ({ setShowFilter }) => {
         <Col xs={12}>
           <div className="sort">
             <h5 className="text-capitalize">
-              price: ${state.filterValues.price}
+              {t('price')}: ${state.filterValues.price}
             </h5>
             <div className="wrapper d-flex flex-column flex-sm-row gap-2">
               <span>${state.filterValues.minVal}</span>
@@ -186,7 +183,7 @@ const Category = ({ setShowFilter }) => {
         className="text-capitalize mt-4 fw-bold  text-white p-2 text-center btn-remove-filter"
         onClick={removeFilters}
       >
-        remove all filters
+        {t('remove all filters')}
       </div>
     </div>
   );

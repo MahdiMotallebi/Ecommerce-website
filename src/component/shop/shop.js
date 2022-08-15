@@ -10,10 +10,11 @@ import Products from '../products/products';
 import { BsTruck, BsClock, BsCapslock } from 'react-icons/bs';
 import { v4 as uuidv4 } from 'uuid';
 import { ToastContainer } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 
 const Shop = () => {
   const state = useSelector(allState);
-
+  const { t } = useTranslation();
   const importAll = (r) => {
     return r.keys().map(r);
   };
@@ -153,17 +154,14 @@ const Shop = () => {
           <div className="special-offer text-center">
             <Row>
               <Col>
-                <h6>special offer</h6>
-                <h3>top collection</h3>
+                <h6>{t('special offers')}</h6>
+                <h3>{t('top collection')}</h3>
               </Col>
             </Row>
             <Container>
               <Row>
                 <Col lg={6} className="mx-auto">
-                  <p>
-                    All of that said, if you take one thing from this article,
-                    let it be this: email has evolved. Sending general email
-                  </p>
+                  <p>{t('description top collection')}</p>
                 </Col>
               </Row>
             </Container>
@@ -194,9 +192,9 @@ const Shop = () => {
           <Row>
             <Col>
               <div className="parallex-content">
-                <h2>2021</h2>
-                <h3>fashion trends</h3>
-                <h5>special offers</h5>
+                <h2>{t('2021')}</h2>
+                <h3>{t('fashion trends')}</h3>
+                <h5>{t('special offers')}</h5>
               </div>
             </Col>
           </Row>
@@ -216,8 +214,8 @@ const Shop = () => {
                   <BsTruck />
                 </div>
                 <div className="content-news">
-                  <h3>free shipping</h3>
-                  <h5>free shipping world</h5>
+                  <h3>{t('free shipping')}</h3>
+                  <h5>{t('free shipping world')}</h5>
                 </div>
               </div>
             </Col>
@@ -227,8 +225,8 @@ const Shop = () => {
                   <BsCapslock />
                 </div>
                 <div className="content-news">
-                  <h3>24 x 7 service</h3>
-                  <h5>online service for new customer</h5>
+                  <h3>24 x 7 {t('service')}</h3>
+                  <h5>{t('online service for new customer')}</h5>
                 </div>
               </div>
             </Col>
@@ -238,8 +236,8 @@ const Shop = () => {
                   <BsClock />
                 </div>
                 <div className="content-news">
-                  <h3>festival offer</h3>
-                  <h5>new online special festival offer</h5>
+                  <h3>{t('festival offer')}</h3>
+                  <h5>{t('new online special festival offer')}</h5>
                 </div>
               </div>
             </Col>
@@ -248,8 +246,8 @@ const Shop = () => {
       </section>
 
       <section className="blog text-center mt-5">
-        <h6>our collection</h6>
-        <h3>special products</h3>
+        <h6>{t('our collection')}</h6>
+        <h3>{t('special products')}</h3>
         <Container>
           <Row>
             <Slider {...blog}>
@@ -262,7 +260,7 @@ const Shop = () => {
       </section>
 
       <section className="instagram mt-5 text-center">
-        <h3>#instagram</h3>
+        <h3>#{t('instagram')}</h3>
         <Row>
           <Col>
             <Slider {...instagram}>

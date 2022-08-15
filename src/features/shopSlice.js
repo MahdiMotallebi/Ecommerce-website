@@ -1,25 +1,16 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { data } from '../data/db';
-import axios from 'axios';
-
-const URL = 'https://0e31-185-207-249-102.ngrok.io/products/';
-const URL_COMMENT = 'https://0e31-185-207-249-102.ngrok.io/comments/';
-const URL_CARTITEMS = 'https://0e31-185-207-249-102.ngrok.io/cartItems/';
-const URL_WISHLIST = 'https://0e31-185-207-249-102.ngrok.io/wishList/';
-const URL_COMPARE = 'https://0e31-185-207-249-102.ngrok.io/compare/';
 
 //get all data from database
 export const fetchComments = createAsyncThunk(
   'multiCart/fetchComments',
   async () => {
-    // const res = await axios.get(URL_COMMENT);
     return data.comments;
   }
 );
 export const fetchProducts = createAsyncThunk(
   'multiCart/fetchProducts',
   async () => {
-    // const res = await axios.get(URL);
     return data.products;
   }
 );
@@ -27,7 +18,6 @@ export const fetchProducts = createAsyncThunk(
 export const fetchCartItems = createAsyncThunk(
   'multiCart/fetchCartItems',
   async () => {
-    // const res = await axios.get(URL_CARTITEMS);
     return data.cartItems;
   }
 );
@@ -35,7 +25,6 @@ export const fetchCartItems = createAsyncThunk(
 export const fetchCompare = createAsyncThunk(
   'multiCart/fetchCompare',
   async () => {
-    // const res = await axios.get(URL_COMPARE);
     return data.compare;
   }
 );
@@ -43,16 +32,13 @@ export const fetchCompare = createAsyncThunk(
 export const fetchWishList = createAsyncThunk(
   'multiCart/fetchWishList',
   async () => {
-    // const res = await axios.get(URL_WISHLIST);
     return data.wishList;
   }
 );
 
 export const postComment = createAsyncThunk(
   'multiCart/replyComment',
-  async (rComment) => {
-    // const res = axios.post(URL_COMMENT, rComment);
-  }
+  async (rComment) => {}
 );
 
 const nestedReplyComment = (temp, p) => {
@@ -92,6 +78,19 @@ const initialState = {
     size: [],
     sort: [],
   },
+  language: [
+    {
+      code: 'en',
+      name: 'English',
+      country_code: 'GB',
+    },
+    {
+      code: 'fa',
+      name: 'Persian',
+      dir: 'rtl',
+      country_code: 'IR',
+    },
+  ],
 };
 
 const clothingSlice = createSlice({
@@ -208,10 +207,8 @@ const clothingSlice = createSlice({
           (p) => p.id !== action.payload.id
         );
         state.likeItems = newLikeItems;
-        axios.delete(URL_WISHLIST + action.payload.id);
       } else {
         state.likeItems.push(action.payload);
-        axios.post(URL_WISHLIST, action.payload);
       }
     },
     handleRemoveFromWishlist: (state, action) => {
@@ -219,7 +216,6 @@ const clothingSlice = createSlice({
         (p) => p.id !== action.payload
       );
       state.likeItems = tempLikeItems;
-      axios.delete(URL_WISHLIST + action.payload);
     },
     handleCartItems: (state, action) => {
       const { id, size, count, color } = action.payload;
@@ -237,7 +233,6 @@ const clothingSlice = createSlice({
           return p;
         });
         state.cartItems = tempCart;
-        axios.put(URL_CARTITEMS + state.product.id, newProduct);
       } else {
         const newItem = {
           id: id + size + newColor,
@@ -249,14 +244,11 @@ const clothingSlice = createSlice({
           color,
         };
         state.cartItems.push(newItem);
-        axios.post(URL_CARTITEMS, newItem);
       }
     },
     handleRemoverFromCart: (state, action) => {
       const tempCart = state.cartItems.filter((p) => p.id !== action.payload);
       state.cartItems = tempCart;
-
-      axios.delete(URL_CARTITEMS + action.payload);
     },
     handleIncCount: (state, action) => {
       let newItem = {};
@@ -270,7 +262,6 @@ const clothingSlice = createSlice({
       });
 
       state.cartItems = tempCart;
-      axios.put(URL_CARTITEMS + action.payload, newItem);
     },
     handleDecCount: (state, action) => {
       let newItem = {};
@@ -284,7 +275,6 @@ const clothingSlice = createSlice({
       });
 
       state.cartItems = tempCart;
-      axios.put(URL_CARTITEMS + action.payload, newItem);
     },
 
     handleGetUniqueValue: (state, action) => {
@@ -302,12 +292,10 @@ const clothingSlice = createSlice({
     },
     handleCompare: (state, action) => {
       state.compare.push(action.payload);
-      axios.post(URL_COMPARE, action.payload);
     },
     RemoveItemFromCompare: (state, action) => {
       const temp = state.compare.filter((p) => p.id !== action.payload);
       state.compare = temp;
-      axios.delete(URL_COMPARE + action.payload);
     },
   },
   extraReducers: {
@@ -349,20 +337,6 @@ const clothingSlice = createSlice({
         }
       });
 
-      // backendComments.forEach((item) => {
-      //   if (!mapArr.hasOwnProperty(item.parentId)) {
-      //     var newObj = {
-      //       id: item.parentId,
-      //       body: "hello",
-      //       username: "marin",
-      //       userId: "1",
-      //       parentId: null,
-      //       createdAt: "2021-08-16T23:00:33.010+02:00",
-      //     };
-      //     mapArr[item.parentId] = newObj;
-      //     mapArr[item.parentId].children = [];
-      //   }
-      // });
       for (var id in mapArr) {
         if (mapArr.hasOwnProperty(id)) {
           var mapElem = mapArr[id]; //  key of object
