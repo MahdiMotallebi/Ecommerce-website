@@ -7,7 +7,8 @@ import { useTranslation } from 'react-i18next';
 const Breadcrumb = () => {
   const { pathname } = useLocation();
   const { t } = useTranslation();
-  const pathName = pathname.split('/').filter((x) => x);
+  const pathName = pathname.split('/');
+
   return (
     <div className="breadCrumb-container">
       <Container>
